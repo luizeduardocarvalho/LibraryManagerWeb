@@ -1,0 +1,12 @@
+{
+  "name": "LibraryManagerWeb",
+  "displayName": "LibraryManagerWeb",
+  "expo": {
+    "name": "LibraryManagerWeb",
+    "slug": "LibraryManagerWeb",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
