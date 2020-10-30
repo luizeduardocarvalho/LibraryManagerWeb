@@ -23,7 +23,7 @@ function Tabs() {
 					} else if (route.name === 'User') {
 						iconName = 'ios-contact'
 					}
-					
+
 					return <Ionicons name={iconName} size={size} color={color} />;
 				},
 			})}
@@ -33,17 +33,17 @@ function Tabs() {
 					elevation: 0,
 					shadowOpacity: 0,
 					height: 64,
-					borderWidth: 0.5,
-					borderTopLeftRadius: 20,
-					borderTopRightRadius: 20,
-					position: 'absolute'
+					borderWidth: 0,
+					borderTopLeftRadius: 35,
+					borderTopRightRadius: 35,
+					position: 'absolute',
 				},
 				tabStyle: {
 					flexDirection: 'row',
 					alignItems: 'center',
-					justifyContent: 'center',				
-					borderTopLeftRadius: 20,
-					borderTopRightRadius: 20,
+					justifyContent: 'center',
+					borderTopLeftRadius: 35,
+					borderTopRightRadius: 35,
 				},
 				iconStyle: {
 					flex: 0,
@@ -55,11 +55,11 @@ function Tabs() {
 					fontSize: 13,
 					marginLeft: 16,
 				},
-				inactiveBackgroundColor: '#FAFAFC',
+				inactiveBackgroundColor: '#FFF',
 				activeBackgroundColor: '#EBEBF5',
 				inactiveTintColor: '#C1BCCC',
 				activeTintColor: '#32264D',
-		}}>
+			}}>
 			<Tab.Screen name="Authors" component={Authors} />
 			<Tab.Screen name="Books" component={Books} />
 			<Tab.Screen name="User" component={User} />
