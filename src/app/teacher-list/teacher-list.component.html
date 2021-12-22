@@ -1,0 +1,25 @@
+<div class="m-2">
+	<div class="d-flex flex-row-reverse">
+		<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
+	</div>
+	<table mdbTable class="mt-2">
+		<thead class="grey lighten-1 black-text">
+			<tr>
+				<th class="col-md-2" scope="col">ID</th>
+				<th class="col-md-4" scope="col">Name</th>
+				<th class="col-md-4" scope="col">Email</th>
+				<th class="col-md-2" scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr mdbTableCol *ngFor="let teacher of teachers">
+				<th scope="row">{{teacher.id}}</th>
+				<td>{{teacher.name}}</td>
+				<td>{{teacher.email}}</td>
+				<td>
+					<mdb-icon fas icon="leaf" [routerLink]="[teacher.id]" class="mr-2" aria-hidden="true"></mdb-icon>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
