@@ -1,9 +1,10 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/operators';
 import { Teacher } from 'src/models/teacher';
-import { HttpHeaders } from '@angular/common/http';
+import { User } from 'src/models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,18 +16,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherService {
+export class AuthService {
+
+  baseUrl = 'https://localhost:5001/v1/';
 
   constructor(private http: HttpClient) { }
 
-	baseUrl = 'https://localhost:5001/';
-
-  getAllTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(this.baseUrl + 'teachers');
-  }
-
-  createTeacher(teacher: Teacher): Observable<Teacher> {
-    return this.http.post<Teacher>(this.baseUrl + 'teachers', teacher, httpOptions).pipe(
+  login(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl + 'login', user, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -44,5 +41,4 @@ export class TeacherService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
-  
 }

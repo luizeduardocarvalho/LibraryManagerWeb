@@ -14,6 +14,8 @@ import { CreateTeacherComponent } from './teacher-list/create-teacher/create-tea
 import { TeacherCardComponent } from './teacher-list/teacher-card/teacher-card.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { CreateBookComponent } from './book-list/create-book/create-book.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from 'src/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { CreateBookComponent } from './book-list/create-book/create-book.compone
     TeacherCardComponent,
     BookListComponent,
     CreateBookComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,11 +36,12 @@ import { CreateBookComponent } from './book-list/create-book/create-book.compone
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
-      {path: 'teachers', component: TeacherListComponent},
-      {path: 'teachers/create', component: CreateTeacherComponent},
-      {path: 'teachers/:id', component: TeacherCardComponent},
-      {path: 'books', component: BookListComponent},
-      {path: 'books/create', component: CreateBookComponent},
+      {path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuard]},
+      {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
+      {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AuthGuard]},
+      {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
+      {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent}
     ])
   ],
   providers: [],
