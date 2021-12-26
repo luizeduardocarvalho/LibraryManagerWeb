@@ -16,6 +16,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { CreateBookComponent } from './book-list/create-book/create-book.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/services/auth-guard.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthGuard } from 'src/services/auth-guard.service';
     BookListComponent,
     CreateBookComponent,
     LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { AuthGuard } from 'src/services/auth-guard.service';
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AuthGuard]},
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
-      {path: 'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      {path: '**', component: NotFoundComponent}
     ])
   ],
   providers: [],
