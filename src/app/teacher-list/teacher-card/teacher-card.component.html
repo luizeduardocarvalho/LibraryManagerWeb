@@ -11,9 +11,9 @@
 			</thead>
 			<tbody>
 				<tr mdbTableCol *ngFor="let student of students">
-					<th scope="row">{{student.id}}</th>
+					<th scope="row">{{student.studentId}}</th>
 					<td>{{student.name}}</td>
-					<td>{{student.books.length}}</td>
+					<td>{{student.numberOfActiveBooks}}</td>
 				</tr>
 			</tbody>
 		</table>
