@@ -44,7 +44,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
-      {path: '**', component: NotFoundComponent}
     ])
   ],
   providers: [],

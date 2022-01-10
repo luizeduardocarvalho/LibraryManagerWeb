@@ -9,16 +9,16 @@
   
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" routerLink="/" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <a class="nav-link waves-light" routerLink="/" mdbWavesEffect>Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link waves-light" routerLink="/teachers" mdbWavesEffect>Teachers</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link waves-light" routerLink="/books" mdbWavesEffect>Books</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
             <a class="nav-link waves-light" mdbWavesEffect>Students</a>
           </li>
   
