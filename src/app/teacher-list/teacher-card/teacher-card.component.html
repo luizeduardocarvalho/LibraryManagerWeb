@@ -19,7 +19,23 @@
 		</table>
 	</div>
 	<div class="col-sm-6">
-
+		<h3>Late Book List</h3>
+		<table mdbTable mdbTableScroll maxHeight="200">
+			<thead class="grey lighten-1 black-text">
+				<tr>
+					<th class="col-md-2" scope="col">Book ID</th>
+					<th class="col-md-4" scope="col">Book Title</th>
+					<th class="col-md-4" scope="col">Student</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr mdbTableCol *ngFor="let book of lateBooks">
+					<th scope="row">{{book.bookId}}</th>
+					<td>{{book.bookTitle}}</td>
+					<td>{{book.studentName}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 
