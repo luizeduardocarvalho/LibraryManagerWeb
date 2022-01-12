@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Student } from 'src/models/student';
+import { Book } from 'src/models/book';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,19 +15,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class BookService {
 
   constructor(private http: HttpClient) { }
 
 	baseUrl = 'https://localhost:5001/';
 
-  getStudentsByTeacherWithBookCount(teacherId: number): Observable<Student[]> {
-    return this.http.get<Student[]>(
-        this.baseUrl + 'students/studentswithbooks', 
-        {
-            params: {
-                'teacherId': teacherId
-            }
-        });
+  getAllBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(this.baseUrl + 'books');
   }
 }
