@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { CreateBookComponent } from './book-list/create-book/create-book.compone
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/services/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BookInfoComponent } from './book-list/book-info/book-info.component';
+import { FilterPipe } from 'src/pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CreateBookComponent,
     LoginComponent,
     NotFoundComponent,
+    BookInfoComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
@@ -43,6 +48,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AuthGuard]},
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
+      {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
     ])
   ],

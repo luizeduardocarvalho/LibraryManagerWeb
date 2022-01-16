@@ -8,12 +8,10 @@ import { TeacherService } from 'src/services/teacher.service';
   styleUrls: ['./teacher-list.component.scss']
 })
 export class TeacherListComponent implements OnInit {
-
-  constructor(private teacherService: TeacherService) { }
-
-  
   teachers: Teacher[] = [];
-  headElements = ['ID', 'Name', 'Email', 'Actions']
+  searchText: string = '';
+  
+  constructor(private teacherService: TeacherService) { }
 
   ngOnInit(): void {
     this.teacherService.getAllTeachers().subscribe((data: Teacher[]) => {
