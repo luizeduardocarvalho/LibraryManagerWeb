@@ -29,4 +29,14 @@ export class StudentService {
             }
         });
   }
+
+  getStudentsByName(name: string): Observable<Student[]> {
+    return this.http.get<Student[]>(
+      this.baseUrl + 'students/getstudentsbyname', 
+      {
+          params: {
+              'name': name
+          }
+      });
+  }
 }

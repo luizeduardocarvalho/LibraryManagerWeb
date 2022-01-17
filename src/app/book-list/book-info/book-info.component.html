@@ -1,1 +1,30 @@
-<p>book-info works!</p>
+<div *ngIf="book" class="p-3">
+    <div class="row">
+        <h2 class="col-md-8">{{ book.title }}</h2>
+        <div class="d-flex flex-row-reverse col-md-4">
+			<button mdbBtn [routerLink]="['lend']" type="button" color="primary" mdbWavesEffect>Lend</button>
+            <button mdbBtn (click)="onReturn()" type="button" color="primary" mdbWavesEffect>Return</button>
+            <button mdbBtn (click)="onRenew()" type="button" color="primary" mdbWavesEffect>Renew</button>
+    </div>
+    <p>{{ book.description }}</p>
+    <table mdbTable class="mt-2" *ngIf="book.transactions">
+		<thead class="grey lighten-1 black-text">
+			<tr>
+				<th class="col-md-2" scope="col">ID</th>
+				<th class="col-md-4" scope="col">Student Name</th>
+				<th class="col-md-2" scope="col">Get Date</th>
+				<th class="col-md-2" scope="col">Returned At</th>
+				<th class="col-md-2" scope="col">Return Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr mdbTableCol *ngFor="let transaction of book.transactions">
+				<th scope="row">{{transaction.transactionId}}</th>
+				<td>{{transaction.studentName}}</td>
+				<td>{{transaction.creationDate | date: 'longDate'}}</td>
+				<td>{{transaction.returnedAt | date: 'longDate'}}</td>
+				<td>{{transaction.returnDate | date: 'longDate'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

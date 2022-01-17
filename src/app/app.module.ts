@@ -19,6 +19,7 @@ import { AuthGuard } from 'src/services/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookInfoComponent } from './book-list/book-info/book-info.component';
 import { FilterPipe } from 'src/pipes/search.pipe';
+import { LendBookComponent } from './book-list/lend-book/lend-book.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FilterPipe } from 'src/pipes/search.pipe';
     LoginComponent,
     NotFoundComponent,
     BookInfoComponent,
-    FilterPipe
+    FilterPipe,
+    LendBookComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { FilterPipe } from 'src/pipes/search.pipe';
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
       {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},
+      {path: 'books/:id/lend', component: LendBookComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
     ])
   ],
