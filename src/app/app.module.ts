@@ -20,6 +20,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BookInfoComponent } from './book-list/book-info/book-info.component';
 import { FilterPipe } from 'src/pipes/search.pipe';
 import { LendBookComponent } from './book-list/lend-book/lend-book.component';
+import { StudentListComponent } from './student-list/student-list.component';
+import { CreateStudentComponent } from './student-list/create-student/create-student.component';
+import { StudentCardComponent } from './student-list/student-card/student-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { LendBookComponent } from './book-list/lend-book/lend-book.component';
     NotFoundComponent,
     BookInfoComponent,
     FilterPipe,
-    LendBookComponent
+    LendBookComponent,
+    StudentListComponent,
+    CreateStudentComponent,
+    StudentCardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,9 @@ import { LendBookComponent } from './book-list/lend-book/lend-book.component';
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
       {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},
       {path: 'books/:id/lend', component: LendBookComponent, canActivate: [AuthGuard]},
+      {path: 'students', component: StudentListComponent, canActivate: [AuthGuard]},
+      {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
+      {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
     ])
   ],

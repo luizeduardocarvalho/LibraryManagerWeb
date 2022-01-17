@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Student } from 'src/models/student';
+import { CreateStudent } from 'src/models/create-student';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,5 +39,9 @@ export class StudentService {
               'name': name
           }
       });
+  }
+
+  createStudent(createStudent: CreateStudent) {
+    return this.http.post<CreateStudent>(this.baseUrl + 'students', createStudent);
   }
 }

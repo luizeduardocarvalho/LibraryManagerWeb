@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { LateBook } from 'src/models/late-book';
+import { Transaction } from 'src/models/transaction';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,5 +24,14 @@ export class TransactionService {
   getLateBooks(): Observable<LateBook[]> {
     return this.http.get<LateBook[]>(
         this.baseUrl + 'transactions/getlatebooks');
+  }
+
+  getTransactionsWithDetailsByStudent(studentId: number): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(this.baseUrl + 'transactions/gettransactionswithdetailsbystudent', 
+    {
+      params: {
+        'studentId': studentId
+      }
+    })
   }
 }

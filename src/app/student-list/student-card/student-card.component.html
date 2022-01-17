@@ -1,0 +1,31 @@
+<div class="m-2">
+	<div class="row align-items-start">
+		<div class="col-md-2">
+			<h3 class="m-0">Book History</h3>
+		</div>
+	</div>
+	<table mdbTable class="mt-2">
+		<thead class="grey lighten-1 black-text">
+			<tr>
+				<th class="col-md-1" scope="col">ID</th>
+				<th class="col-md-4" scope="col">Title</th>
+				<th class="col-md-2" scope="col">Lend Date</th>
+				<th class="col-md-2" scope="col">Returned At</th>
+				<th class="col-md-2" scope="col">Return Date</th>
+				<th class="col-md-1" scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr mdbTableCol *ngFor="let transaction of transactions">
+				<th scope="row">{{transaction.transactionId}}</th>
+				<td>{{transaction.bookTitle}}</td>
+				<td>{{transaction.creationDate | date: 'longDate'}}</td>
+				<td>{{transaction.returnedAt | date: 'longDate'}}</td>
+				<td>{{transaction.returnDate | date: 'longDate'}}</td>
+				<td>
+					<mdb-icon fas icon="leaf" [routerLink]="['/books', transaction.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
