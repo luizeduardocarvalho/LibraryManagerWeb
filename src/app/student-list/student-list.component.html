@@ -1,16 +1,16 @@
 <div class="m-2">
 	<div class="row align-items-center">
-		<div class="col-xl-2 col-12">
+		<div class="col-xl-2 col-xm-12 col-12">
 			<h3 class="m-0">Student List</h3>
 		</div>
-		<div class="col-xl-8 col-9">
+		<div class="col-xl-8 col-xm-9 col-12 form-div">
 			<form class="form-inline md-form form-sm m-0">
 				<input class="form-control form-control-sm mr-3 w-75" type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search"
 				  mdbInput>
 				  <button mdbBtn type="button" (click)="search(searchText)" color="primary" mdbWavesEffect>Search</button>
 			</form>
 		</div>
-		<div class="d-flex flex-row-reverse col-xl-2 col-3">
+		<div class="d-flex flex-row-reverse col-xl-2 col-xs-3 col-12">
 			<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
 		</div>
 	</div>
