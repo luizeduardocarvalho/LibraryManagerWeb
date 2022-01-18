@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { LateBook } from 'src/models/late-book';
 import { Transaction } from 'src/models/transaction';
+import { baseUrl } from 'settings';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,15 +20,12 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-	baseUrl = 'https://localhost:5001/';
-
   getLateBooks(): Observable<LateBook[]> {
-    return this.http.get<LateBook[]>(
-        this.baseUrl + 'transactions/getlatebooks');
+    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks');
   }
 
   getTransactionsWithDetailsByStudent(studentId: number): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.baseUrl + 'transactions/gettransactionswithdetailsbystudent', 
+    return this.http.get<Transaction[]>(baseUrl + 'transactions/gettransactionswithdetailsbystudent', 
     {
       params: {
         'studentId': studentId

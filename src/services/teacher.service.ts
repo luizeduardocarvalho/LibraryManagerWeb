@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Teacher } from 'src/models/teacher';
 import { HttpHeaders } from '@angular/common/http';
 import { ErrorHandlerHelper } from './error-handler';
+import { baseUrl } from 'settings';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,14 +21,12 @@ export class TeacherService {
 
   constructor(private http: HttpClient) { }
 
-	baseUrl = 'https://librarymanager-api.herokuapp.com/';
-
   getAllTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(this.baseUrl + 'teachers');
+    return this.http.get<Teacher[]>(baseUrl + 'teachers');
   }
 
   createTeacher(teacher: Teacher): Observable<Teacher> {
-    return this.http.post<Teacher>(this.baseUrl + 'teachers', teacher, httpOptions).pipe(
+    return this.http.post<Teacher>(baseUrl + 'teachers', teacher, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }

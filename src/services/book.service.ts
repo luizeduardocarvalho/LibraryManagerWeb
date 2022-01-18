@@ -24,7 +24,6 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-
   getBooksByTitle(title: string): Observable<Book[]> {
     return this.http.get<Book[]>(baseUrl + 'books/GetBooksByTitle', {
       params: {
