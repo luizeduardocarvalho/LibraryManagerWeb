@@ -20,7 +20,7 @@ export class TeacherService {
 
   constructor(private http: HttpClient) { }
 
-	baseUrl = 'https://localhost:5001/';
+	baseUrl = 'https://librarymanager-api.herokuapp.com/';
 
   getAllTeachers(): Observable<Teacher[]> {
     return this.http.get<Teacher[]>(this.baseUrl + 'teachers');
