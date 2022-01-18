@@ -8,6 +8,7 @@ import { ErrorHandlerHelper } from './error-handler';
 import { Transaction } from 'src/models/transaction';
 import { GetBook } from 'src/models/get-book';
 import { LendBook } from 'src/models/lend-book';
+import { baseUrl } from 'settings';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,10 +24,9 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-	baseUrl = 'https://localhost:5001/';
 
   getBooksByTitle(title: string): Observable<Book[]> {
-    return this.http.get<Book[]>(this.baseUrl + 'books/GetBooksByTitle', {
+    return this.http.get<Book[]>(baseUrl + 'books/GetBooksByTitle', {
       params: {
           'title': title
       }
@@ -34,7 +34,7 @@ export class BookService {
   }
 
   getBookById(bookId: number): Observable<BookDetails> {
-    return this.http.get<BookDetails>(this.baseUrl + 'books/getbookbyid', {
+    return this.http.get<BookDetails>(baseUrl + 'books/getbookbyid', {
       params: {
         'bookId': bookId
       }
@@ -42,19 +42,19 @@ export class BookService {
   }
 
   returnBook(book: GetBook): Observable<Transaction> {
-    return this.http.post<Transaction>(this.baseUrl + 'books/return', book, httpOptions).pipe(
+    return this.http.post<Transaction>(baseUrl + 'books/return', book, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }
 
   renewBook(getBook: GetBook): Observable<Transaction> {
-    return this.http.patch<Transaction>(this.baseUrl + 'books/renew', getBook, httpOptions).pipe(
+    return this.http.patch<Transaction>(baseUrl + 'books/renew', getBook, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }
 
   lendBook(lendBook: LendBook) {
-    return this.http.post<LendBook>(this.baseUrl + 'books/lend', lendBook, httpOptions).pipe(
+    return this.http.post<LendBook>(baseUrl + 'books/lend', lendBook, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }
