@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  baseUrl = 'https://librarymanager-api.herokuapp.com/v1/';
+  baseUrl = 'https://librarymanager-api.herokuapp.com/';
 
   constructor(private http: HttpClient) { }
 
