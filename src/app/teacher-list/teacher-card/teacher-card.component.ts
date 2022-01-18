@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LateBook } from 'src/models/late-book';
 import { Student } from 'src/models/student';
 import { StudentService } from 'src/services/student.service';
@@ -17,12 +18,18 @@ export class TeacherCardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private studentService: StudentService,
-    private transactionService: TransactionService) { }
+    private transactionService: TransactionService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.teacherId = params['id']
     });
+  
+    if(this.teacherId == undefined) {
+      this.teacherId = (JSON.parse(localStorage.getItem('user') as string)).id;
+      this.location.go(`/teachers/${this.teacherId}`);
+    }
 
     this.studentService.getStudentsByTeacherWithBookCount(this.teacherId).subscribe((students: Student[]) => {
       this.students = students;

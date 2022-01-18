@@ -9,11 +9,14 @@
   
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <!-- <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a class="nav-link waves-light" routerLink="/" mdbWavesEffect>Home</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
+        </li> -->
+        <li *ngIf="user.role == 'Administrator'" class="nav-item" routerLinkActive="active">
           <a class="nav-link waves-light" routerLink="/teachers" mdbWavesEffect>Teachers</a>
+        </li>
+        <li *ngIf="user.role != 'Administrator'" class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" [routerLink]="['/teachers/', user.id]" mdbWavesEffect>Teacher</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link waves-light" routerLink="/books" mdbWavesEffect>Books</a>
@@ -54,11 +57,7 @@
             <div class="btn-group" mdbDropdown>
               <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="divider dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+                <a class="dropdown-item" (click)="onLogout()">Log out</a>
               </div>
             </div>
           </a>

@@ -62,6 +62,9 @@ import { StudentCardComponent } from './student-list/student-card/student-card.c
       {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
       {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
+      {path: '*', component: TeacherCardComponent, canActivate:[AuthGuard]},
+      {path: '**', component: TeacherCardComponent, canActivate:[AuthGuard]},
+
     ])
   ],
   providers: [],
