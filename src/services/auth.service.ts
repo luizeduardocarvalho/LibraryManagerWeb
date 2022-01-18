@@ -22,7 +22,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl + 'login', user, httpOptions).pipe(
+    return this.http.post<User>(this.baseUrl + 'login/login', user, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }
