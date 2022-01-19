@@ -24,11 +24,13 @@ button {
 
 .input-div {
     grid-area: input-div;
-    place-self: center stretch;
+    place-self: stretch;
 }
 
 input {
+    padding: 0 1em 0 1em;
     width: 100%;
+    height: 100%;
 }
 
 .button-div {
