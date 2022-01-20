@@ -38,7 +38,7 @@ export class BookInfoComponent implements OnInit {
   onReturn() {
     let getBook = new GetBook(this.bookId);
     this.bookService.returnBook(getBook).subscribe((updatedTransaction: Transaction) => {
-      if(updatedTransaction != null) {
+      if(updatedTransaction.transactionId != 0) {
         this.book?.setTransaction(updatedTransaction);
       }
     });

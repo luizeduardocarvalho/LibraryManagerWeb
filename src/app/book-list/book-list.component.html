@@ -27,7 +27,7 @@
 				<tr mdbTableCol *ngFor="let book of books">
 					<th scope="row">{{book.bookId}}</th>
 					<td>{{book.title}}</td>
-					<td>{{book.status ? 'No' : 'Yes'}}</td>
+					<td>{{book.status ? 'Yes' : 'No'}}</td>
 					<td>
 						<mdb-icon fas icon="leaf" [routerLink]="[book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
 					</td>
