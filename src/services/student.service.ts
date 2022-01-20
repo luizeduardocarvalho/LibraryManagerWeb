@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Student } from 'src/models/student';
 import { CreateStudent } from 'src/models/create-student';
 import { baseUrl } from 'settings';
+import { StudentWithTransactions } from 'src/models/student-transactions';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -40,5 +41,14 @@ export class StudentService {
 
   createStudent(createStudent: CreateStudent) {
     return this.http.post<CreateStudent>(baseUrl + 'students', createStudent);
+  }
+
+  getStudentWithTransactionsById(studentId: number): Observable<StudentWithTransactions> {
+    return this.http.get<StudentWithTransactions>(baseUrl + 'students/GetStudentWithTransactionsById',
+      {
+        params: {
+          'studentId': studentId
+        }
+      });
   }
 }

@@ -1,4 +1,6 @@
-export class Transaction {
+import { ITransaction } from "./ITransaction";
+
+export class Transaction implements ITransaction {
     transactionId: number;
     studentName: string;
     creationDate: Date;
@@ -6,6 +8,7 @@ export class Transaction {
     bookId: number;
     returnedAt: Date;
     returnDate: Date;
+    isLate: boolean
 
   constructor(
     transactionId: number, 
@@ -14,7 +17,8 @@ export class Transaction {
     returnedAt: Date,
     returnDate: Date,
     bookId: number = 0,
-    bookTitle: string = '') {
+    bookTitle: string = '',
+    isLate: boolean) {
     this.transactionId = transactionId
     this.studentName = studentName
     this.creationDate = creationDate
@@ -22,5 +26,6 @@ export class Transaction {
     this.returnDate = returnDate
     this.bookId = bookId;
     this.bookTitle = bookTitle;
+    this.isLate = isLate;
   }
 }

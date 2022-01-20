@@ -1,9 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BookDetails } from 'src/models/book-details';
-import { Transaction } from 'src/models/transaction';
-import { BookService } from 'src/services/book.service';
-import { TransactionService } from 'src/services/transaction.service';
+import { StudentWithTransactions } from 'src/models/student-transactions';
+import { StudentService } from 'src/services/student.service';
 
 @Component({
   selector: 'app-student-card',
@@ -12,21 +11,25 @@ import { TransactionService } from 'src/services/transaction.service';
 })
 export class StudentCardComponent implements OnInit {
 
-  transactions: Transaction[] = [];
+  student?: StudentWithTransactions;
   studentId: number = 0;
 
-  constructor(private transactionService: TransactionService, private route: ActivatedRoute) { }
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.studentId = params['id']
     });
 
-    this.transactionService
-      .getTransactionsWithDetailsByStudent(this.studentId)
-      .subscribe((transactions: Transaction[]) => {
-        this.transactions = transactions;
+    this.studentService
+      .getStudentWithTransactionsById(this.studentId)
+      .subscribe((student: StudentWithTransactions) => {
+        this.student = student;
+        console.log(this.student);
     });
   }
 
+  onBack() {
+    this.location.back();
+  }
 }

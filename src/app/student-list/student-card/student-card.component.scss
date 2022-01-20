@@ -1,0 +1,23 @@
+.wrapper {
+    display: grid;
+    grid-template-areas: "back-arrow . student-name . .";
+}
+
+.back-arrow {
+    padding-left: 1em;
+    grid-area: back-arrow;
+    align-self: center;
+}
+
+.student-name {
+    grid-area: student-name;
+    place-self: center;
+}
+
+.table-section {
+    padding: 1em;
+}
+
+h2 {
+    margin: 0;
+}
