@@ -1,3 +1,59 @@
 button {
-	margin: 0;
+    margin: 0;
+}
+
+.wrapper {
+    margin: 1em 1em 0 1em;
+    display: grid;
+    grid-template-areas: 
+        "page-title  search-section search-section create-button" 
+        "table-section table-section table-section table-section";
+}
+
+.page-title {
+    place-self: center start;
+    grid-area: page-title;
+}
+
+.search-section {
+    grid-area: search-section;
+}
+
+input {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+}
+
+.create-button {
+    grid-area: create-button;
+    margin-left: auto;
+}
+
+.table-section {
+    grid-area: table-section;
+}
+
+@media(max-width: 700px) {
+    .wrapper {
+        grid-template-areas: 
+        "page-title create-button"
+        "search-section search-section"
+        "table-section table-section";
+        row-gap: 1em;
+    }
+
+    .search-section {
+        grid-auto-columns: minmax(0, 60%) minmax(0, 40%);
+    }
+    
+    button {
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .search-section {
+        grid-auto-columns: minmax(0, 65%) minmax(0, 35%);
+    }
 }
