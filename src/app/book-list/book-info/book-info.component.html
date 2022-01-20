@@ -12,9 +12,8 @@
 			<tr>
 				<th class="col-md-2" scope="col">ID</th>
 				<th class="col-md-4" scope="col">Student Name</th>
-				<th class="col-md-2" scope="col">Get Date</th>
+				<th class="col-md-2" scope="col">Lend Date</th>
 				<th class="col-md-2" scope="col">Returned At</th>
-				<th class="col-md-2" scope="col">Return Date</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +22,6 @@
 				<td>{{transaction.studentName}}</td>
 				<td>{{transaction.creationDate | date: 'longDate'}}</td>
 				<td>{{transaction.returnedAt | date: 'longDate'}}</td>
-				<td>{{transaction.returnDate | date: 'longDate'}}</td>
 			</tr>
 		</tbody>
 	</table>

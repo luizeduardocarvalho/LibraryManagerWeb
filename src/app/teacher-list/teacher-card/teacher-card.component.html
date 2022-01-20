@@ -4,9 +4,10 @@
 		<table mdbTable mdbTableScroll maxHeight="200">
 			<thead class="grey lighten-1 black-text">
 				<tr>
-					<th class="col-2 col-xl-2" scope="col">ID</th>
+					<th class="col-1 col-xl-1" scope="col">ID</th>
 					<th class="col-7 col-xl-7" scope="col">Name</th>
-					<th class="col-3 col-xl-3" scope="col">Number of Books</th>
+					<th class="col-2 col-xl-2" scope="col">Books</th>
+					<th class="col-2 col-xl-2" scope="col">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -14,6 +15,9 @@
 					<th scope="row">{{student.studentId}}</th>
 					<td>{{student.name}}</td>
 					<td>{{student.numberOfActiveBooks}}</td>
+					<td>
+						<mdb-icon fas icon="leaf" [routerLink]="['/students', student.studentId]" class="mr-2" aria-hidden="true"></mdb-icon>
+					</td>
 				</tr>
 			</tbody>
 		</table>
