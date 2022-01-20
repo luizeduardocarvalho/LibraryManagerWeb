@@ -6,24 +6,24 @@ button {
     margin: 1em 1em 0 1em;
     display: grid;
     grid-template-areas: 
-        "box1  box2  box2  box3" 
-        "table table table table";
+        "page-title  search-section search-section create-button" 
+        "table-section table-section table-section table-section";
 }
 
-.box1 {
+.page-title {
     place-self: center start;
-    grid-area: box1;
+    grid-area: page-title;
 }
 
-.box-2 {
-    grid-area: box2;
+.search-section {
+    grid-area: search-section;
     display: grid;
-    grid-template-areas: "input-div button-div";
+    grid-template-areas: "search-input search-button";
     grid-auto-columns: minmax(0, 80%) minmax(0, 20%);
 }
 
-.input-div {
-    grid-area: input-div;
+.search-input {
+    grid-area: search-input;
     place-self: stretch;
 }
 
@@ -33,30 +33,30 @@ input {
     height: 100%;
 }
 
-.button-div {
-    grid-area: button-div;
+.search-button {
+    grid-area: search-button;
     place-self: end;
 }
 
-.box3 {
-    grid-area: box3;
+.create-button {
+    grid-area: create-button;
     margin-left: auto;
 }
 
-.table {
-    grid-area: table;
+.table-section {
+    grid-area: table-section;
 }
 
 @media(max-width: 700px) {
     .wrapper {
         grid-template-areas: 
-        "box1 box3"
-        "box2 box2"
-        "table table";
+        "page-title create-button"
+        "search-section search-section"
+        "table-section table-section";
         row-gap: 1em;
     }
 
-    .box-2 {
+    .search-section {
         grid-auto-columns: minmax(0, 60%) minmax(0, 40%);
     }
     
@@ -66,7 +66,7 @@ input {
 }
 
 @media(max-width: 1200px) {
-    .box-2 {
+    .search-section {
         grid-auto-columns: minmax(0, 65%) minmax(0, 35%);
     }
 }
