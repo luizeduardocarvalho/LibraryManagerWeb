@@ -38,5 +38,7 @@ export class TeacherCardComponent implements OnInit {
     this.transactionService.getLateBooks().subscribe((lateBooks: LateBook[]) => {
       this.lateBooks = lateBooks;
     });
+
+    console.log(this.lateBooks);
   }
 }

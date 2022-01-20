@@ -20,22 +20,25 @@
 	</div>
 	<div class="col-12 col-xl-6">
 		<h3>Late Book List</h3>
-		<table mdbTable mdbTableScroll maxHeight="200">
-			<thead class="grey lighten-1 black-text">
-				<tr>
-					<th class="col-2 col-xl-2" scope="col">Book ID</th>
-					<th class="col-5 col-xl-5" scope="col">Book Title</th>
-					<th class="col-5 col-xl-5" scope="col">Student</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr mdbTableCol *ngFor="let book of lateBooks">
-					<th scope="row">{{book.bookId}}</th>
-					<td>{{book.bookTitle}}</td>
-					<td>{{book.studentName}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="late-book-table" *ngIf="lateBooks.length != 0">
+			<table mdbTable mdbTableScroll maxHeight="200">
+				<thead class="grey lighten-1 black-text">
+					<tr>
+						<th class="col-2 col-xl-2" scope="col">Book ID</th>
+						<th class="col-5 col-xl-5" scope="col">Book Title</th>
+						<th class="col-5 col-xl-5" scope="col">Student</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr mdbTableCol *ngFor="let book of lateBooks">
+						<th scope="row">{{book.bookId}}</th>
+						<td>{{book.bookTitle}}</td>
+						<td>{{book.studentName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p *ngIf="lateBooks.length == 0">There are no late books.</p>
 	</div>
 </div>
 
