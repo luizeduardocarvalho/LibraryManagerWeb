@@ -9,6 +9,7 @@ import { Transaction } from 'src/models/transaction';
 import { GetBook } from 'src/models/get-book';
 import { LendBook } from 'src/models/lend-book';
 import { baseUrl } from 'settings';
+import { CreateBook } from 'src/models/create-book';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -54,6 +55,12 @@ export class BookService {
 
   lendBook(lendBook: LendBook) {
     return this.http.post<LendBook>(baseUrl + 'books/lend', lendBook, httpOptions).pipe(
+      catchError(ErrorHandlerHelper.handleError)
+    );
+  }
+
+  createBook(book: CreateBook) {
+    return this.http.post<CreateBook>(baseUrl + 'books/create', book, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }
