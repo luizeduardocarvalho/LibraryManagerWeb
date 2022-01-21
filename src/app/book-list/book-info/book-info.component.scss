@@ -1,0 +1,60 @@
+button {
+    margin: 0;
+}
+
+.wrapper {
+    margin: 1em 1em 0 1em;
+    display: grid;
+    grid-template-areas: 
+        "page-title page-title page-title"
+        "renew-button return-button lend-button"
+        "book-description book-description book-description"
+        "table-section table-section table-section";
+    justify-items: center;
+}
+
+.page-title {
+    place-self: center start;
+    grid-area: page-title;
+}
+
+.lend-button {
+    grid-area: lend-button;
+}
+
+.return-button {
+    grid-area: return-button;
+}
+
+.renew-button {
+    grid-area: renew-button;
+}
+
+.book-description {
+    grid-area: book-description;
+}
+
+.table-section {
+    place-self: stretch;
+    grid-area: table-section;
+    padding-bottom: 1em;
+}
+
+div > * + * {
+    padding-top: 1em;
+}
+
+@media(min-width: 1000px) {
+    .wrapper {
+        justify-items: right;
+        grid-template-areas: 
+        "page-title page-title page-title renew-button return-button lend-button"
+        "book-description book-description book-description book-description book-description book-description"
+        "table-section table-section table-section table-section table-section table-section";
+        row-gap: 1em;
+    }
+
+    .table-section {
+        padding-bottom: 3em;
+    }
+}
