@@ -23,7 +23,7 @@ export class CreateBookComponent implements OnInit {
   onSubmit(data: any): void {
     let book = data.value as CreateBook;
     this.bookService.createBook(book).subscribe();
-    window.location.href = '/books';
+    window.location.href = `/books?title=${book.title}`;
   }
 
 }

@@ -19,6 +19,7 @@
 				<td>{{book.title}}</td>
 				<td>
 					<mdb-icon fas icon="leaf" [routerLink]="['/books', book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+					<mdb-icon fas icon="edit" [routerLink]="['/books', book.bookId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
 				</td>
 			</tr>
 		</tbody>
