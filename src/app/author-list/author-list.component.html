@@ -1,0 +1,36 @@
+<div class="wrapper">
+	<div class="page-title">
+		<h3 class="m-0">Author List</h3>
+	</div>
+	<div class="search-section">
+		<div class="search-input">
+			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" mdbInput>
+		</div>
+		<div class="search-button">
+			<button mdbBtn type="button" (click)="search(searchText)" color="primary" mdbWavesEffect>Search</button>
+		</div>
+	</div>
+	<div class="create-button">
+		<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
+	</div>
+	<div class="table-section">
+		<table mdbTable class="mt-2">
+			<thead class="grey lighten-1 black-text">
+				<tr>
+					<th class="col-md-2 col-2" scope="col">ID</th>
+					<th class="col-md-8 col-8" scope="col">Name</th>
+					<th class="col-md-2 col-2" scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr mdbTableCol *ngFor="let author of authors">
+					<th scope="row">{{author.authorId}}</th>
+					<td>{{author.name}}</td>
+					<td>
+						<mdb-icon fas icon="leaf" [routerLink]="[author.authorId]" class="mr-2" aria-hidden="true"></mdb-icon>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

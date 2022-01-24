@@ -23,6 +23,9 @@ import { LendBookComponent } from './book-list/lend-book/lend-book.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './student-list/create-student/create-student.component';
 import { StudentCardComponent } from './student-list/student-card/student-card.component';
+import { AuthorListComponent } from './author-list/author-list.component';
+import { CreateAuthorComponent } from './author-list/create-author/create-author.component';
+import { AuthorCardComponent } from './author-list/author-card/author-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { StudentCardComponent } from './student-list/student-card/student-card.c
     LendBookComponent,
     StudentListComponent,
     CreateStudentComponent,
-    StudentCardComponent
+    StudentCardComponent,
+    AuthorListComponent,
+    CreateAuthorComponent,
+    AuthorCardComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +67,9 @@ import { StudentCardComponent } from './student-list/student-card/student-card.c
       {path: 'students', component: StudentListComponent, canActivate: [AuthGuard]},
       {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
       {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
+      {path: 'authors', component: AuthorListComponent, canActivate: [AuthGuard]},
+      {path: 'authors/create', component: CreateAuthorComponent, canActivate: [AuthGuard]},
+      {path: 'authors/:id', component: AuthorCardComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: '*', component: TeacherCardComponent, canActivate:[AuthGuard]},
       {path: '**', component: TeacherCardComponent, canActivate:[AuthGuard]},
