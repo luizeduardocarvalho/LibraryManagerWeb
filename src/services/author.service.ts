@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { baseUrl } from 'settings';
 import { GetAuthor } from 'src/models/get-author';
+import { AuthorWithBooks } from 'src/models/author-books';
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -31,4 +32,13 @@ export class AuthorService {
 	createAuthor(author: GetAuthor) {
     return this.http.post<GetAuthor>(baseUrl + 'authors/create', author);
   }
+
+	getAuthorWithBooksById(authorId: number): Observable<AuthorWithBooks> {
+		return this.http.get<AuthorWithBooks>(baseUrl + 'authors/getauthorwithbooksbyid',
+		{
+			params: {
+				'authorId': authorId
+			}
+		});
+	}
 }
