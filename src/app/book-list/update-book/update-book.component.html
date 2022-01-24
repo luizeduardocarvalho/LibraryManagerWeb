@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+	<div class="col-sm-6">
+		<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)" class="border border-light p-5 mt-3">
+			<p class="h4 mb-4">Update Book</p>
+			<input type="text" id="title" formControlName="title" class="form-control mb-4" placeholder="Title">
+			<input type="text" id="description" formControlName="description" class="form-control mb-4"
+				placeholder="Description">
+			<button mdbBtn color="success" type="submit">Add</button>
+		</form>
+	</div>
+</div>

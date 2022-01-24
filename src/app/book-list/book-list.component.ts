@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/models/book';
 import { BookService } from 'src/services/book.service';
 
@@ -11,13 +13,24 @@ export class BookListComponent implements OnInit {
   books: Book[] = [];
   searchText: string = '';
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute) { }
 
-  ngOnInit(): void { }
-
-  search(searchText: any) {
-    this.bookService.getBooksByTitle(searchText).subscribe((books: Book[]) => {
-      this.books = books;
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.searchText = params['title'];
     });
+
+    this.getBooks(this.searchText);
+  }
+
+  getBooks(title: string) {
+    this.bookService.getBooksByTitle(title).subscribe((books: Book[]) => {
+      this.books = books;
+      console.log(this.books);
+    });
+  }
+
+  search(searchText: string) {
+    this.getBooks(searchText);
   }
 }

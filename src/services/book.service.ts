@@ -10,6 +10,7 @@ import { GetBook } from 'src/models/get-book';
 import { LendBook } from 'src/models/lend-book';
 import { baseUrl } from 'settings';
 import { CreateBook } from 'src/models/create-book';
+import { UpdateBook } from 'src/models/update-book';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,7 +27,7 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooksByTitle(title: string): Observable<Book[]> {
-    return this.http.get<Book[]>(baseUrl + 'books/GetBooksByTitle', {
+    return this.http.get<Book[]>(baseUrl + 'books', {
       params: {
           'title': title
       }
@@ -61,6 +62,12 @@ export class BookService {
 
   createBook(book: CreateBook) {
     return this.http.post<CreateBook>(baseUrl + 'books/create', book, httpOptions).pipe(
+      catchError(ErrorHandlerHelper.handleError)
+    );
+  }
+
+  updateBook(book: UpdateBook) {
+    return this.http.patch<CreateBook>(baseUrl + 'books/updatebook', book, httpOptions).pipe(
       catchError(ErrorHandlerHelper.handleError)
     );
   }

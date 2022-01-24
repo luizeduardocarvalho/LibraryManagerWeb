@@ -30,6 +30,7 @@
 					<td>{{book.status ? 'Yes' : 'No'}}</td>
 					<td>
 						<mdb-icon fas icon="leaf" [routerLink]="[book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="edit" [routerLink]="[book.bookId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
 					</td>
 				</tr>
 			</tbody>
