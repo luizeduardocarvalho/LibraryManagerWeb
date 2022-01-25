@@ -6,6 +6,7 @@ import { Student } from 'src/models/student';
 import { CreateStudent } from 'src/models/create-student';
 import { baseUrl } from 'settings';
 import { StudentWithTransactions } from 'src/models/student-transactions';
+import { UpdateStudentTeacher } from 'src/models/update-student';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -50,5 +51,9 @@ export class StudentService {
           'studentId': studentId
         }
       });
+  }
+
+  updateStudentTeacher(updateStudentTeacher: UpdateStudentTeacher) {
+    return this.http.patch<UpdateStudentTeacher>(baseUrl + 'students/updatestudentteacher', updateStudentTeacher);
   }
 }

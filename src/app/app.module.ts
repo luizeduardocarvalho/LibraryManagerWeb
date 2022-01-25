@@ -27,6 +27,7 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import { CreateAuthorComponent } from './author-list/create-author/create-author.component';
 import { AuthorCardComponent } from './author-list/author-card/author-card.component';
 import { UpdateBookComponent } from './book-list/update-book/update-book.component';
+import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UpdateBookComponent } from './book-list/update-book/update-book.compone
     AuthorListComponent,
     CreateAuthorComponent,
     AuthorCardComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    UpdateStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { UpdateBookComponent } from './book-list/update-book/update-book.compone
       {path: 'students', component: StudentListComponent, canActivate: [AuthGuard]},
       {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
       {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
+      {path: 'students/:id/update', component: UpdateStudentComponent, canActivate: [AuthGuard]},
       {path: 'authors', component: AuthorListComponent, canActivate: [AuthGuard]},
       {path: 'authors/create', component: CreateAuthorComponent, canActivate: [AuthGuard]},
       {path: 'authors/:id', component: AuthorCardComponent, canActivate: [AuthGuard]},

@@ -10,6 +10,7 @@ import { BookService } from 'src/services/book.service';
 export class CreateBookComponent implements OnInit {
 
   createForm = new FormGroup({
+    reference: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
     authorId: new FormControl('')
