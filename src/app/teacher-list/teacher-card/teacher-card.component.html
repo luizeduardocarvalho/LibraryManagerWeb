@@ -18,7 +18,7 @@
 					<td>{{student.name}}</td>
 					<td>{{student.numberOfActiveBooks}}</td>
 					<td>
-						<mdb-icon fas icon="leaf" [routerLink]="['/students', student.studentId]" class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="user" mdbTooltip="Student Info" placement="top" [routerLink]="['/students', student.studentId]" class="mr-2" aria-hidden="true"></mdb-icon>
 					</td>
 				</tr>
 			</tbody>
@@ -30,9 +30,10 @@
 			<table mdbTable mdbTableScroll maxHeight="200">
 				<thead class="grey lighten-1 black-text">
 					<tr>
-						<th class="col-2 col-xl-2" scope="col">Book ID</th>
-						<th class="col-5 col-xl-5" scope="col">Book Title</th>
-						<th class="col-5 col-xl-5" scope="col">Student</th>
+						<th class="col-2 col-xl-2" scope="col">Reference</th>
+						<th class="col-5 col-xl-4" scope="col">Book Title</th>
+						<th class="col-5 col-xl-4" scope="col">Student</th>
+						<th class="col-5 col-xl-2" scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,6 +41,9 @@
 						<th scope="row">{{book.bookId}}</th>
 						<td>{{book.bookTitle}}</td>
 						<td>{{book.studentName}}</td>
+						<td>
+							<mdb-icon fas icon="book" mdbTooltip="Book Info" placement="top" [routerLink]="['/books', book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+						</td>
 					</tr>
 				</tbody>
 			</table>

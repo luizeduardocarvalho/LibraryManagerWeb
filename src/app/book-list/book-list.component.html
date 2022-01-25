@@ -17,20 +17,22 @@
 		<table mdbTable class="mt-2">
 			<thead class="grey lighten-1 black-text">
 				<tr>
-					<th class="col-md-2" scope="col">ID</th>
-					<th class="col-md-4" scope="col">Title</th>
-					<th class="col-md-4" scope="col">Available</th>
-					<th class="col-md-2" scope="col">Actions</th>
+					<th class="col-xl-1 col-1" scope="col">Reference</th>
+					<th class="col-xl-4 col-4" scope="col">Title</th>
+					<th class="col-xl-4 col-4" scope="col">Author</th>
+					<th class="col-xl-1 col-1" scope="col">Available</th>
+					<th class="col-xl-2 col-2" scope="col">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr mdbTableCol *ngFor="let book of books">
-					<th scope="row">{{book.bookId}}</th>
+					<th scope="row">{{book.reference}}</th>
 					<td>{{book.title}}</td>
+					<td>{{book.authorName}}</td>
 					<td>{{book.status ? 'Yes' : 'No'}}</td>
 					<td>
-						<mdb-icon fas icon="leaf" [routerLink]="[book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
-						<mdb-icon fas icon="edit" [routerLink]="[book.bookId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="book" mdbTooltip="Book Info" placement="top" [routerLink]="[book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="edit" mdbTooltip="Edit" placement="top" [routerLink]="[book.bookId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
 					</td>
 				</tr>
 			</tbody>
