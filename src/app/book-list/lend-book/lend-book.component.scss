@@ -1,4 +1,30 @@
-td {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+.table-button {
+    margin: 0;
+}
+
+.wrapper {
+    display: grid;
+    padding: 1em;
+}
+
+.search-section {
+    display: grid;
+    grid-template-areas: "search-input search-button";
+    grid-auto-columns: minmax(0, 70%) minmax(0, 30%);
+}
+
+.search-button {
+    grid-area: search-button;
+    place-self: end;
+}
+
+.search-input {
+    grid-area: search-input;
+}
+
+@media(min-width: 1000px) {
+    .search-section {
+        grid-auto-columns: minmax(0, 95%) minmax(0, 5%);
+
+    }
 }
