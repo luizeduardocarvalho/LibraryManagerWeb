@@ -28,6 +28,7 @@ import { CreateAuthorComponent } from './author-list/create-author/create-author
 import { AuthorCardComponent } from './author-list/author-card/author-card.component';
 import { UpdateBookComponent } from './book-list/update-book/update-book.component';
 import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
+import { AdminGuard } from 'src/services/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { UpdateStudentComponent } from './student-list/update-student/update-stu
     RouterModule.forRoot([
       {path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuard]},
       {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
-      {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AuthGuard]},
+      {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AdminGuard]},
+      {path: 'teacher', component: TeacherCardComponent, canActivate: [AuthGuard]},
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
       {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},

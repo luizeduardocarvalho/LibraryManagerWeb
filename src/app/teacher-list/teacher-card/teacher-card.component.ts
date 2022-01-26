@@ -25,10 +25,9 @@ export class TeacherCardComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.teacherId = params['id']
     });
-  
+
     if(this.teacherId == undefined) {
       this.teacherId = (JSON.parse(localStorage.getItem('user') as string)).id;
-      this.location.go(`/teachers/${this.teacherId}`);
     }
 
     this.studentService.getStudentsByTeacherWithBookCount(this.teacherId).subscribe((students: Student[]) => {

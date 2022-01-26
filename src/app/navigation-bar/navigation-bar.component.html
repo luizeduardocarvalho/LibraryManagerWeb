@@ -6,7 +6,7 @@
         <a class="nav-link waves-light" routerLink="/teachers" mdbWavesEffect>Teachers</a>
       </li>
       <li *ngIf="user.role != 'Administrator'" class="nav-item" routerLinkActive="active">
-        <a class="nav-link waves-light" [routerLink]="['/teachers/', user.id]" mdbWavesEffect>Teacher</a>
+        <a class="nav-link waves-light" routerLink="/teacher" mdbWavesEffect>Teacher</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link waves-light" routerLink="/books" mdbWavesEffect>Books</a>
