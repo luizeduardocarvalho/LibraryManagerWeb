@@ -14,6 +14,7 @@ export class TeacherCardComponent implements OnInit {
   students: Student[] = [];
   lateBooks: LateBook[] = [];
   teacherId: number = 0;
+  searchText: string = '';
 
   constructor(
     private route: ActivatedRoute, 
