@@ -1,9 +1,16 @@
 <div class="wrapper">
 	<div class="search-section">
-		<form class="form-inline md-form form-sm m-0">
-			<input class="form-control form-control-sm mr-3 w-75 search-input" type="text" [(ngModel)]="searchText" name="searchText"
-				placeholder="Search" aria-label="Search" mdbInput>
-		</form>
+		<div class="back-arrow">
+			<a (click)="onBack()">
+				<mdb-icon fas icon="arrow-left"></mdb-icon>
+			</a>
+		</div>
+		<div class="search-input">
+			<form class="form-inline md-form form-sm m-0">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" [(ngModel)]="searchText" name="searchText"
+					placeholder="Search" aria-label="Search" mdbInput>
+			</form>
+		</div>
 		<div class="search-button">
 			<button mdbBtn type="button" (click)="onSearch(searchText)" color="primary" mdbWavesEffect>Search</button>
 		</div>

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CreateStudent } from 'src/models/create-student';
@@ -15,7 +16,7 @@ export class CreateStudentComponent implements OnInit {
     teacherId: new FormControl('')
   });
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -26,4 +27,7 @@ export class CreateStudentComponent implements OnInit {
     window.location.href = '/students';
   }
 
+  onBack() {
+    this.location.back();
+  }
 }

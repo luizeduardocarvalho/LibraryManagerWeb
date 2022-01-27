@@ -6,6 +6,7 @@ import { Teacher } from 'src/models/teacher';
 import { HttpHeaders } from '@angular/common/http';
 import { ErrorHandlerHelper } from './error-handler';
 import { baseUrl } from 'settings';
+import { TeacherWithStudents } from 'src/models/teacher-students';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,4 +32,7 @@ export class TeacherService {
     );
   }
   
+  getTeacherReport(): Observable<TeacherWithStudents[]> {
+    return this.http.get<TeacherWithStudents[]>(baseUrl + 'teachers/teacherreport');
+  }
 }

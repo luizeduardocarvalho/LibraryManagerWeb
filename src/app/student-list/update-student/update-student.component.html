@@ -1,10 +1,14 @@
-<div class="row justify-content-center">
-	<div class="col-sm-6">
-		<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)" class="border border-light p-5 mt-3">
-			<p class="h4 mb-4">Update Book</p>
-			<input type="text" id="studentId" formControlName="studentId" class="form-control mb-4 disabled" placeholder="Teacher Id">
-			<input type="text" id="teacherId" formControlName="teacherId" class="form-control mb-4" placeholder="Teacher Id">
-			<button mdbBtn color="success" type="submit">Update</button>
-		</form>
+<div class="form-section">
+	<div class="back-arrow">
+		<a (click)="onBack()">
+			<mdb-icon fas icon="arrow-left"></mdb-icon>
+		</a>
 	</div>
+	<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)" class="border border-light p-5 mt-3">
+		<p class="h4 mb-4">Update Student</p>
+		<input type="text" id="studentId" formControlName="studentId" class="form-control mb-4 disabled"
+			placeholder="Teacher Id">
+		<input type="text" id="teacherId" formControlName="teacherId" class="form-control mb-4" placeholder="Teacher Id">
+		<button mdbBtn color="success" type="submit">Update</button>
+	</form>
 </div>

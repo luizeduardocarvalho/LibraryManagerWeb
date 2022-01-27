@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +19,7 @@ export class UpdateStudentComponent implements OnInit {
   });
   student?: UpdateStudentTeacher;
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute) { }
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -35,5 +36,9 @@ export class UpdateStudentComponent implements OnInit {
     let student = data.value as UpdateStudentTeacher;
     this.studentService.updateStudentTeacher(student).subscribe();
     window.location.href = `/students`;
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

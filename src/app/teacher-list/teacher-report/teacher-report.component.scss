@@ -1,0 +1,31 @@
+.wrapper {
+    padding: 1em;
+    display: grid;
+}
+
+.header-section {
+    display: flex;
+    gap: 1em;
+}
+.back-arrow {
+    padding-left: 1em;
+    align-self: center;
+}
+
+.page-title {
+    grid-area: page-title;
+    align-self: center;
+}
+
+.card-section {
+    justify-self: stretch;
+    padding: 1em;
+}
+
+.card, .card-body {
+    width: 100% !important;
+}
+
+h2 {
+    margin: 0;
+}

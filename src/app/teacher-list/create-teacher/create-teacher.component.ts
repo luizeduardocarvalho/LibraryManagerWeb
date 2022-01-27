@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Teacher } from 'src/models/teacher';
@@ -15,7 +16,7 @@ export class CreateTeacherComponent implements OnInit {
     email: new FormControl('')
   });
 
-  constructor(private teacherService: TeacherService) { }
+  constructor(private teacherService: TeacherService, private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -26,4 +27,7 @@ export class CreateTeacherComponent implements OnInit {
     window.location.href = '/teacher-list';
   }
 
+  onBack() {
+    this.location.back();
+  }
 }

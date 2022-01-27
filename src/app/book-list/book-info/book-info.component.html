@@ -1,4 +1,9 @@
 <div *ngIf="book" class="wrapper">
+	<div class="back-arrow">
+		<a (click)="onBack()">
+			<mdb-icon fas icon="arrow-left"></mdb-icon>
+		</a>
+	</div>
 	<div class="page-title">
 		<h2>{{ book.title }}</h2>
 	</div>
@@ -11,7 +16,7 @@
 	<div class="renew-button">
 		<button mdbBtn (click)="onRenew()" type="button" color="primary" mdbWavesEffect>Renew</button>
 	</div>
-	<div class="book-description">
+	<div *ngIf="book.description" class="book-description">
 		<p>{{ book.description }}</p>
 	</div>
 	<div class="table-section">

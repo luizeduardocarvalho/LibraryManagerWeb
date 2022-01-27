@@ -9,17 +9,22 @@
 
 .search-section {
     display: grid;
-    grid-template-areas: "search-input search-button";
-    grid-auto-columns: minmax(0, 70%) minmax(0, 30%);
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.search-button {
-    grid-area: search-button;
-    place-self: end;
+.back-arrow {
+    grid-column: 1 / 2;
+    justify-self: start;
+    align-self: center;
 }
 
 .search-input {
-    grid-area: search-input;
+    grid-column: 2 / 4;
+}
+
+.search-button {
+    grid-column: 4 / 5;
+    place-self: end;
 }
 
 @media(min-width: 1000px) {

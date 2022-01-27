@@ -6,11 +6,18 @@ button {
     margin: 1em 1em 0 1em;
     display: grid;
     grid-template-areas: 
-        "page-title page-title page-title"
-        "renew-button return-button lend-button"
-        "book-description book-description book-description"
-        "table-section table-section table-section";
+        "back-arrow page-title page-title page-title page-title page-title"
+        "renew-button renew-button return-button return-button lend-button lend-button"
+        "book-description book-description book-description book-description book-description book-description"
+        "table-section table-section table-section table-section table-section table-section";
     justify-items: center;
+    grid-auto-columns: 1fr;
+}
+
+.back-arrow {
+    align-self: center;
+    justify-self: start;
+    grid-area: back-arrow;
 }
 
 .page-title {
@@ -19,6 +26,7 @@ button {
 }
 
 .lend-button {
+    align-self: end;
     grid-area: lend-button;
 }
 
@@ -27,6 +35,7 @@ button {
 }
 
 .renew-button {
+    align-self: start;
     grid-area: renew-button;
 }
 
@@ -48,9 +57,9 @@ div > * + * {
     .wrapper {
         justify-items: right;
         grid-template-areas: 
-        "page-title page-title page-title renew-button return-button lend-button"
-        "book-description book-description book-description book-description book-description book-description"
-        "table-section table-section table-section table-section table-section table-section";
+        "back-arrow page-title page-title page-title renew-button return-button lend-button"
+        "book-description book-description book-description book-description book-description book-description book-description"
+        "table-section table-section table-section table-section table-section table-section table-section";
         row-gap: 1em;
     }
 

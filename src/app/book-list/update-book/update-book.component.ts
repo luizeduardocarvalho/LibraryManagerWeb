@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +21,7 @@ export class UpdateBookComponent implements OnInit {
   bookId: number = 0;
   book?: BookDetails;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -44,4 +45,7 @@ export class UpdateBookComponent implements OnInit {
     window.location.href = `/books?title=${book.title}`;
   }
 
+  onBack() {
+    this.location.back();
+  }
 }

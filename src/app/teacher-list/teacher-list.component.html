@@ -30,4 +30,7 @@
 			</tbody>
 		</table>
 	</div>
+	<div *ngIf="user.role == 'Administrator'" class="report-button">
+		<button mdbBtn [routerLink]="['report']" type="button" color="primary" mdbWavesEffect>Generate Report</button>
+	</div>
 </div>

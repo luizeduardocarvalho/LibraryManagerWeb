@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { Location, LocationStrategy } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LendBook } from 'src/models/lend-book';
@@ -21,7 +21,8 @@ export class LendBookComponent implements OnInit {
     private studentService: StudentService, 
     private route: ActivatedRoute, 
     private router: Router,
-    private bookService: BookService) { }
+    private bookService: BookService,
+    private location: LocationStrategy) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -39,5 +40,9 @@ export class LendBookComponent implements OnInit {
     let lendBook = new LendBook(studentId, this.bookId);
     this.bookService.lendBook(lendBook).subscribe();
     this.router.navigate(['books', this.bookId]);
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

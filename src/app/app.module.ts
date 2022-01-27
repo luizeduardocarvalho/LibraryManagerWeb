@@ -29,6 +29,7 @@ import { AuthorCardComponent } from './author-list/author-card/author-card.compo
 import { UpdateBookComponent } from './book-list/update-book/update-book.component';
 import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
 import { AdminGuard } from 'src/services/admin-guard.service';
+import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AdminGuard } from 'src/services/admin-guard.service';
     CreateAuthorComponent,
     AuthorCardComponent,
     UpdateBookComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    TeacherReportComponent
   ],
   imports: [
     BrowserModule,
@@ -62,22 +64,32 @@ import { AdminGuard } from 'src/services/admin-guard.service';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
+      // Teacher
       {path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuard]},
+      {path: 'teachers/report', component: TeacherReportComponent, canActivate: [AuthGuard]},
       {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AdminGuard]},
       {path: 'teacher', component: TeacherCardComponent, canActivate: [AuthGuard]},
+
+      // Book
       {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
       {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
       {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},
       {path: 'books/:id/update', component: UpdateBookComponent, canActivate: [AuthGuard]},
       {path: 'books/:id/lend', component: LendBookComponent, canActivate: [AuthGuard]},
+
+      // Student
       {path: 'students', component: StudentListComponent, canActivate: [AuthGuard]},
       {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
       {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
       {path: 'students/:id/update', component: UpdateStudentComponent, canActivate: [AuthGuard]},
+
+      // Author
       {path: 'authors', component: AuthorListComponent, canActivate: [AuthGuard]},
       {path: 'authors/create', component: CreateAuthorComponent, canActivate: [AuthGuard]},
       {path: 'authors/:id', component: AuthorCardComponent, canActivate: [AuthGuard]},
+
+      // General
       {path: 'login', component: LoginComponent},
       {path: '*', component: TeacherCardComponent, canActivate:[AuthGuard]},
       {path: '**', component: TeacherCardComponent, canActivate:[AuthGuard]},

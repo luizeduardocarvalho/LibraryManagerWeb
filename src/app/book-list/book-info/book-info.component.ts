@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookDetails } from 'src/models/book-details';
@@ -15,7 +16,7 @@ export class BookInfoComponent implements OnInit {
   bookId: number = 0;
   book?: BookDetails;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -51,5 +52,9 @@ export class BookInfoComponent implements OnInit {
         this.book?.setTransaction(updatedTransaction);
       }
     });
+  }
+
+  onBack() {
+    this.location.back();
   }
 }
