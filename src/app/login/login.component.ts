@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(process?.env?.['SECRET']);
   }
 
   onSubmit(data: any) {
