@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Teacher } from 'src/models/teacher';
+import { CreateUser } from 'src/models/create-user';
+import { AuthService } from 'src/services/auth.service';
 import { TeacherService } from 'src/services/teacher.service';
 
 @Component({
@@ -13,18 +14,23 @@ export class CreateTeacherComponent implements OnInit {
 
   createForm = new FormGroup({
     name: new FormControl(''),
-    email: new FormControl('')
+    email: new FormControl(''),
+    role: new FormControl('')
   });
 
-  constructor(private teacherService: TeacherService, private location: Location) { }
+  constructor(
+    private teacherService: TeacherService, 
+    private location: Location,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(data: any): void {
-    let teacher = data.value as Teacher;
-    this.teacherService.createTeacher(teacher).subscribe();
-    window.location.href = '/teacher-list';
+    let teacher = data.value as CreateUser;
+    teacher.password = '123456';
+    this.authService.register(teacher).subscribe();
+    window.location.href = '/teachers';
   }
 
   onBack() {

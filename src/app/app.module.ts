@@ -30,6 +30,8 @@ import { UpdateBookComponent } from './book-list/update-book/update-book.compone
 import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
 import { AdminGuard } from 'src/services/admin-guard.service';
 import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
+import { RegisterComponent } from './register/register.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-re
     AuthorCardComponent,
     UpdateBookComponent,
     UpdateStudentComponent,
-    TeacherReportComponent
+    TeacherReportComponent,
+    RegisterComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +95,8 @@ import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-re
 
       // General
       {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthGuard]},
       {path: '*', component: TeacherCardComponent, canActivate:[AuthGuard]},
       {path: '**', component: TeacherCardComponent, canActivate:[AuthGuard]},
 
