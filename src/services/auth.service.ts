@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { baseUrl } from 'settings';
 import { User } from 'src/models/user';
 import { ErrorHandlerHelper } from './error-handler';
+import * as CryptoJS from 'crypto-js';
 
 const httpOptions = {
   headers: new HttpHeaders({

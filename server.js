@@ -5,8 +5,6 @@ const app = express();
 
 app.use(express.static(`${__dirname}/dist/${nomeApp}`));
 
-console.log(process?.env?.['SECRET']);
-
 app.get('/*', (req, res) => {
 res.sendFile(path.join(`${__dirname}/dist/${nomeApp}/index.html`));
 });
