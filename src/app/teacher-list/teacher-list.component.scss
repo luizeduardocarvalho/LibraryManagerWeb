@@ -2,6 +2,22 @@ button {
     margin: 0;
 }
 
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+    height: 60vh;
+}
+  
+  .table-fix thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+}
+
+th {
+    background-color: #BDBDBD !important;
+}
+
 .wrapper {
     margin: 1em 1em 0 1em;
     display: grid;
@@ -50,4 +66,6 @@ input {
         "report-button report-button report-button";
         row-gap: 1em;
     }
+
+
 }

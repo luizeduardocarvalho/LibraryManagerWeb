@@ -8,8 +8,8 @@
 	<div class="create-button">
 		<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
 	</div>
-	<div class="table-section">
-		<table mdbTable class="mt-2">
+	<div class="table-section table-wrapper-scroll-y my-custom-scrollbar table-fix">
+		<table mdbTable>
 			<thead class="grey lighten-1 black-text">
 				<tr>
 					<th class="col-md-2" scope="col">ID</th>
@@ -20,7 +20,7 @@
 			</thead>
 			<tbody>
 				<tr mdbTableCol *ngFor="let teacher of teachers | appFilter : searchText">
-					<th scope="row">{{teacher.id}}</th>
+					<td>{{teacher.id}}</td>
 					<td>{{teacher.name}}</td>
 					<td>{{teacher.email}}</td>
 					<td>
