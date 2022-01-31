@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Book } from 'src/models/book';
 import { BookDetails } from 'src/models/book-details';
@@ -11,6 +11,7 @@ import { LendBook } from 'src/models/lend-book';
 import { baseUrl } from 'settings';
 import { CreateBook } from 'src/models/create-book';
 import { UpdateBook } from 'src/models/update-book';
+import { catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({

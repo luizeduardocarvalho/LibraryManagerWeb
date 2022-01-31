@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'src/models/book';
 import { BookDetails } from 'src/models/book-details';
 import { UpdateBook } from 'src/models/update-book';
 import { BookService } from 'src/services/book.service';
@@ -14,12 +13,12 @@ import { BookService } from 'src/services/book.service';
 })
 export class UpdateBookComponent implements OnInit {
 
+  book?: BookDetails;
   createForm = new FormGroup({
-    title: new FormControl(this.book?.title),
-    description: new FormControl(this.book?.description)
+    title: new FormControl(''),
+    description: new FormControl('')
   });
   bookId: number = 0;
-  book?: BookDetails;
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private location: Location) { }
 

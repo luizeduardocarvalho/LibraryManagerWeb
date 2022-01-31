@@ -32,6 +32,8 @@ import { AdminGuard } from 'src/services/admin-guard.service';
 import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
 import { RegisterComponent } from './register/register.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ToastComponent } from './toast/toast.component';
+import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -58,12 +60,16 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     UpdateStudentComponent,
     TeacherReportComponent,
     RegisterComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
+    NgbPaginationModule, 
+    NgbAlertModule,
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
