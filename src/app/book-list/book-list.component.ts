@@ -1,9 +1,7 @@
-import { query } from '@angular/animations';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/models/book';
 import { BookService } from 'src/services/book.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './book-list.component.html',
