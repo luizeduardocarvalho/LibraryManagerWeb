@@ -18,7 +18,6 @@ export class TeacherListComponent implements OnInit {
   
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') as string);
-    console.log(this.user);
     this.teacherService.getAllTeachers().subscribe((data: Teacher[]) => {
       this.teachers = data;
     });

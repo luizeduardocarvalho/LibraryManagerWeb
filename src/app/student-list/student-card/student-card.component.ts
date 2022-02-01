@@ -25,7 +25,6 @@ export class StudentCardComponent implements OnInit {
       .getStudentWithTransactionsById(this.studentId)
       .subscribe((student: StudentWithTransactions) => {
         this.student = student;
-        console.log(this.student);
     });
   }
 

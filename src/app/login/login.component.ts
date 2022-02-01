@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
     },
-    err => console.log("Error"),
     () => window.location.href = '/');
   }
 

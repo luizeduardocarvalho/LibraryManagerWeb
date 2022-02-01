@@ -11,11 +11,11 @@ import { LendBook } from 'src/models/lend-book';
 import { baseUrl } from 'settings';
 import { CreateBook } from 'src/models/create-book';
 import { UpdateBook } from 'src/models/update-book';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
     Authorization: 'my-auth-token'
   })
 };
@@ -30,7 +30,7 @@ export class BookService {
   getBooksByTitle(title: string): Observable<Book[]> {
     return this.http.get<Book[]>(baseUrl + 'books', {
       params: {
-          'title': title
+        'title': title
       }
     });
   }
@@ -62,9 +62,7 @@ export class BookService {
   }
 
   createBook(book: CreateBook) {
-    return this.http.post<CreateBook>(baseUrl + 'books/create', book, httpOptions).pipe(
-      catchError(ErrorHandlerHelper.handleError)
-    );
+    return this.http.post<CreateBook>(baseUrl + 'books/create', book, httpOptions);
   }
 
   updateBook(book: UpdateBook) {

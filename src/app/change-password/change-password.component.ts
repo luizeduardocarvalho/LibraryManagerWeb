@@ -28,7 +28,6 @@ export class ChangePasswordComponent implements OnInit {
         localStorageUser.email, 
         this.changePasswordForm.value.oldPassword, 
         this.changePasswordForm.value.newPassword);
-      console.log(user);
 
       this.authService.changePassword(user).subscribe();
       window.location.href = '/';
