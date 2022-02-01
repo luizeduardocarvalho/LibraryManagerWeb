@@ -39,13 +39,12 @@ export class CreateBookComponent implements OnInit {
           this.error = true;
         }
 
-        if (this.error) {
-          this.redirect('Error', 'bg-danger text-light', 'An error has occurred.', book.title);
+        if(this.error) {
+          this.redirect('Error', 'An error has occurred.', book.title, this.error);
         }
         else {
-          this.redirect('Success!', 'bg-success text-light', `The book '${book.title}' was created`, book.title);
+          this.redirect('Success!', `Created book ${book.title}.`, book.title, this.error);
         }
-
       });
   }
 
@@ -53,14 +52,9 @@ export class CreateBookComponent implements OnInit {
     this.location.back();
   }
 
-  redirect(header: string, classname: string, text: string, bookTitle: string) {
+  redirect(header: string, text: string, bookTitle: string, error: boolean) {
     this.router.navigate(['/books'], { queryParams: { title: bookTitle } }).then(() => {
-      this.toastService.show(text, {
-        classname: classname,
-        delay: 5000,
-        autohide: true,
-        headertext: header
-      });
+      this.toastService.show(text, header, error);
     });
   }
 }
