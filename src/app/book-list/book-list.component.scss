@@ -3,11 +3,16 @@ button {
 }
 
 .wrapper {
-    margin: 1em 1em 0 1em;
     display: grid;
     grid-template-areas: 
-        "page-title  search-section search-section create-button" 
-        "table-section table-section table-section table-section";
+    "page-title create-button"
+    "search-section search-section"
+    "table-section table-section"
+    "search-paragraph search-paragraph";
+    row-gap: 1em;
+    grid-auto-columns: 1fr;
+
+    margin: 1em 1em 0 1em;
 }
 
 .page-title {
@@ -19,7 +24,7 @@ button {
     grid-area: search-section;
     display: grid;
     grid-template-areas: "search-input search-button";
-    grid-auto-columns: minmax(0, 80%) minmax(0, 20%);
+    grid-auto-columns: minmax(0, 65%) minmax(0, 35%);
 }
 
 .search-input {
@@ -44,20 +49,46 @@ input {
 }
 
 .table-section {
+    margin-top: 1em;
     grid-area: table-section;
 }
 
-@media(max-width: 700px) {
+th {
+    background-color: #BDBDBD !important;
+}
+
+.search-paragraph {
+    grid-area: search-paragraph;
+    padding-top: 2em;
+    text-align: center;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+    height: 65vh;
+}
+  
+.table-fix thead th 
+{ 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+}
+
+@media(min-width: 700px) {
     .wrapper {
         grid-template-areas: 
-        "page-title create-button"
-        "search-section search-section"
-        "table-section table-section";
-        row-gap: 1em;
+            "page-title  search-section search-section create-button" 
+            "table-section table-section table-section table-section";
     }
 
     .search-section {
         grid-auto-columns: minmax(0, 60%) minmax(0, 40%);
+    }
+
+    .search-paragraph {
+        grid-column: 2 / 4;
     }
     
     button {
@@ -65,7 +96,7 @@ input {
     }
 }
 
-@media(max-width: 1200px) {
+@media(min-width: 1200px) {
     .search-section {
         grid-auto-columns: minmax(0, 65%) minmax(0, 35%);
     }

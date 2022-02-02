@@ -13,8 +13,8 @@
 	<div class="create-button">
 		<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
 	</div>
-	<div class="table-section">
-		<table mdbTable class="mt-2">
+	<div *ngIf="books.length > 0" class="table-section table-fix my-custom-scrollbar">
+		<table mdbTable>
 			<thead class="grey lighten-1 black-text">
 				<tr>
 					<th class="col-xl-1 col-1" scope="col">ID</th>
@@ -26,7 +26,7 @@
 			</thead>
 			<tbody>
 				<tr mdbTableCol *ngFor="let book of books">
-					<th scope="row">{{book.reference}}</th>
+					<td>{{book.reference}}</td>
 					<td>{{book.title}}</td>
 					<td>{{book.authorName}}</td>
 					<td>{{book.status ? 'Yes' : 'No'}}</td>
@@ -38,4 +38,5 @@
 			</tbody>
 		</table>
 	</div>
+	<p class="search-paragraph" *ngIf="books.length == 0">No results for this search.</p>
 </div>

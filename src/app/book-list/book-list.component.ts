@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/models/book';
 import { BookService } from 'src/services/book.service';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './book-list.component.html',
@@ -12,7 +13,7 @@ export class BookListComponent implements OnInit {
   books: Book[] = [];
   searchText: string = '';
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -29,6 +30,11 @@ export class BookListComponent implements OnInit {
   }
 
   search(searchText: string) {
-    this.getBooks(searchText);
+    if(searchText == '') {
+      this.books = [];
+    }
+    else {
+      this.getBooks(searchText);
+    }
   }
 }
