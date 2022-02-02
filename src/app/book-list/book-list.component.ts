@@ -13,7 +13,7 @@ export class BookListComponent implements OnInit {
   books: Book[] = [];
   searchText: string = '';
 
-  constructor(private bookService: BookService, private route: ActivatedRoute, private toastService: ToastService) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
