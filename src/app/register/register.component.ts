@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateUser } from 'src/models/create-user';
 import { AuthService } from 'src/services/auth.service';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +12,18 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   
-  constructor(private authService: AuthService) { }
-
   loginForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl('')
   });
+  
+  error: boolean = false;
+
+  constructor(
+    private authService: AuthService, 
+    private toastService: ToastService, 
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +36,27 @@ export class RegisterComponent implements OnInit {
       role: 'Teacher'
     } as CreateUser;
     
-    this.authService.register(user).subscribe();
-    window.location.href = '/login';
+    this.authService.register(user).subscribe(
+      (err: any) => console.log(err.errors),
+      (res: any) => {
+        if (res.status == 500 || res.status == 400) {
+          this.error = true;
+        }
+
+        if (this.error) {
+          console.log(res.error.errors['Email']);
+          this.redirect('Error', 'An error has occurred.', this.error);
+        }
+        else {
+          this.redirect('Success!', `User registered.`, this.error);
+        }
+      }
+    );
+  }
+
+  redirect(header: string, text: string, error: boolean) {
+    this.router.navigate(['/login']).then(() => {
+      this.toastService.show(text, header, error);
+    });
   }
 }

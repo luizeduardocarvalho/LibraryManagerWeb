@@ -23,20 +23,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(baseUrl + 'login/login', user, httpOptions).pipe(
-      catchError(ErrorHandlerHelper.handleError)
-    );
+    return this.http.post<User>(baseUrl + 'login/login', user, httpOptions);
   }
 
   register(user: CreateUser) {
-    return this.http.post<CreateUser>(baseUrl + 'login/register', user).pipe(
-      catchError(ErrorHandlerHelper.handleError)
-    );
+    return this.http.post<CreateUser>(baseUrl + 'login/register', user);
   }
 
   changePassword(user: ChangePassword) {
-    return this.http.patch<ChangePassword>(baseUrl + 'login/changepassword', user).pipe(
-      catchError(ErrorHandlerHelper.handleError)
-    );
+    return this.http.patch<ChangePassword>(baseUrl + 'login/changepassword', user);
   }
 }

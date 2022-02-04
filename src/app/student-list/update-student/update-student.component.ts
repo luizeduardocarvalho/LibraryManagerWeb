@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateStudentTeacher } from 'src/models/update-student';
 import { StudentService } from 'src/services/student.service';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-update-student',
@@ -18,8 +19,14 @@ export class UpdateStudentComponent implements OnInit {
     teacherId: new FormControl()
   });
   student?: UpdateStudentTeacher;
+  error: boolean = false;
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private location: Location) { }
+  constructor(
+    private studentService: StudentService, 
+    private route: ActivatedRoute, 
+    private location: Location,
+    private router: Router,
+    private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -34,9 +41,28 @@ export class UpdateStudentComponent implements OnInit {
 
   onSubmit(data: any): void {
     let student = data.value as UpdateStudentTeacher;
-    this.studentService.updateStudentTeacher(student).subscribe();
-    window.location.href = `/students`;
-  }
+    this.studentService.updateStudentTeacher(student).subscribe( (err: any) => console.log(err.errors),
+    (res: any) => {
+      if (res.status == 500 || res.status == 400) {
+        this.error = true;
+      }
+
+      if (this.error) {
+        console.log(res.error.errors['Email']);
+        this.redirect('Error', 'An error has occurred.', this.error);
+      }
+      else {
+        this.redirect('Success!', `Student Updated.`, this.error);
+      }
+    }
+  );
+}
+
+redirect(header: string, text: string, error: boolean) {
+  this.router.navigate(['/students']).then(() => {
+    this.toastService.show(text, header, error);
+  });
+}
 
   onBack() {
     this.location.back();
