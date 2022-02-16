@@ -1,36 +1,61 @@
 <div class="wrapper">
-	<div class="page-title">
-		<h3 class="m-0">Teacher List</h3>
-	</div>
-	<div class="search-section">
-		<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" mdbInput>
-	</div>
-	<div class="create-button">
-		<button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
-	</div>
-	<div class="table-section table-wrapper-scroll-y my-custom-scrollbar table-fix">
-		<table mdbTable>
-			<thead class="grey lighten-1 black-text">
-				<tr>
-					<th class="col-md-2" scope="col">ID</th>
-					<th class="col-md-4" scope="col">Name</th>
-					<th class="col-md-4" scope="col">Email</th>
-					<th class="col-md-2" scope="col">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr mdbTableCol *ngFor="let teacher of teachers | appFilter : searchText">
-					<td>{{teacher.id}}</td>
-					<td>{{teacher.name}}</td>
-					<td>{{teacher.email}}</td>
-					<td>
-						<mdb-icon fas icon="user" mdbTooltip="Teacher Info" placement="top" [routerLink]="['/teachers', teacher.id]" class="mr-2" aria-hidden="true"></mdb-icon>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div *ngIf="user.role == 'Administrator'" class="report-button">
-		<button mdbBtn [routerLink]="['report']" type="button" color="primary" mdbWavesEffect>Generate Report</button>
-	</div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete Teacher</h4>
+      <mdb-icon fas icon="times" mdbTooltip="Close Modal" placement="top" (click)="modal.dismiss('Cross click')"
+        class="mr-2" aria-hidden="true"></mdb-icon>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <p>Delete Teacher?</p>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button mdbBtn type="button" class="modal-button" color="primary" (click)="modal.dismiss('Cross click')"
+        mdbWavesEffect>Cancel</button>
+      <button mdbBtn type="button" color="danger" (click)="modal.close('Save click')" mdbWavesEffect>Delete</button>
+    </div>
+  </ng-template>
+  <div class="page-title">
+    <h3 class="m-0">Teacher List</h3>
+  </div>
+  <div class="search-section">
+    <input type="text" [(ngModel)]="searchText" name="searchText" autocomplete="off" placeholder="Search"
+      aria-label="Search" mdbInput>
+  </div>
+  <div class="create-button">
+    <button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
+  </div>
+  <div class="table-section table-wrapper-scroll-y my-custom-scrollbar table-fix">
+    <table mdbTable>
+      <thead class="grey lighten-1 black-text">
+        <tr>
+          <th class="col-1 col-xl-1" scope="col">ID</th>
+          <th class="col-2 col-xl-4" scope="col">Name</th>
+          <th class="col-2 col-xl-4" scope="col">Email</th>
+          <th class="col-2 col-xl-2" scope="col">Role</th>
+          <th class="col-4 col-xl-1" scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let teacher of teachers | appFilter : searchText">
+          <td>{{teacher.id}}</td>
+          <td>{{teacher.name}}</td>
+          <td>{{teacher.email}}</td>
+          <td>{{teacher.role}}</td>
+          <td>
+            <mdb-icon fas icon="user" mdbTooltip="Teacher Info" placement="top" [routerLink]="['/teachers', teacher.id]"
+              class="mr-2" aria-hidden="true"></mdb-icon>
+            <mdb-icon fas icon="trash" mdbTooltip="Teacher Info" placement="top" (click)="open(content, teacher.id)" class="mr-2"
+              aria-hidden="true"></mdb-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="user.role == 'Administrator'" class="report-button">
+    <button mdbBtn [routerLink]="['report']" type="button" color="primary" mdbWavesEffect>Generate Report</button>
+  </div>
 </div>

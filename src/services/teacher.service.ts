@@ -35,4 +35,12 @@ export class TeacherService {
   getTeacherReport(): Observable<TeacherWithStudents[]> {
     return this.http.get<TeacherWithStudents[]>(baseUrl + 'teachers/teacherreport');
   }
+
+  delete(id: number) {
+    return this.http.delete(baseUrl + 'teachers/delete', {
+      params: {
+        'id': id
+      }
+    });
+  }
 }

@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/services/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BookInfoComponent } from './book-list/book-info/book-info.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterPipe } from 'src/pipes/search.pipe';
 import { LendBookComponent } from './book-list/lend-book/lend-book.component';
 import { StudentListComponent } from './student-list/student-list.component';
@@ -72,6 +73,7 @@ import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng
     NgbAlertModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       // Teacher
