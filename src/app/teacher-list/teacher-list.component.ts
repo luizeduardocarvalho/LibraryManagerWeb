@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Teacher } from 'src/models/teacher';
-import { User } from 'src/models/user';
 import { TeacherService } from 'src/services/teacher.service';
 import { ToastService } from 'src/services/toast.service';
 
