@@ -1,12 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { catchError } from 'rxjs/operators';
 import { baseUrl } from 'settings';
 import { ChangePassword } from 'src/models/change-password';
 import { CreateUser } from 'src/models/create-user';
 import { User } from 'src/models/user';
-import { ErrorHandlerHelper } from './error-handler';
 
 const httpOptions = {
   headers: new HttpHeaders({

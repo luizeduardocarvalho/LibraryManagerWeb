@@ -1,4 +1,4 @@
-import { Location, LocationStrategy } from '@angular/common';
+import { Location } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LendBook } from 'src/models/lend-book';
@@ -24,7 +24,7 @@ export class LendBookComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService,
-    private location: LocationStrategy,
+    private location: Location,
     private toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -45,22 +45,21 @@ export class LendBookComponent implements OnInit {
     this.bookService.lendBook(lendBook).subscribe(
       err => console.log(err),
       (res: any) => {
-        if (res.status == 500 || res.status == 400) {
+        if (res.status != 200) {
           this.error = true;
         }
 
         if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
+          this.redirect('Error', res.error, this.error);
         }
         else {
           this.redirect('Success!', 'The book has been lent', this.error);
         }
       });
-    this.router.navigate(['books', this.bookId]);
   }
 
   redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/books']).then(() => {
+    this.router.navigate(['books', this.bookId]).then(() => {
       this.toastService.show(text, header, error);
     });
   }
