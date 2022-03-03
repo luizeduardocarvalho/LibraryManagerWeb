@@ -39,7 +39,7 @@ export class UpdateStudentComponent implements OnInit {
 
     this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
       this.teachers = teachers;
-      this.selectedTeacher = this.teachers[0].id;
+      this.selectedTeacher = this.teachers[0].reference;
     });
 
     this.createForm = new FormGroup({
@@ -61,7 +61,6 @@ export class UpdateStudentComponent implements OnInit {
       }
 
       if (this.error) {
-        console.log(res.error.errors['Email']);
         this.redirect('Error', 'An error has occurred.', this.error);
       }
       else {
