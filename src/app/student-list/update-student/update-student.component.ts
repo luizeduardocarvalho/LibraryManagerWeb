@@ -2,8 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Teacher } from 'src/models/teacher';
 import { UpdateStudentTeacher } from 'src/models/update-student';
 import { StudentService } from 'src/services/student.service';
+import { TeacherService } from 'src/services/teacher.service';
 import { ToastService } from 'src/services/toast.service';
 
 @Component({
@@ -15,14 +17,16 @@ export class UpdateStudentComponent implements OnInit {
 
   studentId: number = 0;
   createForm = new FormGroup({
-    studentId: new FormControl(this.studentId),
-    teacherId: new FormControl()
+    studentId: new FormControl(this.studentId)
   });
   student?: UpdateStudentTeacher;
   error: boolean = false;
+  teachers: Teacher[] = [];
+  selectedTeacher: number = 0;
 
   constructor(
     private studentService: StudentService, 
+    private teacherService: TeacherService,
     private route: ActivatedRoute, 
     private location: Location,
     private router: Router,
@@ -33,14 +37,23 @@ export class UpdateStudentComponent implements OnInit {
       this.studentId = params['id']
     });
 
-    this.createForm = new FormGroup({
-      studentId: new FormControl(this.studentId),
-      teacherId: new FormControl()
+    this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
+      this.teachers = teachers;
+      this.selectedTeacher = this.teachers[0].id;
     });
+
+    this.createForm = new FormGroup({
+      studentId: new FormControl(this.studentId)
+    });
+  }
+
+  selectTeacher(e: any) {
+    this.selectedTeacher = e.target.value;
   }
 
   onSubmit(data: any): void {
     let student = data.value as UpdateStudentTeacher;
+    student.teacherId = this.selectedTeacher;
     this.studentService.updateStudentTeacher(student).subscribe( (err: any) => console.log(err.errors),
     (res: any) => {
       if (res.status == 500 || res.status == 400) {

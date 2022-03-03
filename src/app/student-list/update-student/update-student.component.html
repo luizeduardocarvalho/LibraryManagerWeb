@@ -8,7 +8,9 @@
 		<p class="h4 mb-4">Update Student</p>
 		<input type="text" id="studentId" formControlName="studentId" class="form-control mb-4 disabled"
 			placeholder="Teacher Id">
-		<input type="text" id="teacherId" formControlName="teacherId" class="form-control mb-4" placeholder="Teacher Id">
+		<select  class="dropdown mb-4 form-control" (change)="selectTeacher($event)">
+			<option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{ teacher.name }}</option>
+		</select>
 		<button mdbBtn color="success" type="submit">Update</button>
 	</form>
 </div>
