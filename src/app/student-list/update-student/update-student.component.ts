@@ -17,7 +17,8 @@ export class UpdateStudentComponent implements OnInit {
 
   studentId: number = 0;
   createForm = new FormGroup({
-    studentId: new FormControl(this.studentId)
+    studentId: new FormControl(this.studentId),
+    studentName: new FormControl()
   });
   student?: UpdateStudentTeacher;
   error: boolean = false;
@@ -43,7 +44,8 @@ export class UpdateStudentComponent implements OnInit {
     });
 
     this.createForm = new FormGroup({
-      studentId: new FormControl(this.studentId)
+      studentId: new FormControl(this.studentId),
+      studentName : new FormControl()
     });
   }
 
