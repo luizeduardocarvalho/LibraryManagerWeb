@@ -56,9 +56,7 @@ export class BookService {
   }
 
   lendBook(lendBook: LendBook) {
-    return this.http.post<LendBook>(baseUrl + 'books/lend', lendBook, httpOptions).pipe(
-      catchError(ErrorHandlerHelper.handleError)
-    );
+    return this.http.post<LendBook>(baseUrl + 'books/lend', lendBook, httpOptions);
   }
 
   createBook(book: CreateBook) {

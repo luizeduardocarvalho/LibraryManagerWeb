@@ -7,14 +7,16 @@
 	<div class="page-title">
 		<h2>{{ book.title }}</h2>
 	</div>
-	<div class="lend-button">
-		<button mdbBtn [routerLink]="['lend']" type="button" color="primary" mdbWavesEffect>Lend</button>
-	</div>
-	<div class="return-button">
-		<button mdbBtn (click)="onReturn()" type="button" color="primary" mdbWavesEffect>Return</button>
-	</div>
-	<div class="renew-button">
-		<button mdbBtn (click)="onRenew()" type="button" color="primary" mdbWavesEffect>Renew</button>
+	<div class="button-section">
+		<div class="lend-button">
+			<button mdbBtn [routerLink]="['lend']" type="button" color="primary" mdbWavesEffect>Lend</button>
+		</div>
+		<div class="return-button">
+			<button mdbBtn (click)="onReturn()" type="button" color="primary" mdbWavesEffect>Return</button>
+		</div>
+		<div class="renew-button">
+			<button mdbBtn (click)="onRenew()" type="button" color="primary" mdbWavesEffect>Renew</button>
+		</div>
 	</div>
 	<div *ngIf="book.description" class="book-description">
 		<p>{{ book.description }}</p>

@@ -3,11 +3,11 @@ button {
 }
 
 .wrapper {
-    margin: 1em 1em 0 1em;
+    padding: 12vh 1em 1em 1em;
     display: grid;
     grid-template-areas: 
         "back-arrow page-title page-title page-title page-title page-title"
-        "renew-button renew-button return-button return-button lend-button lend-button"
+        "button-section button-section button-section button-section button-section button-section"
         "book-description book-description book-description book-description book-description book-description"
         "table-section table-section table-section table-section table-section table-section";
     justify-items: center;
@@ -20,23 +20,18 @@ button {
     grid-area: back-arrow;
 }
 
+.button-section {
+    width: 100%;
+    grid-area: button-section;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 1.5rem 0;
+}
+
 .page-title {
     place-self: center start;
     grid-area: page-title;
-}
-
-.lend-button {
-    align-self: end;
-    grid-area: lend-button;
-}
-
-.return-button {
-    grid-area: return-button;
-}
-
-.renew-button {
-    align-self: start;
-    grid-area: renew-button;
 }
 
 .book-description {
@@ -49,15 +44,11 @@ button {
     padding-bottom: 1em;
 }
 
-div > * + * {
-    padding-top: 1em;
-}
-
 @media(min-width: 1000px) {
     .wrapper {
         justify-items: right;
         grid-template-areas: 
-        "back-arrow page-title page-title page-title renew-button return-button lend-button"
+        "back-arrow page-title page-title page-title button-section button-section button-section"
         "book-description book-description book-description book-description book-description book-description book-description"
         "table-section table-section table-section table-section table-section table-section table-section";
         row-gap: 1em;

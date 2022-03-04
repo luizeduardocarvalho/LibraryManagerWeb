@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +19,11 @@ export class CreateAuthorComponent implements OnInit {
 
   error: boolean = false;
 
-  constructor(private authorService: AuthorService, private toastService: ToastService, private router: Router) { }
+  constructor(
+    private authorService: AuthorService, 
+    private toastService: ToastService, 
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -45,5 +50,9 @@ export class CreateAuthorComponent implements OnInit {
     this.router.navigate(['/authors']).then(() => {
       this.toastService.show(text, header, error);
     });
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

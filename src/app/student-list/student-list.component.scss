@@ -3,7 +3,7 @@ button {
 }
 
 .wrapper {
-    margin: 1em 1em 0 1em;
+    padding: 12vh 1em 1em 1em;
     display: grid;
     grid-template-areas: 
         "page-title  search-section search-section create-button" 
@@ -45,6 +45,7 @@ input {
 
 .table-section {
     grid-area: table-section;
+    padding-bottom: 2rem;
 }
 
 @media(max-width: 700px) {

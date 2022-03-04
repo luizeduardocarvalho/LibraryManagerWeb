@@ -1,14 +1,18 @@
 <div class="wrapper">
-    <div class="form-section">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="text-center border border-light p-5">
-        <p class="h4 mb-4">Register</p>
-        <input type="text" formControlName="name" id="defaultLoginFormName" class="form-control mb-4"
-          placeholder="Name">
-        <input type="email" formControlName="email" id="defaultLoginFormEmail" class="form-control mb-4"
-          placeholder="E-mail">
-        <input type="password" formControlName="password" id="defaultLoginFormPassword" class="form-control mb-4"
-          placeholder="Password">
-        <button mdbBtn color="info" class="my-4" type="submit">Register</button>
-      </form>
-    </div>
+  <div class="back-arrow">
+    <a (click)="onBack()">
+      <mdb-icon fas icon="arrow-left"></mdb-icon>
+    </a>
   </div>
+  <div class="form-section">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="text-center border border-light p-5">
+      <p class="h4 mb-4">Register</p>
+      <input type="text" formControlName="name" id="defaultLoginFormName" class="form-control mb-4" placeholder="Name">
+      <input type="email" formControlName="email" id="defaultLoginFormEmail" class="form-control mb-4"
+        placeholder="E-mail">
+      <input type="password" formControlName="password" id="defaultLoginFormPassword" class="form-control mb-4"
+        placeholder="Password">
+      <button mdbBtn color="info" class="my-4" type="submit">Register</button>
+    </form>
+  </div>
+</div>

@@ -5,7 +5,7 @@ table {
 .my-custom-scrollbar {
   position: relative;
   overflow: auto;
-  height: 60vh;
+  height: 50vh;
 }
 
 .table-fix thead th 
@@ -23,16 +23,11 @@ th {
   display: block;
 }
 
-.example-container {
-  height: 70vh;
-  max-width: 100%;
-  overflow: auto;
-}
-
 .wrapper {
-  padding: 1em;
+  padding: 12vh 1em 1em 1em;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: min-content;
   row-gap: 1em;
 }
 
@@ -40,7 +35,6 @@ th {
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 1fr;
-  margin-left: 1em;
 }
 
 .students-table {
@@ -53,10 +47,15 @@ input {
 
 @media(min-width: 1100px) {
   .wrapper {
+    padding: 5vh 1em 1em 1em;
     grid-template-columns: 1fr 1fr;
   }
 
   .late-book-section {
     padding-left: 1em;
+  }
+
+  .student-list-section {
+    margin-left: 1em;
   }
 }

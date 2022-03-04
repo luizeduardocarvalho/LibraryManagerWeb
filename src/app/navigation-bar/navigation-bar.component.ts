@@ -1,7 +1,5 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/models/user';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -12,6 +10,9 @@ export class NavigationBarComponent implements OnInit {
 
   user?: any;
   loggedIn: boolean = false;
+  primaryNav: any;
+  navToggle: any;
+
 
   constructor(private router: Router) { }
 
@@ -24,6 +25,31 @@ export class NavigationBarComponent implements OnInit {
     else {
       this.loggedIn = true;
     }
+
+    this.primaryNav = document.querySelector('.primary-navigation');
+    this.navToggle = document.querySelector('.mobile-nav-toggle');
+    this.navToggle.addEventListener('click', () => {
+      if(this.loggedIn) {
+        this.activateMenu();
+      }
+    });
+  }
+
+  onClick() {
+    this.activateMenu();
+  }
+
+  activateMenu() {
+    let visibility = this.primaryNav.getAttribute('data-visible');
+
+    if (visibility === "false") {
+      this.primaryNav.setAttribute('data-visible', 'true');
+      this.navToggle.setAttribute('aria-expanded', 'true');
+    }
+    else {
+      this.primaryNav.setAttribute('data-visible', 'false');
+      this.navToggle.setAttribute('aria-expanded', 'false');
+    }
   }
 
   onLogout() {
@@ -31,5 +57,6 @@ export class NavigationBarComponent implements OnInit {
     localStorage.removeItem('token');
     this.loggedIn = false;
     this.router.navigate(["/login"]);
+    this.activateMenu();
   }
 }

@@ -16,7 +16,7 @@ export class TeacherReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.teacherService.getTeacherReport().subscribe((teacherList: TeacherWithStudents[]) => {
-      this.teacherList = teacherList;
+      this.teacherList = teacherList.filter(tl => tl.students.length != 0);
     });
   }
 

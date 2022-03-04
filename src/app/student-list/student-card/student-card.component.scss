@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 1em;
+    padding: 12vh 1em 1em 1em;
     display: grid;
     grid-template-areas: "back-arrow . student-name . .";
 }
@@ -15,10 +15,30 @@
     place-self: center;
 }
 
+.teacher-name {
+    font-size: 1rem;
+}
+
 .table-section {
-    padding: 1em;
+    padding: 0 1em 2.5em 1em;
 }
 
 h2 {
     margin: 0;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+    height: 70vh;
+}
+  
+  .table-fix thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+}
+
+th {
+    background-color: #BDBDBD !important;
 }

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private toastService: ToastService, 
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -58,5 +60,9 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/login']).then(() => {
       this.toastService.show(text, header, error);
     });
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

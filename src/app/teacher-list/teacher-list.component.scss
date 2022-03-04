@@ -5,7 +5,7 @@ button {
 .my-custom-scrollbar {
     position: relative;
     overflow: auto;
-    height: 58vh;
+    height: 50vh;
 }
   
   .table-fix thead th { 
@@ -19,7 +19,7 @@ th {
 }
 
 .wrapper {
-    margin: 1em 1em 0 1em;
+    padding: 12vh 1em 1em 1em;
     display: grid;
     grid-template-areas: 
         "page-title create-button"
