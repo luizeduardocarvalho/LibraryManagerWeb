@@ -12,22 +12,16 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { FooterComponent } from './footer/footer.component';
 import { CreateTeacherComponent } from './teacher-list/create-teacher/create-teacher.component';
 import { TeacherCardComponent } from './teacher-list/teacher-card/teacher-card.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { CreateBookComponent } from './book-list/create-book/create-book.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/services/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { BookInfoComponent } from './book-list/book-info/book-info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FilterPipe } from 'src/pipes/search.pipe';
-import { LendBookComponent } from './book-list/lend-book/lend-book.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './student-list/create-student/create-student.component';
 import { StudentCardComponent } from './student-list/student-card/student-card.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { CreateAuthorComponent } from './author-list/create-author/create-author.component';
 import { AuthorCardComponent } from './author-list/author-card/author-card.component';
-import { UpdateBookComponent } from './book-list/update-book/update-book.component';
 import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
 import { AdminGuard } from 'src/services/admin-guard.service';
 import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
@@ -35,6 +29,8 @@ import { RegisterComponent } from './register/register.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ToastComponent } from './toast/toast.component';
 import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookModule } from './book-list/book.module';
+import { PipeModule } from 'src/pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -44,20 +40,14 @@ import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng
     FooterComponent,
     CreateTeacherComponent,
     TeacherCardComponent,
-    BookListComponent,
-    CreateBookComponent,
     LoginComponent,
     NotFoundComponent,
-    BookInfoComponent,
-    FilterPipe,
-    LendBookComponent,
     StudentListComponent,
     CreateStudentComponent,
     StudentCardComponent,
     AuthorListComponent,
     CreateAuthorComponent,
     AuthorCardComponent,
-    UpdateBookComponent,
     UpdateStudentComponent,
     TeacherReportComponent,
     RegisterComponent,
@@ -65,12 +55,14 @@ import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng
     ToastComponent
   ],
   imports: [
+    BookModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
     NgbPaginationModule, 
     NgbAlertModule,
+    PipeModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -82,13 +74,6 @@ import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng
       {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AdminGuard]},
       {path: 'teacher', component: TeacherCardComponent, canActivate: [AuthGuard]},
-
-      // Book
-      {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},
-      {path: 'books/create', component: CreateBookComponent, canActivate: [AuthGuard]},
-      {path: 'books/:id', component: BookInfoComponent, canActivate: [AuthGuard]},
-      {path: 'books/:id/update', component: UpdateBookComponent, canActivate: [AuthGuard]},
-      {path: 'books/:id/lend', component: LendBookComponent, canActivate: [AuthGuard]},
 
       // Student
       {path: 'students', component: StudentListComponent, canActivate: [AuthGuard]},
