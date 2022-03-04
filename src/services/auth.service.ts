@@ -9,7 +9,6 @@ import { User } from 'src/models/user';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    Authorization: 'my-auth-token',
     'Access-Control-Allow-Origin': '*'
   })
 };
