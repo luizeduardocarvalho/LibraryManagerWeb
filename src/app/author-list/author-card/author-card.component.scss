@@ -4,6 +4,10 @@
     grid-template-areas: "back-arrow . student-name . .";
 }
 
+.table-title {
+    padding-left: 1rem;
+}
+
 .back-arrow {
     padding-left: 1em;
     grid-area: back-arrow;
@@ -16,7 +20,7 @@
 }
 
 .table-section {
-    padding: 1rem 1rem 3rem 1rem;
+    padding: 0 1rem 3rem 1rem;
 }
 
 h2 {
