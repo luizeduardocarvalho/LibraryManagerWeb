@@ -23,7 +23,7 @@
   </div>
   <div class="search-section">
     <input type="text" [(ngModel)]="searchText" name="searchText" autocomplete="off" placeholder="Search"
-      aria-label="Search" mdbInput>
+      aria-label="Search" autocomplete="off" mdbInput>
   </div>
   <div class="create-button">
     <button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
@@ -48,8 +48,8 @@
           <td>
             <mdb-icon fas icon="user" mdbTooltip="Teacher Info" placement="top" [routerLink]="['/teachers', teacher.id]"
               class="mr-2" aria-hidden="true"></mdb-icon>
-            <mdb-icon fas icon="trash" mdbTooltip="Teacher Info" placement="top" (click)="open(content, teacher.id)" class="mr-2"
-              aria-hidden="true"></mdb-icon>
+            <mdb-icon fas icon="trash" mdbTooltip="Teacher Info" placement="top" (click)="open(content, teacher.id)"
+              class="mr-2" aria-hidden="true"></mdb-icon>
           </td>
         </tr>
       </tbody>

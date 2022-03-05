@@ -4,7 +4,8 @@
 	</div>
 	<div class="search-section">
 		<div class="search-input">
-			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" mdbInput>
+			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search"
+				autocomplete="off" mdbInput>
 		</div>
 		<div class="search-button">
 			<button mdbBtn type="button" (click)="search(searchText)" color="primary" mdbWavesEffect>Search</button>
@@ -27,10 +28,10 @@
 					<th scope="row">{{student.studentId}}</th>
 					<td>{{student.name}}</td>
 					<td>
-						<mdb-icon fas icon="user" mdbTooltip="Student Info" placement="top" [routerLink]="[student.studentId]"
-							class="mr-2" aria-hidden="true"></mdb-icon>
-						<mdb-icon fas icon="edit" mdbTooltip="Edit" placement="top" [routerLink]="[student.studentId, 'update']"
-							class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="user" mdbTooltip="Student Info" placement="top"
+							[routerLink]="[student.studentId]" class="mr-2" aria-hidden="true"></mdb-icon>
+						<mdb-icon fas icon="edit" mdbTooltip="Edit" placement="top"
+							[routerLink]="[student.studentId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
 					</td>
 				</tr>
 			</tbody>

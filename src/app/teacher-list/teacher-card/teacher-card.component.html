@@ -17,7 +17,8 @@
 						<td>{{book.bookTitle}}</td>
 						<td>{{book.studentName}}</td>
 						<td>
-							<mdb-icon fas icon="book" mdbTooltip="Book Info" placement="top" [routerLink]="['/books', book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
+							<mdb-icon fas icon="book" mdbTooltip="Book Info" placement="top"
+								[routerLink]="['/books', book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
 						</td>
 					</tr>
 				</tbody>
@@ -30,7 +31,8 @@
 			<h3>Student List</h3>
 		</div>
 		<div class="search-section">
-			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" mdbInput>
+			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search"
+				autocomplete="off" mdbInput>
 		</div>
 		<div class="students-table table-wrapper-scroll-y my-custom-scrollbar table-fix">
 			<table mdbTable>
@@ -48,7 +50,9 @@
 						<td>{{student.name}}</td>
 						<td>{{student.numberOfActiveBooks}}</td>
 						<td>
-							<mdb-icon fas icon="user" mdbTooltip="Student Info" placement="top" [routerLink]="['/students', student.studentId]" class="mr-2" aria-hidden="true"></mdb-icon>
+							<mdb-icon fas icon="user" mdbTooltip="Student Info" placement="top"
+								[routerLink]="['/students', student.studentId]" class="mr-2" aria-hidden="true">
+							</mdb-icon>
 						</td>
 					</tr>
 				</tbody>

@@ -4,7 +4,7 @@
 	</div>
 	<div class="search-section">
 		<div class="search-input">
-			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" mdbInput>
+			<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search" aria-label="Search" autocomplete="off" mdbInput>
 		</div>
 		<div class="search-button">
 			<button mdbBtn type="button" (click)="search(searchText)" color="primary" mdbWavesEffect>Search</button>
