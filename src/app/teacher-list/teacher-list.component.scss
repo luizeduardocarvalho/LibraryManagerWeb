@@ -2,22 +2,6 @@ button {
     margin: 0;
 }
 
-.my-custom-scrollbar {
-    position: relative;
-    overflow: auto;
-    height: 50vh;
-}
-  
-  .table-fix thead th { 
-    position: sticky; 
-    top: 0; 
-    z-index: 1; 
-}
-
-th {
-    background-color: #BDBDBD !important;
-}
-
 .wrapper {
     padding: 12vh 1em 1em 1em;
     display: grid;
@@ -51,11 +35,13 @@ input {
 
 .table-section {
     grid-area: table-section;
+    overflow-y: auto;
 }
 
 .report-button {
     grid-area: report-button;
     justify-self: end;
+    padding-bottom: 2.5rem;
 }
 
 .modal-button {
