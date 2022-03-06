@@ -40,7 +40,7 @@ export class StudentService {
   }
 
   createStudent(createStudent: CreateStudent) {
-    return this.http.post<CreateStudent>(baseUrl + 'students', createStudent);
+    return this.http.post<CreateStudent>(baseUrl + 'students', createStudent, this.httpOptions);
   }
 
   getStudentWithTransactionsById(studentId: number): Observable<StudentWithTransactions> {
