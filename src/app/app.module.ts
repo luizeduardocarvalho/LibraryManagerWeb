@@ -31,6 +31,7 @@ import { ToastComponent } from './toast/toast.component';
 import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookModule } from './book-list/book.module';
 import { PipeModule } from 'src/pipes/pipe.module';
+import { UpdateTeacherComponent } from './teacher-list/update-teacher/update-teacher.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PipeModule } from 'src/pipes/pipe.module';
     TeacherReportComponent,
     RegisterComponent,
     ChangePasswordComponent,
-    ToastComponent
+    ToastComponent,
+    UpdateTeacherComponent
   ],
   imports: [
     BookModule,
@@ -73,6 +75,7 @@ import { PipeModule } from 'src/pipes/pipe.module';
       {path: 'teachers/report', component: TeacherReportComponent, canActivate: [AuthGuard]},
       {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AdminGuard]},
+      {path: 'teachers/:id/update', component: UpdateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teacher', component: TeacherCardComponent, canActivate: [AuthGuard]},
 
       // Student
