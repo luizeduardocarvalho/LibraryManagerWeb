@@ -17,10 +17,10 @@ export class CreateTeacherComponent implements OnInit {
   createForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    role: new FormControl('')
   });
 
   error: boolean = false;
+  role: string = 'Teacher';
 
   constructor(
     private location: Location,
@@ -31,8 +31,13 @@ export class CreateTeacherComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectTeacher(e: any) {
+    this.role = e.target.value;
+  }
+
   onSubmit(data: any): void {
     let teacher = data.value as CreateUser;
+    teacher.role = this.role;
     this.authService.register(teacher).subscribe(
       (err: any) => console.log(err.errors),
       (res: any) => {
