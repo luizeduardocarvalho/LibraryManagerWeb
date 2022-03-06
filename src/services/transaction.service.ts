@@ -22,8 +22,12 @@ export class TransactionService {
   
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-  getLateBooks(): Observable<LateBook[]> {
-    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks', this.httpOptions);
+  getLateBooks(teacherId: number): Observable<LateBook[]> {
+    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks',
+    {
+      params: { 'teacherId': teacherId },
+      headers: this.httpOptions.headers
+    });
   }
 
   getTransactionsWithDetailsByStudent(studentId: number): Observable<Transaction[]> {
@@ -31,6 +35,6 @@ export class TransactionService {
     {
       params: { 'studentId': studentId },
       headers: this.httpOptions.headers
-    })
+    });
   }
 }

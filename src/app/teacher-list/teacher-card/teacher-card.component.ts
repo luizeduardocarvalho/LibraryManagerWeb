@@ -19,8 +19,7 @@ export class TeacherCardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private studentService: StudentService,
-    private transactionService: TransactionService,
-    private location: Location) { }
+    private transactionService: TransactionService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -35,7 +34,7 @@ export class TeacherCardComponent implements OnInit {
       this.students = students;
     });
 
-    this.transactionService.getLateBooks().subscribe((lateBooks: LateBook[]) => {
+    this.transactionService.getLateBooks(this.teacherId).subscribe((lateBooks: LateBook[]) => {
       this.lateBooks = lateBooks;
     });
   }

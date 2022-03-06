@@ -9,7 +9,10 @@
     <input type="text" id="name" formControlName="name" class="form-control mb-4" placeholder="Name" autocomplete="off">
     <input type="email" id="email" formControlName="email" class="form-control mb-4" placeholder="E-mail"
       autocomplete="off">
-    <input type="text" id="role" formControlName="role" class="form-control mb-4" placeholder="Role" autocomplete="off">
+    <select class="dropdown mb-4 form-control" (change)="selectTeacher($event)">
+      <option value="Teacher">Teacher</option>
+      <option value="Administrator">Administrator</option>
+    </select>
     <button mdbBtn color="success" type="submit">Create</button>
   </form>
 </div>
