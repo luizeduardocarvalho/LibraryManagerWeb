@@ -21,7 +21,7 @@
 		</thead>
 		<tbody>
 			<tr [ngStyle]="{'background-color': transaction.isLate ? 'rgba(255, 129, 127, 0.5)' : ''}" mdbTableCol *ngFor="let transaction of student?.transactions">
-				<td>{{transaction.bookId}}</td>
+				<td>{{transaction.bookReference}}</td>
 				<td>{{transaction.bookTitle}}</td>
 				<td>{{transaction.creationDate | date: 'shortDate'}}</td>
 				<td>{{transaction.returnedAt | date: 'shortDate'}}</td>
