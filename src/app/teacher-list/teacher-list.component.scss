@@ -22,6 +22,22 @@ button {
     grid-area: search-section;
 }
 
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+    height: 50vh;
+}
+
+.table-fix thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+}
+
+th {
+    background-color: #BDBDBD !important;
+}
+
 input {
     padding: 1em;
     width: 100%;
@@ -35,7 +51,7 @@ input {
 
 .table-section {
     grid-area: table-section;
-    overflow-y: auto;
+    // overflow-y:scroll;
 }
 
 .report-button {
