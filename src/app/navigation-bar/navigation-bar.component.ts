@@ -29,9 +29,7 @@ export class NavigationBarComponent implements OnInit {
     this.primaryNav = document.querySelector('.primary-navigation');
     this.navToggle = document.querySelector('.mobile-nav-toggle');
     this.navToggle.addEventListener('click', () => {
-      if(this.loggedIn) {
         this.activateMenu();
-      }
     });
   }
 
