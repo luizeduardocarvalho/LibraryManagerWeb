@@ -33,7 +33,6 @@ export class CreateTeacherComponent implements OnInit {
 
   onSubmit(data: any): void {
     let teacher = data.value as CreateUser;
-    teacher.password = '123456';
     this.authService.register(teacher).subscribe(
       (err: any) => console.log(err.errors),
       (res: any) => {
@@ -42,7 +41,6 @@ export class CreateTeacherComponent implements OnInit {
         }
 
         if (this.error) {
-          console.log(res.error.errors['Email']);
           this.redirect('Error', 'An error has occurred.', this.error);
         }
         else {

@@ -43,7 +43,6 @@ export class ChangePasswordComponent implements OnInit {
           }
 
           if (this.error) {
-            console.log(res.error.errors['Email']);
             this.redirect('Error', 'An error has occurred.', this.error);
           }
           else {

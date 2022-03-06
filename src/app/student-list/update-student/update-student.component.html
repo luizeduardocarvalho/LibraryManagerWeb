@@ -7,10 +7,10 @@
 	<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)" class="border border-light p-5 mt-3">
 		<p class="h4 mb-4">Update Student</p>
 		<input type="text" id="studentId" formControlName="studentId" class="form-control mb-4 disabled"
-			placeholder="Student Id">
+			placeholder="Student Id" autocomplete="off">
 		<input type="text" id="studentName" formControlName="studentName" class="form-control mb-4"
-			placeholder="Student Name">
-		<select  class="dropdown mb-4 form-control" (change)="selectTeacher($event)">
+			placeholder="Student Name" autocomplete="off">
+		<select class="dropdown mb-4 form-control" (change)="selectTeacher($event)">
 			<option *ngFor="let teacher of teachers" value="{{teacher.reference}}">{{ teacher.name }}</option>
 		</select>
 		<button mdbBtn color="success" type="submit">Update</button>

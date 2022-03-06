@@ -7,11 +7,11 @@
 	<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)" class="border border-light p-5 mt-3">
 		<p class="h4 mb-4">Add Book</p>
 		<input type="text" id="reference" formControlName="reference" class="form-control mb-4"
-			placeholder="Book Reference">
-		<input type="text" id="title" formControlName="title" class="form-control mb-4" placeholder="Title">
+			placeholder="Book Reference" autocomplete="off">
+		<input type="text" id="title" formControlName="title" class="form-control mb-4" placeholder="Title" autocomplete="off">
 		<textarea type="text" id="description" formControlName="description" class="form-control mb-4"
 			placeholder="Description"></textarea>
-		<input type="text" id="authorId" formControlName="authorId" class="form-control mb-4" placeholder="Author ID">
+		<input type="text" id="authorId" formControlName="authorId" class="form-control mb-4" placeholder="Author ID" autocomplete="off">
 		<button mdbBtn color="success" type="submit">Add</button>
 	</form>
 </div>

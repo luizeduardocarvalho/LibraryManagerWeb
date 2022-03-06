@@ -7,36 +7,35 @@ import { CreateStudent } from 'src/models/create-student';
 import { baseUrl } from 'settings';
 import { StudentWithTransactions } from 'src/models/student-transactions';
 import { UpdateStudentTeacher } from 'src/models/update-student';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `${this.tokenService.getToken()}`
+    })
+  };
+
+  constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   getStudentsByTeacherWithBookCount(teacherId: number): Observable<Student[]> {
     return this.http.get<Student[]>(baseUrl + 'students/studentswithbooks',
       {
-        params: {
-          'teacherId': teacherId
-        }
+        params: { 'teacherId': teacherId },
+        headers: this.httpOptions.headers
       });
   }
 
   getStudentsByName(name: string): Observable<Student[]> {
     return this.http.get<Student[]>(baseUrl + 'students/getstudentsbyname',
-      {
-        params: {
-          'name': name
-        }
+      { 
+        params: { 'name': name },
+        headers: this.httpOptions.headers
       });
   }
 
@@ -47,13 +46,12 @@ export class StudentService {
   getStudentWithTransactionsById(studentId: number): Observable<StudentWithTransactions> {
     return this.http.get<StudentWithTransactions>(baseUrl + 'students/GetStudentWithTransactionsById',
       {
-        params: {
-          'studentId': studentId
-        }
+        params: { 'studentId': studentId },
+        headers: this.httpOptions.headers
       });
   }
 
   updateStudentTeacher(updateStudentTeacher: UpdateStudentTeacher) {
-    return this.http.patch<UpdateStudentTeacher>(baseUrl + 'students/updatestudentteacher', updateStudentTeacher);
+    return this.http.patch<UpdateStudentTeacher>(baseUrl + 'students/updatestudentteacher', updateStudentTeacher, this.httpOptions);
   }
 }

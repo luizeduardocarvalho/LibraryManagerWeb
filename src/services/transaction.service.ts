@@ -5,31 +5,32 @@ import { HttpHeaders } from '@angular/common/http';
 import { LateBook } from 'src/models/late-book';
 import { Transaction } from 'src/models/transaction';
 import { baseUrl } from 'settings';
+import { TokenService } from './token.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-
-  constructor(private http: HttpClient) { }
+  
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: `${this.tokenService.getToken()}`
+    })
+  };
+  
+  constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   getLateBooks(): Observable<LateBook[]> {
-    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks');
+    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks', this.httpOptions);
   }
 
   getTransactionsWithDetailsByStudent(studentId: number): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(baseUrl + 'transactions/gettransactionswithdetailsbystudent', 
     {
-      params: {
-        'studentId': studentId
-      }
+      params: { 'studentId': studentId },
+      headers: this.httpOptions.headers
     })
   }
 }
