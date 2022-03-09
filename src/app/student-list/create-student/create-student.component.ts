@@ -34,7 +34,7 @@ export class CreateStudentComponent implements OnInit {
   ngOnInit(): void {
     this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
       this.teachers = teachers;
-      this.selectedTeacher = this.teachers[0].reference;
+      this.selectedTeacher = this.teachers[0].id;
     });
   }
 
@@ -54,7 +54,6 @@ export class CreateStudentComponent implements OnInit {
         }
 
         if (this.error) {
-          console.log(res.error.errors['Email']);
           this.redirect('Error', 'An error has occurred.', this.error);
         }
         else {
