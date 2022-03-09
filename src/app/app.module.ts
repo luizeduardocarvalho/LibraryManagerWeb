@@ -19,9 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './student-list/create-student/create-student.component';
 import { StudentCardComponent } from './student-list/student-card/student-card.component';
-import { AuthorListComponent } from './author-list/author-list.component';
-import { CreateAuthorComponent } from './author-list/create-author/create-author.component';
-import { AuthorCardComponent } from './author-list/author-card/author-card.component';
 import { UpdateStudentComponent } from './student-list/update-student/update-student.component';
 import { AdminGuard } from 'src/services/admin-guard.service';
 import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
@@ -31,6 +28,8 @@ import { ToastComponent } from './toast/toast.component';
 import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookModule } from './book-list/book.module';
 import { PipeModule } from 'src/pipes/pipe.module';
+import { UpdateTeacherComponent } from './teacher-list/update-teacher/update-teacher.component';
+import { AuthorModule } from './author-list/author.module';
 
 @NgModule({
   declarations: [
@@ -45,16 +44,15 @@ import { PipeModule } from 'src/pipes/pipe.module';
     StudentListComponent,
     CreateStudentComponent,
     StudentCardComponent,
-    AuthorListComponent,
-    CreateAuthorComponent,
-    AuthorCardComponent,
     UpdateStudentComponent,
     TeacherReportComponent,
     RegisterComponent,
     ChangePasswordComponent,
-    ToastComponent
+    ToastComponent,
+    UpdateTeacherComponent
   ],
   imports: [
+    AuthorModule,
     BookModule,
     BrowserModule,
     AppRoutingModule,
@@ -73,6 +71,7 @@ import { PipeModule } from 'src/pipes/pipe.module';
       {path: 'teachers/report', component: TeacherReportComponent, canActivate: [AuthGuard]},
       {path: 'teachers/create', component: CreateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teachers/:id', component: TeacherCardComponent, canActivate: [AdminGuard]},
+      {path: 'teachers/:id/update', component: UpdateTeacherComponent, canActivate: [AuthGuard]},
       {path: 'teacher', component: TeacherCardComponent, canActivate: [AuthGuard]},
 
       // Student
@@ -80,11 +79,6 @@ import { PipeModule } from 'src/pipes/pipe.module';
       {path: 'students/create', component: CreateStudentComponent, canActivate: [AuthGuard]},
       {path: 'students/:id', component: StudentCardComponent, canActivate: [AuthGuard]},
       {path: 'students/:id/update', component: UpdateStudentComponent, canActivate: [AuthGuard]},
-
-      // Author
-      {path: 'authors', component: AuthorListComponent, canActivate: [AuthGuard]},
-      {path: 'authors/create', component: CreateAuthorComponent, canActivate: [AuthGuard]},
-      {path: 'authors/:id', component: AuthorCardComponent, canActivate: [AuthGuard]},
 
       // General
       {path: 'login', component: LoginComponent},

@@ -50,6 +50,8 @@
               class="mr-2" aria-hidden="true"></mdb-icon>
             <mdb-icon fas icon="trash" mdbTooltip="Teacher Info" placement="top" (click)="open(content, teacher.id)"
               class="mr-2" aria-hidden="true"></mdb-icon>
+            <mdb-icon fas icon="edit" mdbTooltip="Edit" placement="top" [routerLink]="[teacher.id, 'update']"
+              class="mr-2" aria-hidden="true"></mdb-icon>
           </td>
         </tr>
       </tbody>
