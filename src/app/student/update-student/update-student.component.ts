@@ -11,14 +11,13 @@ import { ToastService } from 'src/services/toast.service';
 @Component({
   selector: 'app-update-student',
   templateUrl: './update-student.component.html',
-  styleUrls: ['./update-student.component.scss']
+  styleUrls: ['./update-student.component.scss'],
 })
 export class UpdateStudentComponent implements OnInit {
-
   studentId: number = 0;
   createForm = new FormGroup({
     studentId: new FormControl(this.studentId),
-    studentName: new FormControl()
+    studentName: new FormControl(),
   });
   student?: UpdateStudentTeacher;
   error: boolean = false;
@@ -26,16 +25,17 @@ export class UpdateStudentComponent implements OnInit {
   selectedTeacher: number = 0;
 
   constructor(
-    private studentService: StudentService, 
+    private studentService: StudentService,
     private teacherService: TeacherService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private toastService: ToastService) { }
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.studentId = params['id']
+    this.route.params.subscribe((params) => {
+      this.studentId = params['id'];
     });
 
     this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
@@ -45,7 +45,7 @@ export class UpdateStudentComponent implements OnInit {
 
     this.createForm = new FormGroup({
       studentId: new FormControl(this.studentId),
-      studentName : new FormControl()
+      studentName: new FormControl(),
     });
   }
 
@@ -56,27 +56,27 @@ export class UpdateStudentComponent implements OnInit {
   onSubmit(data: any): void {
     let student = data.value as UpdateStudentTeacher;
     student.teacherId = this.selectedTeacher;
-    this.studentService.updateStudentTeacher(student).subscribe( (err: any) => console.log(err.errors),
-    (res: any) => {
-      if (res.status == 500 || res.status == 400) {
-        this.error = true;
-      }
+    this.studentService.updateStudentTeacher(student).subscribe(
+      (err: any) => console.log(err.errors),
+      (res: any) => {
+        if (res.status == 500 || res.status == 400) {
+          this.error = true;
+        }
 
-      if (this.error) {
-        this.redirect('Error', 'An error has occurred.', this.error);
+        if (this.error) {
+          this.redirect('Error', 'An error has occurred.', this.error);
+        } else {
+          this.redirect('Success!', `Student Updated.`, this.error);
+        }
       }
-      else {
-        this.redirect('Success!', `Student Updated.`, this.error);
-      }
-    }
-  );
-}
+    );
+  }
 
-redirect(header: string, text: string, error: boolean) {
-  this.router.navigate(['/students']).then(() => {
-    this.toastService.show(text, header, error);
-  });
-}
+  redirect(header: string, text: string, error: boolean) {
+    this.router.navigate(['/students']).then(() => {
+      this.toastService.show(text, header, error);
+    });
+  }
 
   onBack() {
     this.location.back();

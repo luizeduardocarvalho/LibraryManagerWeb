@@ -5,8 +5,8 @@ button {
 .wrapper {
     padding: 12vh 1em 1em 1em;
     display: grid;
-    grid-template-areas: 
-        "page-title  search-section search-section create-button" 
+    grid-template-areas:
+        "page-title  search-section search-section create-button"
         "table-section table-section table-section table-section";
 }
 
@@ -50,17 +50,17 @@ input {
 
 @media(max-width: 700px) {
     .wrapper {
-        grid-template-areas: 
-        "page-title create-button"
-        "search-section search-section"
-        "table-section table-section";
+        grid-template-areas:
+            "page-title create-button"
+            "search-section search-section"
+            "table-section table-section";
         row-gap: 1em;
     }
 
     .search-section {
         grid-auto-columns: minmax(0, 60%) minmax(0, 40%);
     }
-    
+
     button {
         margin-right: 0;
     }

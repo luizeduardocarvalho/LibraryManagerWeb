@@ -5,10 +5,10 @@ button {
 .wrapper {
     padding: 12vh 1em 1em 1em;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "page-title create-button"
         "search-section search-section"
-        "table-section table-section"
+        "new-table-section new-table-section"
         "report-button report-button";
     row-gap: 1em;
 }
@@ -16,26 +16,28 @@ button {
 .page-title {
     place-self: center start;
     grid-area: page-title;
+
+    &__text {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
 }
 
 .search-section {
     grid-area: search-section;
 }
 
-.my-custom-scrollbar {
-    position: relative;
-    overflow: auto;
-    height: 50vh;
+.search-input {
+    border-radius: 0.3em;
 }
 
-.table-fix thead th { 
-    position: sticky; 
-    top: 0; 
-    z-index: 1; 
-}
-
-th {
-    background-color: #BDBDBD !important;
+.create-teacher-button,
+.generate-report-button {
+    background-color: var(--cl-primary);
+    border: none;
+    border-radius: 0.2em;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    color: white;
 }
 
 input {
@@ -51,7 +53,6 @@ input {
 
 .table-section {
     grid-area: table-section;
-    // overflow-y:scroll;
 }
 
 .report-button {
@@ -61,15 +62,75 @@ input {
 }
 
 .modal-button {
-    margin-right: 1em;   
+    margin-right: 1em;
+}
+
+.new-table-section {
+    grid-area: new-table-section;
+    overflow-y: scroll;
+    height: 55vh;
+}
+
+.teacher-card {
+    display: flex;
+    flex-direction: column;
+
+    background-color: hsl(185, 100%, 28%, 20%);
+    padding: 0.6em 1em 0.6em 1em;
+    margin-block: 1em;
+    border-radius: 0.5em;
+
+    &__button-section {
+        padding-top: 0.5em;
+
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5em;
+
+        &__button {
+            width: 100%;
+
+            border: none;
+            border-radius: 0.4em;
+            background-color: whitesmoke;
+
+            padding: 0.3em 0.2em 0.3em 0.2em;
+
+            &__icon {
+                padding-right: 0.5em;
+            }
+        }
+    }
+}
+
+@media(min-height: 667px) {
+    .new-table-section {
+        height: 45vh;
+    }
+}
+
+@media(min-height: 740px) {
+    .new-table-section {
+        height: 48vh;
+    }
+}
+
+@media(min-height: 844px) {
+    .new-table-section {
+        height: 53vh;
+    }
 }
 
 @media(min-width: 900px) {
     .wrapper {
-        grid-template-areas: 
-        "page-title search-section create-button"
-        "table-section table-section table-section"
-        "report-button report-button report-button";
+        grid-template-areas:
+            "page-title search-section create-button"
+            "new-table-section new-table-section new-table-section"
+            "report-button report-button report-button";
         row-gap: 1em;
+    }
+
+    .new-table-section {
+        height: 38vh;
     }
 }

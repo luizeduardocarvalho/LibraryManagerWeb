@@ -2,8 +2,15 @@
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Delete Teacher</h4>
-      <mdb-icon fas icon="times" mdbTooltip="Close Modal" placement="top" (click)="modal.dismiss('Cross click')"
-        class="mr-2" aria-hidden="true"></mdb-icon>
+      <mdb-icon
+        fas
+        icon="times"
+        mdbTooltip="Close Modal"
+        placement="top"
+        (click)="modal.dismiss('Cross click')"
+        class="mr-2"
+        aria-hidden="true"
+      ></mdb-icon>
     </div>
     <div class="modal-body">
       <form>
@@ -13,51 +20,115 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button mdbBtn type="button" class="modal-button" color="primary" (click)="modal.dismiss('Cross click')"
-        mdbWavesEffect>Cancel</button>
-      <button mdbBtn type="button" color="danger" (click)="modal.close('Save click')" mdbWavesEffect>Delete</button>
+      <button
+        mdbBtn
+        type="button"
+        class="modal-button"
+        color="primary"
+        (click)="modal.dismiss('Cross click')"
+        mdbWavesEffect
+      >
+        Cancel
+      </button>
+      <button
+        mdbBtn
+        type="button"
+        color="danger"
+        (click)="modal.close('Save click')"
+        mdbWavesEffect
+      >
+        Delete
+      </button>
     </div>
   </ng-template>
   <div class="page-title">
-    <h3 class="m-0">Teacher List</h3>
+    <h1 class="page-title__text">Teacher List</h1>
   </div>
   <div class="search-section">
-    <input type="text" [(ngModel)]="searchText" name="searchText" autocomplete="off" placeholder="Search"
-      aria-label="Search" autocomplete="off" mdbInput>
+    <input
+      class="search-input"
+      type="text"
+      [(ngModel)]="searchText"
+      name="searchText"
+      autocomplete="off"
+      placeholder="Search"
+      aria-label="Search"
+      autocomplete="off"
+      mdbInput
+    />
   </div>
   <div class="create-button">
-    <button mdbBtn [routerLink]="['create']" type="button" color="primary" mdbWavesEffect>Add</button>
+    <button
+      class="create-teacher-button"
+      [routerLink]="['create']"
+      type="button"
+      color="primary"
+      mdbWavesEffect
+    >
+      Add
+    </button>
   </div>
-  <div class="table-section table-wrapper-scroll-y my-custom-scrollbar table-fix">
-    <table mdbTable>
-      <thead class="grey lighten-1 black-text">
-        <tr>
-          <th class="col-1 col-xl-1" scope="col">ID</th>
-          <th class="col-2 col-xl-4" scope="col">Name</th>
-          <th class="col-2 col-xl-4" scope="col">Email</th>
-          <th class="col-2 col-xl-2" scope="col">Role</th>
-          <th class="col-4 col-xl-1" scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr mdbTableCol *ngFor="let teacher of teachers | appFilter : searchText">
-          <td>{{teacher.reference}}</td>
-          <td>{{teacher.name}}</td>
-          <td>{{teacher.email}}</td>
-          <td>{{teacher.role}}</td>
-          <td>
-            <mdb-icon fas icon="user" mdbTooltip="Teacher Info" placement="top" [routerLink]="['/teachers', teacher.id]"
-              class="mr-2" aria-hidden="true"></mdb-icon>
-            <mdb-icon fas icon="trash" mdbTooltip="Teacher Info" placement="top" (click)="open(content, teacher.id)"
-              class="mr-2" aria-hidden="true"></mdb-icon>
-            <mdb-icon fas icon="edit" mdbTooltip="Edit" placement="top" [routerLink]="[teacher.id, 'update']"
-              class="mr-2" aria-hidden="true"></mdb-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="new-table-section">
+    <div *ngFor="let teacher of teachers" class="teacher-card">
+      <p class="bold">{{ teacher.name }}</p>
+      <p>{{ teacher.role }}</p>
+      <div class="teacher-card__button-section">
+        <button
+          class="teacher-card__button-section__button"
+          [routerLink]="['/teachers', teacher.id]"
+        >
+          <mdb-icon
+            fas
+            icon="user"
+            mdbTooltip="Teacher Info"
+            placement="top"
+            class="teacher-card__button-section__button__icon"
+            aria-hidden="true"
+            size="sm"
+          ></mdb-icon
+          >Info
+        </button>
+        <button
+          class="teacher-card__button-section__button"
+          [routerLink]="[teacher.id, 'update']"
+        >
+          <mdb-icon
+            fas
+            icon="edit"
+            mdbTooltip="Edit"
+            placement="top"
+            class="teacher-card__button-section__button__icon"
+            aria-hidden="true"
+            size="sm"
+          ></mdb-icon
+          >Edit
+        </button>
+        <button
+          class="teacher-card__button-section__button"
+          (click)="open(content, teacher.id)"
+        >
+          <mdb-icon
+            fas
+            icon="trash"
+            mdbTooltip="Teacher Info"
+            placement="top"
+            class="teacher-card__button-section__button__icon"
+            aria-hidden="true"
+            size="sm"
+          ></mdb-icon
+          >Delete
+        </button>
+      </div>
+    </div>
   </div>
   <div class="report-button">
-    <button mdbBtn [routerLink]="['report']" type="button" color="primary" mdbWavesEffect>Generate Report</button>
+    <button
+      class="generate-report-button"
+      [routerLink]="['report']"
+      type="button"
+      color="primary"
+    >
+      Generate Report
+    </button>
   </div>
 </div>
