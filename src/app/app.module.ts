@@ -5,7 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { PipeModule } from 'src/pipes/pipe.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,11 +23,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { CreateTeacherComponent } from './teacher-list/create-teacher/create-teacher.component';
-import { TeacherCardComponent } from './teacher-list/teacher-card/teacher-card.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherReportComponent } from './teacher-list/teacher-report/teacher-report.component';
 import { UpdateTeacherComponent } from './teacher-list/update-teacher/update-teacher.component';
 import { ToastComponent } from './toast/toast.component';
+import { TeachersummaryComponent } from './teacher-list/teacher-summary/teacher-summary.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +36,14 @@ import { ToastComponent } from './toast/toast.component';
     NavigationBarComponent,
     FooterComponent,
     CreateTeacherComponent,
-    TeacherCardComponent,
+    TeachersummaryComponent,
     LoginComponent,
     NotFoundComponent,
     TeacherReportComponent,
     RegisterComponent,
     ChangePasswordComponent,
     ToastComponent,
-    UpdateTeacherComponent
+    UpdateTeacherComponent,
   ],
   imports: [
     AuthorModule,
@@ -48,7 +52,7 @@ import { ToastComponent } from './toast/toast.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    NgbPaginationModule, 
+    NgbPaginationModule,
     NgbAlertModule,
     PipeModule,
     FormsModule,
@@ -58,6 +62,6 @@ import { ToastComponent } from './toast/toast.component';
     MDBBootstrapModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

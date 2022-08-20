@@ -7,10 +7,10 @@ import { StudentService } from 'src/services/student.service';
 import { TransactionService } from 'src/services/transaction.service';
 
 @Component({
-  templateUrl: './teacher-card.component.html',
-  styleUrls: ['./teacher-card.component.scss']
+  templateUrl: './teacher-summary.component.html',
+  styleUrls: ['./teacher-summary.component.scss']
 })
-export class TeacherCardComponent implements OnInit {
+export class TeachersummaryComponent implements OnInit {
   students: Student[] = [];
   lateBooks: LateBook[] = [];
   teacherId: number = 0;
