@@ -1,37 +1,38 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import {
   NgbAlertModule,
   NgbModule,
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PipeModule } from 'src/pipes/pipe.module';
-import { RouterModule } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
+import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
+import { ToastComponent } from '../toast/toast.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [FooterComponent, NavigationBarComponent, ToastComponent],
   imports: [
-    CommonModule,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-  ],
-  exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule,
-    // BrowserAnimationsModule,
-    // BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+  ],
+  exports: [
+    ToastComponent,
+    FooterComponent,
+    NavigationBarComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MDBBootstrapModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,

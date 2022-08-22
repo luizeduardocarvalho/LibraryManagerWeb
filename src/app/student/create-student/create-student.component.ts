@@ -11,25 +11,24 @@ import { ToastService } from 'src/services/toast.service';
 @Component({
   selector: 'app-create-student',
   templateUrl: './create-student.component.html',
-  styleUrls: ['./create-student.component.scss']
+  styleUrls: ['./create-student.component.scss'],
 })
 export class CreateStudentComponent implements OnInit {
-
   createForm = new FormGroup({
-    name: new FormControl('')
+    name: new FormControl(''),
   });
 
-  
   teachers: Teacher[] = [];
   selectedTeacher: number = 0;
   error: boolean = false;
 
   constructor(
-    private studentService: StudentService, 
+    private studentService: StudentService,
     private location: Location,
     private toastService: ToastService,
     private router: Router,
-    private teacherService: TeacherService) { }
+    private teacherService: TeacherService
+  ) {}
 
   ngOnInit(): void {
     this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
@@ -55,8 +54,7 @@ export class CreateStudentComponent implements OnInit {
 
         if (this.error) {
           this.redirect('Error', 'An error has occurred.', this.error);
-        }
-        else {
+        } else {
           this.redirect('Success!', `Student Created.`, this.error);
         }
       }

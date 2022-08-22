@@ -1,0 +1,107 @@
+.page-header-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.search-input {
+    border-radius: 0.3em;
+    border-color: hsl(0, 0, 0, 0.5);
+    margin-bottom: 1em;
+}
+
+.create-teacher-button,
+.generate-report-button {
+    background-color: var(--cl-primary);
+    border: none;
+    border-radius: 0.2em;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    color: white;
+}
+
+input {
+    padding: 0.6em;
+    width: 100%;
+}
+
+.create-button {
+    grid-area: create-button;
+    margin-left: auto;
+}
+
+.modal-button {
+    margin-right: 1em;
+}
+
+.report-button {
+    display: flex;
+    justify-content: end;
+}
+
+.table-section {
+    overflow-y: scroll;
+    height: 55vh;
+
+    margin-bottom: 1em;
+}
+
+.teacher-card:nth-child(1) {
+    margin-top: 0;
+}
+
+.teacher-card {
+    display: flex;
+    flex-direction: column;
+
+    background-color: hsl(185, 100%, 28%, 20%);
+
+    padding: 0.6em 1em 0.6em 1em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+
+    &__button-section {
+        padding-top: 0.5em;
+
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5em;
+
+        &__button {
+            width: 100%;
+
+            border: none;
+            border-radius: 0.4em;
+            background-color: whitesmoke;
+
+            padding: 0.3em 0.2em 0.3em 0.2em;
+
+            &__icon {
+                padding-right: 0.5em;
+            }
+        }
+    }
+}
+
+@media(max-height: 667px) {
+    .new-table-section {
+        height: 45vh;
+    }
+}
+
+@media(max-height: 740px) {
+    .new-table-section {
+        height: 48vh;
+    }
+}
+
+@media(max-height: 897px) {
+    .new-table-section {
+        height: 62vh;
+    }
+}
+
+@media(min-width: 900px) {
+    .new-table-section {
+        height: 38vh;
+    }
+}
