@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Teacher } from 'src/models/teacher';
 import { UpdateTeacher } from 'src/models/teachers/update-teacher';
@@ -9,10 +9,9 @@ import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './update-teacher.component.html',
-  styleUrls: ['./update-teacher.component.scss']
+  styleUrls: ['./update-teacher.component.scss'],
 })
 export class UpdateTeacherComponent implements OnInit {
-
   teacherId: number = 0;
   teacher?: Teacher;
   error: boolean = false;
@@ -24,25 +23,39 @@ export class UpdateTeacherComponent implements OnInit {
   });
 
   constructor(
-    private teacherService: TeacherService, 
+    private teacherService: TeacherService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private toastService: ToastService) { }
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.teacherId = params['id']
+    this.route.params.subscribe((params) => {
+      this.teacherId = params['id'];
     });
 
-    this.teacherService.getById(this.teacherId).subscribe((teacher: Teacher) => {
-      this.teacher = teacher;
-      
-      this.createForm = new FormGroup({
-        name: new FormControl(this.teacher?.name),
-        email: new FormControl(this.teacher?.email)
+    this.teacherService
+      .getById(this.teacherId)
+      .subscribe((teacher: Teacher) => {
+        this.teacher = teacher;
+
+        this.createForm = new FormGroup({
+          name: new FormControl(this.teacher?.name, Validators.required),
+          email: new FormControl(this.teacher?.email, [
+            Validators.required,
+            Validators.email,
+          ]),
+        });
       });
-    });
+  }
+
+  get name() {
+    return this.createForm.get('name');
+  }
+
+  get email() {
+    return this.createForm.get('email');
   }
 
   selectTeacher(e: any) {
@@ -54,7 +67,8 @@ export class UpdateTeacherComponent implements OnInit {
     teacher.role = this.role;
     teacher.id = this.teacherId;
 
-    this.teacherService.updateTeacher(teacher).subscribe((err: any) => console.log(err.errors),
+    this.teacherService.updateTeacher(teacher).subscribe(
+      (err: any) => console.log(err.errors),
       (res: any) => {
         if (res.status == 500 || res.status == 400) {
           this.error = true;
@@ -62,8 +76,7 @@ export class UpdateTeacherComponent implements OnInit {
 
         if (this.error) {
           this.redirect('Error', 'An error has occurred.', this.error);
-        }
-        else {
+        } else {
           this.redirect('Success!', `Teacher Updated.`, this.error);
         }
       }
@@ -74,6 +87,10 @@ export class UpdateTeacherComponent implements OnInit {
     this.router.navigate(['/teachers']).then(() => {
       this.toastService.show(text, header, error);
     });
+  }
+
+  onClear(): void {
+    this.createForm.reset();
   }
 
   onBack() {
