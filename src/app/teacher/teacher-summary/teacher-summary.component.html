@@ -1,78 +1,73 @@
-<div class="wrapper">
-  <div class="late-book-section">
-    <h1 class="bold">Late Book List</h1>
-    <div class="cards-section">
-      <div *ngFor="let book of lateBooks" class="card">
-        <div class="card__book-info">
-          <span>{{ book.bookId }}</span>
-          <span> - </span>
-          <span>{{ book.bookTitle }}</span>
-        </div>
-        <p>{{ book.studentName }}</p>
-        <div class="card__actions">
-          <button
-            class="card__actions__button"
-            [routerLink]="['/books', book.bookId]"
-          >
-            <mdb-icon
-              fas
-              icon="user"
-              mdbTooltip="Teacher Info"
-              placement="top"
-              class="card__actions__button__icon"
-              aria-hidden="true"
-              size="sm"
-            ></mdb-icon
-            >Info
-          </button>
-        </div>
+<section class="late-book-section">
+  <h1 class="bold">Late Book List</h1>
+  <div class="cards-section">
+    <div *ngFor="let book of lateBooks" class="card">
+      <div class="card__book-info">
+        <span>{{ book.bookId }}</span>
+        <span> - </span>
+        <span>{{ book.bookTitle }}</span>
       </div>
-      <p *ngIf="lateBooks.length == 0">There are no late books.</p>
+      <p>{{ book.studentName }}</p>
+      <div class="card__actions">
+        <button
+          class="card__actions__button"
+          [routerLink]="['/books', book.bookId]"
+        >
+          <mdb-icon
+            fas
+            icon="user"
+            mdbTooltip="Teacher Info"
+            placement="top"
+            class="card__actions__button__icon"
+            aria-hidden="true"
+            size="sm"
+          ></mdb-icon
+          >Info
+        </button>
+      </div>
+    </div>
+    <p *ngIf="lateBooks.length == 0">There are no late books.</p>
+  </div>
+</section>
+<section class="student-list-section">
+  <div class="student-section-header">
+    <h1 class="bold student-section-header__title">Student List</h1>
+    <div class="search-section">
+      <input
+        class="student-section-header__search-input"
+        type="text"
+        [(ngModel)]="searchText"
+        name="searchText"
+        placeholder="Search"
+        aria-label="Search"
+        autocomplete="off"
+      />
     </div>
   </div>
-  <div class="student-list-section">
-    <div class="student-section-header">
-      <h1 class="bold student-section-header__title">Student List</h1>
-      <div class="search-section">
-        <input
-          class="student-section-header__search-input"
-          type="text"
-          [(ngModel)]="searchText"
-          name="searchText"
-          placeholder="Search"
-          aria-label="Search"
-          autocomplete="off"
-        />
+  <div class="student-cards-section">
+    <div *ngFor="let student of students | appFilter: searchText" class="card">
+      <div class="card__book-info">
+        <span>{{ student.studentId }} </span>
+        <span>{{ student.name }}</span>
       </div>
-    </div>
-    <div class="student-cards-section">
-      <div
-        *ngFor="let student of students | appFilter: searchText"
-        class="card"
-      >
-        <div class="card__book-info">
-          <span>{{ student.studentId }} </span>
-          <span>{{ student.name }}</span>
-        </div>
-        <p>Number of books: {{ student.numberOfActiveBooks }}</p>
-        <div class="card__actions">
-          <button
-            class="card__actions__button"
-            [routerLink]="['/students', student.studentId]"
-          >
-            <mdb-icon
-              fas
-              icon="user"
-              mdbTooltip="Teacher Info"
-              placement="top"
-              class="card__actions__button__icon"
-              aria-hidden="true"
-              size="sm"
-            ></mdb-icon
-            >Info
-          </button>
-        </div>
+      <p>Number of books: {{ student.numberOfActiveBooks }}</p>
+      <div class="card__actions">
+        <button
+          class="card__actions__button"
+          [routerLink]="['/students', student.studentId]"
+        >
+          <mdb-icon
+            fas
+            icon="user"
+            mdbTooltip="Teacher Info"
+            placement="top"
+            class="card__actions__button__icon"
+            aria-hidden="true"
+            size="sm"
+          ></mdb-icon
+          >Info
+        </button>
       </div>
     </div>
   </div>
-</div>
+</section>
