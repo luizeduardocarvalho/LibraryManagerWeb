@@ -1,10 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateUser } from 'src/models/create-user';
 import { AuthService } from 'src/services/auth.service';
-import { TeacherService } from 'src/services/teacher.service';
 import { ToastService } from 'src/services/toast.service';
 
 @Component({
@@ -14,8 +13,8 @@ import { ToastService } from 'src/services/toast.service';
 })
 export class CreateTeacherComponent implements OnInit {
   createForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.email, Validators.required]),
   });
 
   error: boolean = false;
@@ -29,6 +28,14 @@ export class CreateTeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  get name() {
+    return this.createForm.get('name');
+  }
+
+  get email() {
+    return this.createForm.get('email');
+  }
 
   selectTeacher(e: any) {
     this.role = e.target.value;
@@ -51,6 +58,10 @@ export class CreateTeacherComponent implements OnInit {
         }
       }
     );
+  }
+
+  onClear(): void {
+    this.createForm.reset();
   }
 
   redirect(header: string, text: string, error: boolean) {
