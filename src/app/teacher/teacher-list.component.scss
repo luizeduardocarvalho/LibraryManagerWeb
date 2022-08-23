@@ -2,11 +2,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 .search-input {
     border-radius: 0.3em;
-    border-color: hsl(0, 0, 0, 0.5);
+    border: 2px solid hsl(0, 0, 0, 0.55);
     margin-bottom: 1em;
 }
 
@@ -25,7 +26,6 @@ input {
 }
 
 .create-button {
-    grid-area: create-button;
     margin-left: auto;
 }
 
@@ -40,7 +40,7 @@ input {
 
 .table-section {
     overflow-y: scroll;
-    height: 55vh;
+    height: 56vh;
 
     margin-bottom: 1em;
 }
@@ -53,7 +53,8 @@ input {
     display: flex;
     flex-direction: column;
 
-    background-color: hsl(185, 100%, 28%, 20%);
+    background-color: var(--cl-primary);
+    color: whitesmoke;
 
     padding: 0.6em 1em 0.6em 1em;
     margin-bottom: 1em;
@@ -82,26 +83,30 @@ input {
     }
 }
 
-@media(max-height: 667px) {
-    .new-table-section {
-        height: 45vh;
-    }
-}
-
-@media(max-height: 740px) {
-    .new-table-section {
+@media(min-height: 667px) {
+    .table-section {
         height: 48vh;
     }
 }
 
-@media(max-height: 897px) {
-    .new-table-section {
-        height: 62vh;
+@media(min-height: 740px) {
+    .table-section {
+        height: 51vh;
+    }
+
+    .teacher-card__button-section__button {
+        font-size: 1rem;
+    }
+}
+
+@media(min-height: 896px) {
+    .table-section {
+        height: 58vh;
     }
 }
 
 @media(min-width: 900px) {
-    .new-table-section {
+    .table-section {
         height: 38vh;
     }
 }

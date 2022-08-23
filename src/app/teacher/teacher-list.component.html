@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Delete Teacher</h4>
+    <h1 class="modal-title" id="modal-basic-title">Delete Teacher</h1>
     <mdb-icon
       fas
       icon="times"
@@ -14,27 +14,22 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-        <p>Delete Teacher?</p>
+        <p>Are you sure you want to delete the teacher?</p>
       </div>
     </form>
   </div>
   <div class="modal-footer">
     <button
-      mdbBtn
       type="button"
-      class="modal-button"
-      color="primary"
+      class="button button-primary"
       (click)="modal.dismiss('Cross click')"
-      mdbWavesEffect
     >
       Cancel
     </button>
     <button
-      mdbBtn
       type="button"
-      color="danger"
+      class="button button-danger"
       (click)="modal.close('Save click')"
-      mdbWavesEffect
     >
       Delete
     </button>
