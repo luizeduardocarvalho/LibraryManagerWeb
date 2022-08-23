@@ -17,7 +17,7 @@ body {
 .primary-header {
     align-items: center;
     justify-content: space-between;
-    background-color: hsl(185 100% 28%);
+    background-color: var(--cl-primary);
 }
 
 .primary-navigation {
@@ -32,12 +32,27 @@ body {
     font-size: 1.5em;
 }
 
+.button {
+    color: white;
+    font-size: 1.5em;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown-item {
+    font-size: 1.3rem;
+    padding-inline: 1em;
+    color: white;
+}
+
 .user-icon {
+    padding-right: 0.5em;
     color: white;
 }
 
 .dropdown-menu {
-    background-color: hsl(185 100% 28%);
+    background-color: var(--cl-primary);
 }
 
 .mobile-nav-toggle {
@@ -60,7 +75,7 @@ body {
         
         flex-direction: column ;
         padding: min(30vh, 10rem) 2em;
-        background-color: hsl(185 100% 28%);
+        background-color: var(--cl-primary);
 
         transform: translateX(100%);
         transition: transform 250ms ease-out;
@@ -76,7 +91,7 @@ body {
 
     @supports(backdrop-filter: blur(1rem)) {
         .primary-navigation {
-            background-color: hsl(185 100% 28% / 0.7);
+            background-color: rgba(2, 124, 135, 0.7);
             backdrop-filter: blur(1rem);
         }
     }

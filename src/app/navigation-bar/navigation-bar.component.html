@@ -30,20 +30,19 @@
       </li>
       <li>
         <div class="btn-group" mdbDropdown>
-          <mdb-icon
-            class="user-icon"
-            fas
-            icon="user"
-            mdbDropdownToggle
-          ></mdb-icon>
+          <button class="button" mdbDropdownToggle>
+            <mdb-icon class="user-icon" fas icon="user"></mdb-icon>
+            Profile
+          </button>
           <div class="dropdown-menu dropdown-primary">
-            <a
-              class="dropdown-item"
+            <button
+              class="dropdown-item button"
               (click)="onClick()"
               [routerLink]="['/change-password']"
-              >Change Password</a
             >
-            <a class="dropdown-item" (click)="onLogout()">Log out</a>
+              Change Password
+            </button>
+            <button class="dropdown-item button" (click)="onLogout()">Log out</button>
           </div>
         </div>
       </li>
