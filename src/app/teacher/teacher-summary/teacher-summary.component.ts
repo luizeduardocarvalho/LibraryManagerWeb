@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LateBook } from 'src/models/late-book';
@@ -15,6 +14,8 @@ export class TeachersummaryComponent implements OnInit {
   lateBooks: LateBook[] = [];
   teacherId: number = 0;
   searchText: string = '';
+  isLoadingLateBookList = false;
+  isLoadingStudentList = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +24,9 @@ export class TeachersummaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoadingLateBookList = true;
+    this.isLoadingStudentList = true;
+
     this.route.params.subscribe((params) => {
       this.teacherId = params['id'];
     });
@@ -31,16 +35,19 @@ export class TeachersummaryComponent implements OnInit {
       this.teacherId = JSON.parse(localStorage.getItem('user') as string).id;
     }
 
+
     this.studentService
       .getStudentsByTeacherWithBookCount(this.teacherId)
       .subscribe((students: Student[]) => {
         this.students = students;
+        this.isLoadingStudentList = false;
       });
 
     this.transactionService
       .getLateBooks(this.teacherId)
       .subscribe((lateBooks: LateBook[]) => {
         this.lateBooks = lateBooks;
+        this.isLoadingLateBookList = false;
       });
   }
 }

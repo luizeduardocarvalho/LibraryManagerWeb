@@ -1,6 +1,9 @@
 <section class="late-book-section">
   <h1 class="bold">Late Book List</h1>
-  <div class="cards-section">
+  <div class="loader-section">
+    <div *ngIf="isLoadingLateBookList" class="loader"></div>
+  </div>
+  <div *ngIf="!isLoadingLateBookList"class="cards-section">
     <div *ngFor="let book of lateBooks" class="card">
       <div class="card__book-info">
         <span>{{ book.bookId }}</span>
@@ -44,7 +47,10 @@
       />
     </div>
   </div>
-  <div class="student-cards-section">
+  <div class="loader-section">
+    <div *ngIf="isLoadingStudentList" class="loader"></div>
+  </div>
+  <div *ngIf="!isLoadingStudentList" class="student-cards-section">
     <div *ngFor="let student of students | appFilter: searchText" class="card">
       <div class="card__book-info">
         <span>{{ student.studentId }} </span>
