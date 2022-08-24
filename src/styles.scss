@@ -2,19 +2,87 @@
 @import '~bootstrap/scss/bootstrap';
 
 /* CSS RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,36 +91,70 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, ul, li, table,
-tbody, thead, tr, th, td {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+li,
+table,
+tbody,
+thead,
+tr,
+th,
+td {
 	caret-color: transparent;
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1.5;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
 	outline: none;
 	border-color: var(--cl-primary);
 }
@@ -66,13 +168,15 @@ body {
 	background-color: whitesmoke;
 }
 
-html, body {
+html,
+body {
 	height: 100%;
 }
 
-button, input {
+button,
+input {
 	font-size: inherit;
-    font-family: inherit;
+	font-family: inherit;
 }
 
 .bold {
@@ -80,20 +184,25 @@ button, input {
 }
 
 .semi-bold {
-    font-weight: 500;
+	font-weight: 500;
+}
+
+input:focus {
+	border-color: var(--cl-primary);
 }
 
 /* New CSS */
+/* Buttons */
 .button {
-    border: none;
-    border-radius: 0.2em;
-    padding: 0.5em 1.5em 0.5em 1.5em;
-    width: 100%;
+	border: none;
+	border-radius: 0.2em;
+	padding: 0.5em 1.5em 0.5em 1.5em;
+	width: 100%;
 }
 
 .button-primary {
-    background-color: var(--cl-primary);
-    color: white;
+	background-color: var(--cl-primary);
+	color: white;
 }
 
 .button-danger {
@@ -102,20 +211,46 @@ button, input {
 }
 
 .button-clear {
-    background-color: white;
-    border: 2px solid var(--cl-primary);
-    color: var(--cl-primary);
+	background-color: white;
+	border: 2px solid var(--cl-primary);
+	color: var(--cl-primary);
 }
 
-input:focus {
-    border-color: var(--cl-primary);
+/* Loader */
+.loader {
+	border: 0.4em solid #f3f3f3;
+	border-top: 0.4em solid var(--cl-primary);
+	border-radius: 50%;
+	width: 3em;
+	height: 3em;
+	animation: spin 0.8s linear infinite;
 }
+
+.loader-section {
+	display: flex;
+	justify-content: center;
+}
+
+.loader-section>.loader {
+	margin-block: 1em;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 
 /* Variables */
 :root {
 	--cl-primary: #027C87;
 	--cl-danger: #D82525;
-	--cl-disabled-button: #027C874D; 
+	--cl-disabled-button: #027C874D;
 	--cl-input-border: hsl(0, 0, 0, 0.6);
 	// color-scheme: dark;
 }
