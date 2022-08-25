@@ -10,6 +10,7 @@ import { BookService } from 'src/services/book.service';
 export class BookListComponent implements OnInit {
   books: Book[] = [];
   searchText: string = '';
+  isLoading = false;
 
   constructor(
     private bookService: BookService,
@@ -25,8 +26,10 @@ export class BookListComponent implements OnInit {
   }
 
   getBooks(title: string) {
+    this.isLoading = true;
     this.bookService.getBooksByTitle(title).subscribe((books: Book[]) => {
       this.books = books;
+      this.isLoading = false;
     });
   }
 
