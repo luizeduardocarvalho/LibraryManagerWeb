@@ -202,18 +202,23 @@ input:focus {
 
 .button-primary {
 	background-color: var(--cl-primary);
-	color: white;
+	color: whitesmoke;
 }
 
 .button-danger {
 	background-color: var(--cl-danger);
-	color: white;
+	color: whitesmoke;
 }
 
 .button-clear {
-	background-color: white;
+	background-color: whitesmoke;
 	border: 2px solid var(--cl-primary);
 	color: var(--cl-primary);
+}
+
+.button-white {
+	background-color: whitesmoke;
+	color: black;
 }
 
 /* Loader */
