@@ -61,6 +61,10 @@ export class CreateBookComponent implements OnInit {
     this.location.back();
   }
 
+  onClear() {
+    this.createForm.reset();
+  }
+
   redirect(header: string, text: string, bookTitle: string, error: boolean) {
     this.router
       .navigate(['/books'], { queryParams: { title: bookTitle } })
