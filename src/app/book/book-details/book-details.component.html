@@ -1,0 +1,36 @@
+<div class="back-arrow">
+  <a (click)="onBack()">
+    <mdb-icon fas icon="arrow-left"></mdb-icon>
+  </a>
+</div>
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<section *ngIf="!isLoading">
+  <h1 class="bold">{{ book?.title }}</h1>
+  <p>{{ book?.authorName }}</p>
+  <div class="book-status-section">
+    <div *ngIf="book?.status" class="round-icon check">
+      <mdb-icon
+        fas
+        icon="check"
+        mdbTooltip="Book Info"
+        placement="top"
+        aria-hidden="true"
+      ></mdb-icon>
+    </div>
+    <div *ngIf="!book?.status" class="round-icon times">
+      <mdb-icon
+        fas
+        icon="times"
+        mdbTooltip="Book Info"
+        placement="top"
+        aria-hidden="true"
+      ></mdb-icon>
+    </div>
+    {{ book?.status ? "Available" : "Not Available" }}
+  </div>
+  <div class="description-section">
+    <p>{{ book?.description }}</p>
+  </div>
+</section>
