@@ -1,30 +1,63 @@
-<div class="wrapper">
-	<div class="back-arrow">
-		<a (click)="onBack()"><mdb-icon fas icon="arrow-left"></mdb-icon></a>
-	</div>
-	<div class="student-name">
-		<h2>{{ author?.name }}</h2>
-	</div>
+<div class="header-section">
+  <div class="back-arrow">
+    <a (click)="onBack()"><mdb-icon fas icon="arrow-left"></mdb-icon></a>
+  </div>
+  <h1 class="bold">{{ author?.name }}</h1>
 </div>
-<h3 class="table-title">Book List</h3>
-<div class="table-section">
-	<table mdbTable class="mt-2">
-		<thead class="grey lighten-1 black-text">
-			<tr>
-				<th class="col-1 col-xl-2" scope="col">Reference</th>
-				<th class="col-9 col-xl-8" scope="col">Title</th>
-				<th class="col-2 col-xl-2" scope="col">Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr mdbTableCol *ngFor="let book of author?.books">
-				<td>{{book.reference}}</td>
-				<td>{{book.title}}</td>
-				<td>
-					<mdb-icon fas icon="leaf" [routerLink]="['/books', book.bookId]" class="mr-2" aria-hidden="true"></mdb-icon>
-					<mdb-icon fas icon="edit" [routerLink]="['/books', book.bookId, 'update']" class="mr-2" aria-hidden="true"></mdb-icon>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<h1>Book List</h1>
+<div class="cards-section">
+  <div *ngFor="let book of author?.books" class="author-card">
+    <p>{{ book.reference }} - {{ book.title }}</p>
+    <div class="author-card__actions">
+      <button class="button button-white-inverted">
+        <mdb-icon
+          fas
+          icon="book"
+          [routerLink]="['/books', book.bookId]"
+          aria-hidden="true"
+        ></mdb-icon>
+        Info
+      </button>
+      <button class="button button-white-inverted">
+        <mdb-icon
+          fas
+          icon="edit"
+          [routerLink]="['/books', book.bookId, 'update']"
+          aria-hidden="true"
+        ></mdb-icon>
+        Edit
+      </button>
+    </div>
+  </div>
+  <!-- <table mdbTable class="mt-2">
+    <thead class="grey lighten-1 black-text">
+      <tr>
+        <th class="col-1 col-xl-2" scope="col">Reference</th>
+        <th class="col-9 col-xl-8" scope="col">Title</th>
+        <th class="col-2 col-xl-2" scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let book of author?.books">
+        <td>{{ book.reference }}</td>
+        <td>{{ book.title }}</td>
+        <td>
+          <mdb-icon
+            fas
+            icon="leaf"
+            [routerLink]="['/books', book.bookId]"
+            class="mr-2"
+            aria-hidden="true"
+          ></mdb-icon>
+          <mdb-icon
+            fas
+            icon="edit"
+            [routerLink]="['/books', book.bookId, 'update']"
+            class="mr-2"
+            aria-hidden="true"
+          ></mdb-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
 </div>
