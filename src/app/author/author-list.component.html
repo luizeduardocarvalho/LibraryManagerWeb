@@ -32,36 +32,32 @@
     </button>
   </div>
 </div>
-<div class="cards-section">
+<section class="cards-section">
   <div class="loader-section">
     <div *ngIf="isLoading" class="loader"></div>
   </div>
-  <div *ngFor="let author of authors" class="author-card">
-    <p>{{ author.name }}</p>
-    <button
-      class="button button-white-inverted author-card__button"
-      [routerLink]="[author.authorId]"
-      [state]="{ search: searchText }"
-    >
-      <mdb-icon
-        fas
-        icon="user"
-        mdbTooltip="Author Info"
-        aria-hidden="true"
-      ></mdb-icon
-      >Info
-    </button>
-    <!-- <button
-      class="button button-white-inverted teacher-card__button"
-      [routerLink]="[author.authorId]"
-    >
-      <mdb-icon
-        fas
-        icon="user"
-        mdbTooltip="Author Info"
-        aria-hidden="true"
-      ></mdb-icon>
-    </button>
-    <span> Info</span> -->
+  <div *ngIf="!isLoading">
+    <div *ngFor="let author of authors" class="author-card">
+      <p>{{ author.name }}</p>
+      <button
+        class="button button-white-inverted author-card__button"
+        [routerLink]="[author.authorId]"
+        [state]="{ search: searchText }"
+      >
+        <mdb-icon
+          fas
+          icon="user"
+          mdbTooltip="Author Info"
+          aria-hidden="true"
+        ></mdb-icon
+        >Info
+      </button>
+    </div>
   </div>
-</div>
+  <p
+    class="cards-section__error-message"
+    *ngIf="authors.length == 0 && !isLoading"
+  >
+    No results for this search
+  </p>
+</section>

@@ -29,7 +29,7 @@
         <a (click)="onClick()" routerLink="/authors">Authors</a>
       </li>
       <li>
-        <div class="btn-group" mdbDropdown>
+        <div mdbDropdown>
           <button class="button" mdbDropdownToggle>
             <mdb-icon class="user-icon" fas icon="user"></mdb-icon>
             Profile
@@ -42,7 +42,9 @@
             >
               Change Password
             </button>
-            <button class="dropdown-item button" (click)="onLogout()">Log out</button>
+            <button class="dropdown-item button" (click)="onLogout()">
+              Log out
+            </button>
           </div>
         </div>
       </li>
