@@ -1,0 +1,73 @@
+.back-arrow {
+    margin-bottom: 0.8em;
+}
+
+.button-section {
+    display: flex;
+    justify-content: space-between;
+
+    margin-block: 0.8em;
+
+    font-size: 0.8em;
+}
+
+.book-description {
+    font-size: 0.8em;
+    margin-bottom: 0.8em;
+}
+
+.cards-section {
+    overflow-y: scroll;
+    height: 55vh;
+
+    margin-top: 0.5em;
+}
+
+.book-card {
+    margin-bottom: 0.8em;
+    padding: 0.6em 1em 0.6em 1em;
+
+    border-radius: 0.5em;
+
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+
+    font-size: 0.8em;
+}
+
+.button-loader {
+    border: 0.15em solid #f3f3f3;
+    border-top: 0.15em solid var(--cl-primary);
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    animation: spin 0.8s linear infinite;
+}
+
+.button-loader-section {
+    padding-inline: 0.9em;
+    display: flex;
+    justify-content: center;
+}
+
+.button-loader-section>.loader {
+    margin-block: 1em;
+}
+
+@media(min-height: 740px) {
+    .cards-section {
+        height: 58vh;
+    }
+}
+
+@media(min-height: 844px) {
+    .cards-section {
+        height: 61vh;
+    }
+}
+
+@media(min-height: 900px) {
+    .cards-section {
+        height: 63vh;
+    }
+}

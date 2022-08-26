@@ -1,0 +1,54 @@
+.back-arrow {
+    margin-bottom: 0.8em;
+}
+
+.book-status-section {
+    display: flex;
+
+    margin-block: 0.5em;
+}
+
+.round-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 0.2em;
+
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+
+    background-color: whitesmoke;
+}
+
+.check {
+    color: green;
+}
+
+.times {
+    color: red;
+}
+
+.description-section {
+    overflow-y: scroll;
+    height: 53vh;
+}
+
+@media(min-height: 740px) {
+    .description-section {
+        height: 56vh;
+    }
+}
+
+@media(min-height: 844px) {
+    .description-section {
+        height: 60vh;
+    }
+}
+
+@media(min-height: 900px) {
+    .description-section {
+        height: 61vh;
+    }
+}

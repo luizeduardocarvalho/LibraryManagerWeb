@@ -1,9 +1,9 @@
 footer {
-    height: 5vh;
-}
+    position: absolute;
+    right: 0;
+    bottom: -1vh;
+    left: 0;
+    height: 6vh;
 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--cl-primary);
 }

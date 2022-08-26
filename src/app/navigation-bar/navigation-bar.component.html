@@ -1,10 +1,18 @@
-<header class="flex primary-header">
+<header class="flex">
   <a class="logo" href="">Library Manager</a>
 
-  <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"></button>
+  <button
+    class="mobile-nav-toggle"
+    aria-controls="primary-navigation"
+    aria-expanded="false"
+  ></button>
 
   <nav>
-    <ul id="primary-navigation" class="primary-navigation flex" data-visible="false">
+    <ul
+      id="primary-navigation"
+      class="primary-navigation flex"
+      data-visible="false"
+    >
       <li *ngIf="user.role == 'Administrator'" class="active">
         <a (click)="onClick()" routerLink="/teachers">Teachers</a>
       </li>
@@ -22,10 +30,19 @@
       </li>
       <li>
         <div class="btn-group" mdbDropdown>
-          <mdb-icon class="user-icon" fas icon="user" mdbDropdownToggle></mdb-icon>
+          <button class="button" mdbDropdownToggle>
+            <mdb-icon class="user-icon" fas icon="user"></mdb-icon>
+            Profile
+          </button>
           <div class="dropdown-menu dropdown-primary">
-            <a class="dropdown-item" (click)="onClick()" [routerLink]="['/change-password']">Change Password</a>
-            <a class="dropdown-item" (click)="onLogout()">Log out</a>
+            <button
+              class="dropdown-item button"
+              (click)="onClick()"
+              [routerLink]="['/change-password']"
+            >
+              Change Password
+            </button>
+            <button class="dropdown-item button" (click)="onLogout()">Log out</button>
           </div>
         </div>
       </li>

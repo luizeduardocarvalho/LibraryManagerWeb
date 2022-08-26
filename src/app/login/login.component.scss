@@ -1,6 +1,49 @@
-.wrapper {
-    display: grid;
-    height: 100vh;
+.login-section {
+    height: 85vh;
+
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 1em 1em 1.5em 1em;
+    justify-content: center;
+}
+
+.page-title {
+    font-size: 1.5rem;
+}
+
+.form-section {
+    width: 100%;
+    padding-inline: 2em;
+    
+    display: grid;
+    align-items: center;
+}
+
+.validation-error-message {
+    background-color: var(--cl-danger);
+    border-radius: 0.4em;
+    color: whitesmoke;
+
+    font-size: 1rem;
+    text-align: start;
+
+    padding: 0.3em 0 0.3em 0.6em;
+    margin-block: 1em;
+}
+
+.input-label {
+    width: 100%;
+    text-align: start;
+}
+
+label + .form-control {
+    margin-bottom: 1em;
+}
+
+form {
+    padding: 0 !important;
+}
+
+.button:disabled {
+    background-color: var(--cl-disabled-button);
 }

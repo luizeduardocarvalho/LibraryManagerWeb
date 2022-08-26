@@ -1,0 +1,62 @@
+<div class="page-header">
+  <div class="back-arrow">
+    <a (click)="onBack()">
+      <mdb-icon fas icon="arrow-left"></mdb-icon>
+    </a>
+  </div>
+  <h1 class="bold">Update Teacher</h1>
+</div>
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name</label>
+  <input
+    type="text"
+    formControlName="name"
+    id="name"
+    class="form-control"
+    placeholder="Teacher Name"
+    autocomplete="off"
+  />
+  <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+    <div class="validation-error-message">
+      <p>Name is required.</p>
+    </div>
+  </div>
+  <label for="email">Email</label>
+  <input
+    type="text"
+    formControlName="email"
+    class="form-control"
+    id="email"
+    placeholder="Teacher Email"
+    autocomplete="off"
+  />
+  <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+    <div *ngIf="email?.errors?.['email']" class="validation-error-message">
+      <p>Email is not in the correct format.</p>
+    </div>
+    <div *ngIf="email?.errors?.['required']" class="validation-error-message">
+      <p>Email is required.</p>
+    </div>
+  </div>
+  <label for="teacher-select">Role</label>
+  <select
+    class="dropdown form-control"
+    id="teacher-select"
+    (change)="selectTeacher($event)"
+  >
+    <option value="Teacher">Teacher</option>
+    <option value="Administrator">Administrator</option>
+  </select>
+  <div class="button-section">
+    <button class="button button-clear" (click)="onClear()" type="button">
+      Clear
+    </button>
+    <button
+      class="button button-primary"
+      [disabled]="!createForm.valid"
+      type="submit"
+    >
+      Update
+    </button>
+  </div>
+</form>

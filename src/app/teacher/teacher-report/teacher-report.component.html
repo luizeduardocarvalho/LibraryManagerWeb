@@ -1,0 +1,29 @@
+<div class="header-section">
+  <div class="back-arrow">
+    <a (click)="onBack()">
+      <mdb-icon fas icon="arrow-left"></mdb-icon>
+    </a>
+  </div>
+  <div class="page-title">
+    <h1 class="bold">Report</h1>
+  </div>
+</div>
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<div class="card-section">
+  <div *ngFor="let teacher of teacherList" class="card">
+    <p class="bold card__teacher">{{ teacher.teacherName }}</p>
+    <div *ngFor="let student of teacher.students" class="card__student">
+      <p class="bold">{{ student.studentName }}</p>
+      <div
+        *ngFor="let transaction of student.transactions"
+        class="card__student__book"
+      >
+        <p>{{ transaction.bookTitle }}</p>
+        <p>Lend Date: {{ transaction.creationDate | date: "longDate" }}</p>
+        <p>Return Date: {{ transaction.returnDate | date: "longDate" }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="back-arrow">
+  <a (click)="onBack()">
+    <mdb-icon fas icon="arrow-left"></mdb-icon>
+  </a>
+</div>
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<h1 class="bold">{{ book?.title }}</h1>
+<div class="button-section">
+  <div class="lend-button">
+    <button class="button button-primary" [routerLink]="['lend']" type="button">
+      Lend
+    </button>
+  </div>
+  <div class="return-button">
+    <button class="button button-primary" (click)="onReturn()" type="button">
+      <div class="button-loader-section">
+        <div *ngIf="isRenewLoading" class="button-loader"></div>
+      </div>
+      <span *ngIf="!isRenewLoading">Return</span>
+    </button>
+  </div>
+  <div class="renew-button">
+    <button class="button button-primary" (click)="onRenew()" type="button">
+      <div class="button-loader-section">
+        <div *ngIf="isRenewLoading" class="button-loader"></div>
+      </div>
+      <span *ngIf="!isRenewLoading">Renew</span>
+    </button>
+  </div>
+</div>
+<div *ngIf="book?.description" class="book-description">
+  <p>
+    {{ book?.description
+    }}<span> <a [routerLink]="['details']"> Read more</a></span>
+  </p>
+</div>
+<h1 class="bold">Book History</h1>
+<section class="cards-section">
+  <div *ngFor="let transaction of book?.transactions" class="book-card">
+    <p class="bold">{{ transaction.studentName }}</p>
+    <p>{{ transaction.creationDate | date: "longDate" }}</p>
+    <p>{{ transaction.returnedAt | date: "longDate" }}</p>
+  </div>
+</section>

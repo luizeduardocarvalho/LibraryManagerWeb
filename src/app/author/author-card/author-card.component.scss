@@ -1,0 +1,50 @@
+.header-section {
+    display: flex;
+    gap: 1em;
+
+    margin-bottom: 0.8em;
+}
+
+.cards-section {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+.author-card {
+    margin-bottom: 0.8em;
+    padding: 0.6em 1em 0.6em 1em;
+
+    font-size: 0.8em;
+
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+    border-radius: 0.5em;
+
+    &__actions {
+        display: flex;
+        gap: 0.5em;
+        margin-top: 0.2em;
+    }
+}
+
+.button {
+    padding-block: 0.2em;
+}
+
+@media(min-height: 740px) {
+    .cards-section {
+        height: 70vh;
+    }
+}
+
+@media(min-height: 844px) {
+    .cards-section {
+        height: 72vh;
+    }
+}
+
+@media(min-height: 900px) {
+    .cards-section {
+        height: 74vh;
+    }
+}
