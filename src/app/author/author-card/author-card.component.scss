@@ -1,28 +1,50 @@
-.wrapper {
-    padding: 12vh 1em 1em 1em;
-    display: grid;
-    grid-template-areas: "back-arrow . student-name . .";
+.header-section {
+    display: flex;
+    gap: 1em;
+
+    margin-bottom: 0.8em;
 }
 
-.table-title {
-    padding-left: 1rem;
+.cards-section {
+    overflow-y: scroll;
+    height: 70vh;
 }
 
-.back-arrow {
-    padding-left: 1em;
-    grid-area: back-arrow;
-    align-self: center;
+.author-card {
+    margin-bottom: 0.8em;
+    padding: 0.6em 1em 0.6em 1em;
+
+    font-size: 0.8em;
+
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+    border-radius: 0.5em;
+
+    &__actions {
+        display: flex;
+        gap: 0.5em;
+        margin-top: 0.2em;
+    }
 }
 
-.student-name {
-    grid-area: student-name;
-    place-self: center;
+.button {
+    padding-block: 0.2em;
 }
 
-.table-section {
-    padding: 0 1rem 3rem 1rem;
+@media(min-height: 740px) {
+    .cards-section {
+        height: 70vh;
+    }
 }
 
-h2 {
-    margin: 0;
+@media(min-height: 844px) {
+    .cards-section {
+        height: 72vh;
+    }
+}
+
+@media(min-height: 900px) {
+    .cards-section {
+        height: 74vh;
+    }
 }
