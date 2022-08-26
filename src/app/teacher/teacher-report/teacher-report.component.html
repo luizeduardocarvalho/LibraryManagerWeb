@@ -1,36 +1,28 @@
-<div *ngIf="teacherList" class="wrapper">
-  <div class="header-section">
-    <div class="back-arrow">
-      <a (click)="onBack()">
-        <mdb-icon fas icon="arrow-left"></mdb-icon>
-      </a>
-    </div>
-    <div class="page-title">
-      <h2>Report</h2>
-    </div>
+<div class="header-section">
+  <div class="back-arrow">
+    <a (click)="onBack()">
+      <mdb-icon fas icon="arrow-left"></mdb-icon>
+    </a>
   </div>
-  <div *ngFor="let teacher of teacherList" class="card-section">
-    <div class="card" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">{{ teacher.teacherName }}</h5>
-        <ul>
-          <li *ngFor="let student of teacher.students">
-            {{ student.studentName }}
-            <ul>
-              <li *ngFor="let transaction of student.transactions">
-                {{ transaction.bookTitle }}
-                <ul>
-                  <li>
-                    Lend Date: {{ transaction.creationDate | date: "longDate" }}
-                  </li>
-                  <li>
-                    Return Date: {{ transaction.returnDate | date: "longDate" }}
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
+  <div class="page-title">
+    <h1 class="bold">Report</h1>
+  </div>
+</div>
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<div class="card-section">
+  <div *ngFor="let teacher of teacherList" class="card">
+    <p class="bold card__teacher">{{ teacher.teacherName }}</p>
+    <div *ngFor="let student of teacher.students" class="card__student">
+      <p class="bold">{{ student.studentName }}</p>
+      <div
+        *ngFor="let transaction of student.transactions"
+        class="card__student__book"
+      >
+        <p>{{ transaction.bookTitle }}</p>
+        <p>Lend Date: {{ transaction.creationDate | date: "longDate" }}</p>
+        <p>Return Date: {{ transaction.returnDate | date: "longDate" }}</p>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@ import { TeacherService } from 'src/services/teacher.service';
 })
 export class TeacherReportComponent implements OnInit {
   teacherList?: TeacherWithStudents[];
+  isLoading = false;
 
   constructor(
     private location: Location,
@@ -17,10 +18,12 @@ export class TeacherReportComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.teacherService
       .getTeacherReport()
       .subscribe((teacherList: TeacherWithStudents[]) => {
-        this.teacherList = teacherList.filter((tl) => tl.students.length != 0);
+        this.teacherList = teacherList;
+        this.isLoading = false;
       });
   }
 
