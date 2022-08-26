@@ -1,69 +1,46 @@
-<div *ngIf="book" class="wrapper">
-  <div class="back-arrow">
-    <a (click)="onBack()">
-      <mdb-icon fas icon="arrow-left"></mdb-icon>
-    </a>
+<div class="back-arrow">
+  <a (click)="onBack()">
+    <mdb-icon fas icon="arrow-left"></mdb-icon>
+  </a>
+</div>
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<h1 class="bold">{{ book?.title }}</h1>
+<div class="button-section">
+  <div class="lend-button">
+    <button class="button button-primary" [routerLink]="['lend']" type="button">
+      Lend
+    </button>
   </div>
-  <div class="page-title">
-    <h2>{{ book?.title }}</h2>
+  <div class="return-button">
+    <button class="button button-primary" (click)="onReturn()" type="button">
+      <div class="button-loader-section">
+        <div *ngIf="isRenewLoading" class="button-loader"></div>
+      </div>
+      <span *ngIf="!isRenewLoading">Return</span>
+    </button>
   </div>
-  <div class="button-section">
-    <div class="lend-button">
-      <button
-        mdbBtn
-        [routerLink]="['lend']"
-        type="button"
-        color="primary"
-        mdbWavesEffect
-      >
-        Lend
-      </button>
-    </div>
-    <div class="return-button">
-      <button
-        mdbBtn
-        (click)="onReturn()"
-        type="button"
-        color="primary"
-        mdbWavesEffect
-      >
-        Return
-      </button>
-    </div>
-    <div class="renew-button">
-      <button
-        mdbBtn
-        (click)="onRenew()"
-        type="button"
-        color="primary"
-        mdbWavesEffect
-      >
-        Renew
-      </button>
-    </div>
-  </div>
-  <div *ngIf="book.description" class="book-description">
-    <p>{{ book?.description }}</p>
-  </div>
-  <div class="table-section">
-    <h2>Book History</h2>
-    <table mdbTable *ngIf="book.transactions">
-      <thead class="grey lighten-1 black-text">
-        <tr>
-          <th class="col-xl-1 col-1" scope="col">ID</th>
-          <th class="col-xl-5 col-5" scope="col">Student Name</th>
-          <th class="col-xl-3 col-3" scope="col">Lend Date</th>
-          <th class="col-xl-3 col-3" scope="col">Returned At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr mdbTableCol *ngFor="let transaction of book.transactions">
-          <th scope="row">{{ transaction.transactionId }}</th>
-          <td>{{ transaction.studentName }}</td>
-          <td>{{ transaction.creationDate | date: "longDate" }}</td>
-          <td>{{ transaction.returnedAt | date: "longDate" }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="renew-button">
+    <button class="button button-primary" (click)="onRenew()" type="button">
+      <div class="button-loader-section">
+        <div *ngIf="isRenewLoading" class="button-loader"></div>
+      </div>
+      <span *ngIf="!isRenewLoading">Renew</span>
+    </button>
   </div>
 </div>
+<div *ngIf="book?.description" class="book-description">
+  <p>
+    {{ book?.description
+    }}<span> <a [routerLink]="['details']"> Read more</a></span>
+  </p>
+</div>
+<h1 class="bold">Book History</h1>
+<section class="cards-section">
+  <div *ngFor="let transaction of book?.transactions" class="book-card">
+    <p class="bold">{{ transaction.studentName }}</p>
+    <p>{{ transaction.creationDate | date: "longDate" }}</p>
+    <p>{{ transaction.returnedAt | date: "longDate" }}</p>
+  </div>
+</section>
