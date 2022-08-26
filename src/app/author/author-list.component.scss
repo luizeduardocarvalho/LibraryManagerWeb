@@ -1,73 +1,71 @@
-button {
-    margin: 0;
-}
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.wrapper {
-    padding: 12vh 1em 1em 1em;
-    display: grid;
-    grid-template-areas: 
-        "page-title  search-section search-section create-button" 
-        "table-section table-section table-section table-section";
-}
-
-.page-title {
-    place-self: center start;
-    grid-area: page-title;
+    margin-bottom: 1em;
 }
 
 .search-section {
-    grid-area: search-section;
-    display: grid;
-    grid-template-areas: "search-input search-button";
-    grid-auto-columns: minmax(0, 80%) minmax(0, 20%);
-}
+    display: flex;
+    gap: 0.5em;
 
-.search-input {
-    grid-area: search-input;
-    place-self: stretch;
-}
+    margin-bottom: 1em;
 
-input {
-    padding: 0 1em 0 1em;
-    width: 100%;
-    height: 100%;
-}
-
-.search-button {
-    grid-area: search-button;
-    place-self: end;
-}
-
-.create-button {
-    grid-area: create-button;
-    margin-left: auto;
-}
-
-.table-section {
-    grid-area: table-section;
-    padding-bottom: 2rem;
-}
-
-@media(max-width: 700px) {
-    .wrapper {
-        grid-template-areas: 
-        "page-title create-button"
-        "search-section search-section"
-        "table-section table-section";
-        row-gap: 1em;
-    }
-
-    .search-section {
-        grid-auto-columns: minmax(0, 60%) minmax(0, 40%);
-    }
-    
-    button {
-        margin-right: 0;
+    &__input {
+        padding-left: 0.5em;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3em;
+        border: 2px solid hsl(0, 0, 0, 0.55);
     }
 }
 
-@media(max-width: 1200px) {
-    .search-section {
-        grid-auto-columns: minmax(0, 65%) minmax(0, 35%);
+.cards-section {
+    overflow-y: scroll;
+    height: 60vh;
+
+    &__error-message {
+        text-align: center;
+    }
+}
+
+.author-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.8em;
+    padding: 0.6em 1em 0.6em 1em;
+
+    font-size: 0.8em;
+
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+    border-radius: 0.5em;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        width: min-content;
+    }
+}
+
+@media(min-height: 740px) {
+    .cards-section {
+        height: 62vh;
+    }
+}
+
+@media(min-height: 844px) {
+    .cards-section {
+        height: 65vh;
+    }
+}
+
+@media(min-height: 900px) {
+    .cards-section {
+        height: 66vh;
     }
 }
