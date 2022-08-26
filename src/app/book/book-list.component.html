@@ -63,7 +63,11 @@
       {{ book.status ? "Available" : "Not Available" }}
     </div>
     <div class="book-card__actions">
-      <button class="button button-white" [routerLink]="[book.bookId]">
+      <button
+        class="button button-white"
+        [routerLink]="[book.bookId]"
+        [state]="{ search: searchText }"
+      >
         <mdb-icon
           fas
           icon="book"
@@ -86,7 +90,10 @@
       </button>
     </div>
   </div>
-  <p class="cards-section__error-message" *ngIf="books.length == 0 && !isLoading">
+  <p
+    class="cards-section__error-message"
+    *ngIf="books.length == 0 && !isLoading"
+  >
     No results for this search
   </p>
 </section>
