@@ -3,7 +3,7 @@
   <div class="loader-section">
     <div *ngIf="isLoadingLateBookList" class="loader"></div>
   </div>
-  <div *ngIf="!isLoadingLateBookList"class="cards-section">
+  <div *ngIf="!isLoadingLateBookList" class="cards-section">
     <div *ngFor="let book of lateBooks" class="card">
       <div class="card__book-info">
         <span>{{ book.bookId }}</span>
@@ -18,7 +18,7 @@
         >
           <mdb-icon
             fas
-            icon="user"
+            icon="book"
             mdbTooltip="Teacher Info"
             placement="top"
             class="card__actions__button__icon"
@@ -51,7 +51,7 @@
     <div *ngIf="isLoadingStudentList" class="loader"></div>
   </div>
   <div *ngIf="!isLoadingStudentList" class="student-cards-section">
-    <div *ngFor="let student of students | appFilter: searchText" class="card">
+    <div *ngFor="let student of students | search: searchText" class="card">
       <div class="card__book-info">
         <span>{{ student.studentId }} </span>
         <span>{{ student.name }}</span>
