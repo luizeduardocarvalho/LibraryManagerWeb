@@ -38,11 +38,12 @@ input {
     justify-content: end;
 }
 
-.table-section {
+.cards-section {
     overflow-y: scroll;
-    height: 56vh;
+    height: 46vh;
 
     margin-bottom: 1em;
+    font-size: 0.8em;
 }
 
 .teacher-card:nth-child(1) {
@@ -83,30 +84,20 @@ input {
     }
 }
 
-@media(min-height: 667px) {
-    .table-section {
-        height: 48vh;
-    }
-}
-
 @media(min-height: 740px) {
-    .table-section {
+    .cards-section {
         height: 51vh;
     }
+}
 
-    .teacher-card__button-section__button {
-        font-size: 1rem;
+@media(min-height: 844px) {
+    .cards-section {
+        height: 55vh;
     }
 }
 
-@media(min-height: 896px) {
-    .table-section {
-        height: 58vh;
-    }
-}
-
-@media(min-width: 900px) {
-    .table-section {
-        height: 38vh;
+@media(min-height: 900px) {
+    .cards-section {
+        height: 57vh;
     }
 }

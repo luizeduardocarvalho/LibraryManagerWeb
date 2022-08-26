@@ -63,8 +63,11 @@
     mdbInput
   />
 </div>
-<div class="table-section">
-  <div *ngFor="let teacher of teachers" class="teacher-card">
+<div class="cards-section">
+  <div
+    *ngFor="let teacher of teachers | search: searchText"
+    class="teacher-card"
+  >
     <p class="bold">{{ teacher.name }}</p>
     <p>{{ teacher.role }}</p>
     <div class="teacher-card__button-section">
