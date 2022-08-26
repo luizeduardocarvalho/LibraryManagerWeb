@@ -7,6 +7,7 @@ import { LendBookComponent } from './lend-book/lend-book.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { BookComponent } from './book/book.component';
 import { BookRoutingModule } from './book-routing.module';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BookRoutingModule } from './book-routing.module';
     BookInfoComponent,
     LendBookComponent,
     BookComponent,
+    BookDetailsComponent,
   ],
   imports: [BookRoutingModule, SharedModule],
 })
