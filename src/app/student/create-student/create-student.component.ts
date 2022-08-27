@@ -70,4 +70,8 @@ export class CreateStudentComponent implements OnInit {
   onBack() {
     this.location.back();
   }
+
+  onClear() {
+    this.createForm.reset();
+  }
 }
