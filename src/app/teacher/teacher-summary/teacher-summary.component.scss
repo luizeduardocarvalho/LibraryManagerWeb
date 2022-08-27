@@ -59,7 +59,7 @@
   margin-top: 0.6em;
 }
 
-@media(max-height: 740px) {
+@media screen and (max-height: 740px) {
   .student-cards-section {
     max-height: 32vh;
   }
