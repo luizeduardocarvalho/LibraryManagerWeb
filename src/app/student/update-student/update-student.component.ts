@@ -81,4 +81,8 @@ export class UpdateStudentComponent implements OnInit {
   onBack() {
     this.location.back();
   }
+
+  onClear() {
+    this.createForm.reset();
+  }
 }
