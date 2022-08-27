@@ -1,6 +1,6 @@
 .cards-section {
   overflow-y: scroll;
-  max-height: 35vh;
+  max-height: 33vh;
 
   margin-bottom: 1em;
 }
@@ -54,13 +54,13 @@
 
 .student-cards-section {
   overflow-y: scroll;
-  max-height: 35vh;
+  max-height: 33vh;
 
   margin-top: 0.6em;
 }
 
 @media screen and (max-height: 740px) {
   .student-cards-section {
-    max-height: 32vh;
+    max-height: 30vh;
   }
 }
