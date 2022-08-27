@@ -1,8 +1,19 @@
+.modal {
+    display: flex;
+    align-items: center;
+
+    z-index: 99999;
+}
+
 .page-header-section {
     display: flex;
     align-items: center;
     margin-bottom: 1em;
     padding-top: 1em;
+
+    &__title {
+        font-size: 1.2em;
+    }
 }
 
 .search-input {

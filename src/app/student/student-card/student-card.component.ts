@@ -12,6 +12,7 @@ import { StudentService } from 'src/services/student.service';
 export class StudentCardComponent implements OnInit {
   student?: StudentWithTransactions;
   studentId: number = 0;
+  isLoading = false;
 
   constructor(
     private studentService: StudentService,
@@ -20,6 +21,7 @@ export class StudentCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.route.params.subscribe((params) => {
       this.studentId = params['id'];
     });
@@ -28,6 +30,7 @@ export class StudentCardComponent implements OnInit {
       .getStudentWithTransactionsById(this.studentId)
       .subscribe((student: StudentWithTransactions) => {
         this.student = student;
+        this.isLoading = false;
       });
   }
 

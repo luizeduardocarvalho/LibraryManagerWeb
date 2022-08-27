@@ -1,48 +1,42 @@
-.wrapper {
-    padding: 12vh 1em 1em 1em;
-    display: grid;
-    grid-template-areas: "back-arrow . student-name . .";
-}
+.page-header {
+    display: flex;
+    gap: 1em;
 
-.table-title {
-    padding-left: 1rem;
-}
-
-.back-arrow {
-    padding-left: 1em;
-    grid-area: back-arrow;
-    align-self: center;
-}
-
-.student-name {
-    grid-area: student-name;
-    place-self: center;
+    font-size: 1.2em;
 }
 
 .teacher-name {
-    font-size: 1rem;
+    font-size: 0.8em;
 }
 
-.table-section {
-    padding: 0 1em 2.5em 1em;
+.cards-section {
+    margin-top: 0.8em;
 }
 
-h2 {
-    margin: 0;
+.book-history-title {
+    margin-bottom: 0.5em;
 }
 
-.my-custom-scrollbar {
-    position: relative;
-    overflow: auto;
-    height: 70vh;
-}
+.book-card {
+    margin-bottom: 0.8em;
+    padding: 0.6em 1em 0.6em 1em;
 
-.table-fix thead th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
+    font-size: 0.8em;
 
-th {
-    background-color: #BDBDBD !important;
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+    border-radius: 0.5em;
+
+    &__error {
+        margin-top: 0.5em;
+        padding: 0.1em 0.3em 0.1em 0.3em;
+        border-radius: 0.5em;
+
+        color: var(--cl-danger);
+        background-color: whitesmoke;
+    }
+
+    &__button {
+        margin-top: 0.5em;
+    }
 }

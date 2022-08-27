@@ -1,48 +1,31 @@
-<div class="wrapper">
+<div class="page-header">
   <div class="back-arrow">
     <a (click)="onBack()"><mdb-icon fas icon="arrow-left"></mdb-icon></a>
   </div>
-  <div class="student-name">
-    <h2>{{ student?.studentName }}</h2>
-    <h3 class="teacher-name">{{ student?.teacherName }}</h3>
+  <h1 class="bold">{{ student?.studentName }}</h1>
+</div>
+<h2 class="teacher-name">{{ student?.teacherName }}</h2>
+<section class="cards-section">
+  <h1 *ngIf="!isLoading" class="semi-bold book-history-title">Book History</h1>
+  <div class="loader-section">
+    <div *ngIf="isLoading" class="loader"></div>
   </div>
-</div>
-<h3 class="table-title">Book History</h3>
-<div class="table-section table-wrapper-scroll-y my-custom-scrollbar table-fix">
-  <table mdbTable class="mt-2">
-    <thead class="grey lighten-1 black-text">
-      <tr>
-        <th class="col-1 col-xl-1" scope="col">Id</th>
-        <th class="col-4 col-xl-6" scope="col">Title</th>
-        <th class="col-3 col-xl-2" scope="col">Lend Date</th>
-        <th class="col-3 col-xl-2" scope="col">Returned At</th>
-        <th class="col-1 col-xl-1" scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        [ngStyle]="{
-          'background-color': transaction.isLate
-            ? 'rgba(255, 129, 127, 0.5)'
-            : ''
-        }"
-        mdbTableCol
-        *ngFor="let transaction of student?.transactions"
-      >
-        <td>{{ transaction.bookReference }}</td>
-        <td>{{ transaction.bookTitle }}</td>
-        <td>{{ transaction.creationDate | date: "shortDate" }}</td>
-        <td>{{ transaction.returnedAt | date: "shortDate" }}</td>
-        <td>
-          <mdb-icon
-            fas
-            icon="leaf"
-            [routerLink]="['/books', transaction.bookId]"
-            class="mr-2"
-            aria-hidden="true"
-          ></mdb-icon>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div *ngFor="let transaction of student?.transactions" class="book-card">
+    <p>{{ transaction.bookReference }} - {{ transaction.bookTitle }}</p>
+    <p>Lent at: {{ transaction.creationDate | date: "shortDate" }}</p>
+    <p *ngIf="transaction.returnedAt">
+      Returned at: {{ transaction.returnedAt | date: "shortDate" }}
+    </p>
+    <div *ngIf="!transaction.returnedAt" class="book-card__error">
+      <p>
+        The book has not been returned yet.
+      </p>
+    </div>
+    <button
+      class="button button-white-inverted book-card__button"
+      [routerLink]="['/books', transaction.bookId]"
+    >
+      <mdb-icon fas icon="book" aria-hidden="true">Info</mdb-icon>
+    </button>
+  </div>
+</section>
