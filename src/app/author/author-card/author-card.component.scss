@@ -7,7 +7,7 @@
 
 .cards-section {
     overflow-y: scroll;
-    height: 70vh;
+    height: 67vh;
 }
 
 .author-card {
@@ -31,20 +31,14 @@
     padding-block: 0.2em;
 }
 
-@media(min-height: 740px) {
-    .cards-section {
-        height: 70vh;
-    }
-}
-
 @media(min-height: 844px) {
     .cards-section {
-        height: 72vh;
+        height: 69vh;
     }
 }
 
 @media(min-height: 900px) {
     .cards-section {
-        height: 74vh;
+        height: 71vh;
     }
 }

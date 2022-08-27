@@ -24,7 +24,7 @@
 
 .cards-section {
     overflow-y: scroll;
-    height: 60vh;
+    height: 57vh;
 
     &__error-message {
         text-align: center;
@@ -76,18 +76,18 @@
 
 @media(min-height: 740px) {
     .cards-section {
-        height: 62vh;
+        height: 59vh;
     }
 }
 
 @media(min-height: 844px) {
     .cards-section {
-        height: 64vh;
+        height: 61vh;
     }
 }
 
 @media(min-height: 900px) {
     .cards-section {
-        height: 66vh;
+        height: 63vh;
     }
 }

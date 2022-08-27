@@ -18,7 +18,7 @@
 
 .cards-section {
     overflow-y: scroll;
-    height: 55vh;
+    height: 52vh;
 
     margin-top: 0.5em;
 }
@@ -56,18 +56,18 @@
 
 @media(min-height: 740px) {
     .cards-section {
-        height: 58vh;
+        height: 55vh;
     }
 }
 
 @media(min-height: 844px) {
     .cards-section {
-        height: 61vh;
+        height: 58vh;
     }
 }
 
 @media(min-height: 900px) {
     .cards-section {
-        height: 63vh;
+        height: 60vh;
     }
 }
