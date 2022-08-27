@@ -13,7 +13,7 @@
   border-radius: 0.5em;
 
   background-color: var(--cl-primary);
-  color: whitesmoke;
+  color: whitesmoke !important;
 
   font-size: 0.8em;
 
@@ -59,7 +59,7 @@
   margin-top: 0.6em;
 }
 
-@media screen and (max-height: 740px) {
+@media screen and (min-height: 740px) {
   .student-cards-section {
     max-height: 30vh;
   }
