@@ -22,14 +22,21 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMessage = error.error;
+        let errorMsg = '';
 
-        if (typeof error.error === 'object') {
-          errorMessage = error.error.message;
+        if (error.error instanceof ErrorEvent) {
+            console.log('this is client side error');
+            errorMsg = `Error: ${error.error.message}`;
+        } else {
+            errorMsg = error.error;
+    
+            if (typeof error.error === 'object') {
+                errorMsg = error.error.message;
+            }
         }
 
-        this.toastService.show(errorMessage, 'Error', true);
-        return throwError(errorMessage);
+        this.toastService.show(errorMsg, 'Error', true);
+        return throwError(errorMsg);
       })
     );
   }
