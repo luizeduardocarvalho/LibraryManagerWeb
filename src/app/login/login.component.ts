@@ -11,7 +11,7 @@ import { ToastService } from 'src/services/toast.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  isLoading = false;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required)
@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(data: any) {
+    this.isLoading = true;
+
     let user = {
       email: data.controls.email.value,
       password: data.controls.password.value
@@ -43,10 +45,12 @@ export class LoginComponent implements OnInit {
       (data: User) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+        this.isLoading = false;
         this.router.navigate(['/']);
       },
       (err: any) => {
         console.log(err);
+        this.isLoading = false;
         this.toastService.show(err.error, 'Error', true);
       }
     );

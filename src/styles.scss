@@ -253,6 +253,18 @@ input:focus {
 	}
 }
 
+.page-loader {
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#000, 0.5);
+}
 
 /* Variables */
 :root {
