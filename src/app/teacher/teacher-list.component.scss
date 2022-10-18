@@ -51,7 +51,7 @@ input {
 
 .cards-section {
     overflow-y: scroll;
-    height: 43vh;
+    height: 42vh;
 
     margin-bottom: 1em;
     font-size: 0.8em;
@@ -97,18 +97,18 @@ input {
 
 @media(min-height: 740px) {
     .cards-section {
-        height: 48vh;
+        height: 47vh;
     }
 }
 
 @media(min-height: 844px) {
     .cards-section {
-        height: 50vh;
+        height: 49vh;
     }
 }
 
 @media(min-height: 900px) {
     .cards-section {
-        height: 54vh;
+        height: 53vh;
     }
 }
