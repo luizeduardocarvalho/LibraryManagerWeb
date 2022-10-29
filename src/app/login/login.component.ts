@@ -3,27 +3,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/auth.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get email() {
     return this.loginForm.get('email');
@@ -38,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     let user = {
       email: data.controls.email.value,
-      password: data.controls.password.value
+      password: data.controls.password.value,
     } as User;
 
     this.authService.login(user).subscribe(
@@ -48,11 +45,7 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.router.navigate(['/']);
       },
-      (err: any) => {
-        console.log(err);
-        this.isLoading = false;
-        this.toastService.show(err.error, 'Error', true);
-      }
+      (err: any) => (this.isLoading = false)
     );
   }
 }
