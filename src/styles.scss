@@ -170,9 +170,6 @@ body {
 
 html,
 body {
-	height: 100vh;
-	height: -webkit-fill-available;
-	width: 100vw;
 	overflow: hidden;
 }
 
@@ -254,16 +251,45 @@ input:focus {
 }
 
 .page-loader {
-    z-index: 999;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(#000, 0.5);
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(#000, 0.5);
+}
+
+.default-card {
+	display: flex;
+	flex-direction: column;
+
+	padding: 0.6em 1em 0.6em 1em;
+
+	font-size: 0.8em;
+
+	background-color: var(--cl-primary);
+	color: whitesmoke;
+	border-radius: 0.5em;
+}
+
+.flex-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.flex-default {
+	flex: 0 0 auto;
+}
+
+.flex-scroll {
+	overflow-y: scroll;
+	flex: 1 1 auto;
+	height: 1%;
 }
 
 /* Variables */

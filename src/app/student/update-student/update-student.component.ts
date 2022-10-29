@@ -56,20 +56,17 @@ export class UpdateStudentComponent implements OnInit {
   onSubmit(data: any): void {
     let student = data.value as UpdateStudentTeacher;
     student.teacherId = this.selectedTeacher;
-    this.studentService.updateStudentTeacher(student).subscribe(
-      (err: any) => console.log(err.errors),
-      (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
-        } else {
-          this.redirect('Success!', `Student Updated.`, this.error);
-        }
+    this.studentService.updateStudentTeacher(student).subscribe((res: any) => {
+      if (res.status == 500 || res.status == 400) {
+        this.error = true;
       }
-    );
+
+      if (this.error) {
+        this.redirect('Error', 'An error has occurred.', this.error);
+      } else {
+        this.redirect('Success!', `Student Updated.`, this.error);
+      }
+    });
   }
 
   redirect(header: string, text: string, error: boolean) {

@@ -1,0 +1,38 @@
+<div class="card default-card">
+  <span class="semi-bold">{{ card.name }}</span>
+  <p *ngFor="let item of card.bodyContent">{{ item }}</p>
+  <div class="actions">
+    <div class="actions__button-container" *ngFor="let button of card.buttons">
+      <button
+        *ngIf="!button.click"
+        class="actions__button"
+        [routerLink]="button.actionUrl"
+      >
+        <mdb-icon
+          fas
+          [icon]="button.icon"
+          placement="top"
+          class="actions__icon"
+          aria-hidden="true"
+          size="sm"
+        ></mdb-icon
+        >{{ button.label }}
+      </button>
+      <button
+        *ngIf="button.click"
+        class="actions__button"
+        (click)="openModal(card.id)"
+      >
+        <mdb-icon
+          fas
+          [icon]="button.icon"
+          placement="top"
+          class="actions__icon"
+          aria-hidden="true"
+          size="sm"
+        ></mdb-icon
+        >{{ button.label }}
+      </button>
+    </div>
+  </div>
+</div>

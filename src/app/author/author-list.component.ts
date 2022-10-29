@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetAuthor } from 'src/models/get-author';
+import { ICard } from 'src/models/shared/card';
 import { AuthorService } from 'src/services/author.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthorService } from 'src/services/author.service';
   styleUrls: ['./author-list.component.scss'],
 })
 export class AuthorListComponent implements OnInit {
-  authors: GetAuthor[] = [];
+  authorCards: ICard[] = [];
   searchText: string = '';
   isLoading = false;
 
@@ -30,7 +31,19 @@ export class AuthorListComponent implements OnInit {
     this.authorService
       .getAuthorsByName(searchText)
       .subscribe((authors: GetAuthor[]) => {
-        this.authors = authors;
+        this.authorCards = authors.map((author) => ({
+          id: author.authorId.toString(),
+          name: author.name,
+          bodyContent: [],
+          buttons: [
+            {
+              actionUrl: `${author.authorId}`,
+              icon: 'user',
+              label: 'Info',
+            },
+          ],
+        }));
+
         this.isLoading = false;
       });
   }

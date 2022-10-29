@@ -1,113 +1,12 @@
-<div class="header-section">
-  <h1 class="header-section__title bold">Student List</h1>
-  <div class="create-button">
-    <button
-      class="button button-primary"
-      [routerLink]="['create']"
-      type="button"
-    >
-      Add
-    </button>
-  </div>
+<div class="flex-wrapper">
+  <section>
+    <app-page-header title="Student List"></app-page-header>
+    <app-search-input (searchEvent)="search($event)"></app-search-input>
+  </section>
+  <section class="flex-scroll">
+    <app-card-list
+      [cards]="studentCards"
+      [isLoading]="isLoading"
+    ></app-card-list>
+  </section>
 </div>
-<div class="search-section">
-  <div>
-    <input
-      class="search-section__input"
-      type="text"
-      [(ngModel)]="searchText"
-      name="searchText"
-      placeholder="Search"
-      aria-label="Search"
-      autocomplete="off"
-    />
-  </div>
-  <div class="search-button">
-    <button
-      class="button button-primary"
-      type="button"
-      (click)="search(searchText)"
-    >
-      Search
-    </button>
-  </div>
-</div>
-<section class="cards-section">
-  <div class="loader-section">
-    <div *ngIf="isLoading" class="loader"></div>
-  </div>
-  <div *ngIf="!isLoading">
-    <div *ngFor="let student of students" class="student-card">
-      <p>{{ student.name }}</p>
-      <div class="student-card__button-section">
-        <button
-          class="button button-white-inverted student-card__button"
-          [routerLink]="[student.studentId]"
-          [state]="{ search: searchText }"
-        >
-          <mdb-icon
-            fas
-            icon="user"
-            mdbTooltip="Student Info"
-            aria-hidden="true"
-          ></mdb-icon
-          >Info
-        </button>
-        <button
-          class="button button-white-inverted student-card__button"
-          [routerLink]="[student.studentId, 'update']"
-          [state]="{ search: searchText }"
-        >
-          <mdb-icon
-            fas
-            icon="edit"
-            mdbTooltip="Student Info"
-            aria-hidden="true"
-          ></mdb-icon
-          >Edit
-        </button>
-      </div>
-    </div>
-  </div>
-  <p
-    class="cards-section__error-message"
-    *ngIf="students.length == 0 && !isLoading"
-  >
-    No results for this search
-  </p>
-  <!-- <table mdbTable class="mt-2">
-    <thead class="grey lighten-1 black-text">
-      <tr>
-        <th class="col-xl-1 col-1" scope="col">ID</th>
-        <th class="col-xl-8 col-8" scope="col">Name</th>
-        <th class="col-xl-3 col-3" scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let student of students">
-        <th scope="row">{{ student.studentId }}</th>
-        <td>{{ student.name }}</td>
-        <td>
-          <mdb-icon
-            fas
-            icon="user"
-            mdbTooltip="Student Info"
-            placement="top"
-            [routerLink]="[student.studentId]"
-            class="mr-2"
-            aria-hidden="true"
-          ></mdb-icon>
-          <mdb-icon
-            fas
-            icon="edit"
-            mdbTooltip="Edit"
-            placement="top"
-            [routerLink]="[student.studentId, 'update']"
-            class="mr-2"
-            aria-hidden="true"
-          ></mdb-icon>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-</section>

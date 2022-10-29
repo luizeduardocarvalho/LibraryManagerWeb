@@ -67,20 +67,17 @@ export class UpdateTeacherComponent implements OnInit {
     teacher.role = this.role;
     teacher.id = this.teacherId;
 
-    this.teacherService.updateTeacher(teacher).subscribe(
-      (err: any) => console.log(err.errors),
-      (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
-        } else {
-          this.redirect('Success!', `Teacher Updated.`, this.error);
-        }
+    this.teacherService.updateTeacher(teacher).subscribe((res: any) => {
+      if (res.status == 500 || res.status == 400) {
+        this.error = true;
       }
-    );
+
+      if (this.error) {
+        this.redirect('Error', 'An error has occurred.', this.error);
+      } else {
+        this.redirect('Success!', `Teacher Updated.`, this.error);
+      }
+    });
   }
 
   redirect(header: string, text: string, error: boolean) {

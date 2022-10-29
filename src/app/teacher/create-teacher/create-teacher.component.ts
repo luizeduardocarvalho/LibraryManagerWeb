@@ -44,20 +44,17 @@ export class CreateTeacherComponent implements OnInit {
   onSubmit(data: any): void {
     let teacher = data.value as CreateUser;
     teacher.role = this.role;
-    this.authService.register(teacher).subscribe(
-      (err: any) => console.log(err.errors),
-      (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
-        } else {
-          this.redirect('Success!', `Teacher Created.`, this.error);
-        }
+    this.authService.register(teacher).subscribe((res: any) => {
+      if (res.status == 500 || res.status == 400) {
+        this.error = true;
       }
-    );
+
+      if (this.error) {
+        this.redirect('Error', 'An error has occurred.', this.error);
+      } else {
+        this.redirect('Success!', `Teacher Created.`, this.error);
+      }
+    });
   }
 
   onClear(): void {

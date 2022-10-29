@@ -1,0 +1,17 @@
+.card-section {
+  overflow: scroll;
+  height: 100%;
+
+  &__error-message {
+    text-align: center;
+  }
+}
+
+.cards {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.input-section {
+  padding-bottom: 0.5em;
+}

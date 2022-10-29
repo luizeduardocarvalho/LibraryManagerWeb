@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LateBook } from 'src/models/late-book';
+import { ICard } from 'src/models/shared/card';
 import { Student } from 'src/models/student';
 import { StudentService } from 'src/services/student.service';
 import { TransactionService } from 'src/services/transaction.service';
@@ -10,8 +11,8 @@ import { TransactionService } from 'src/services/transaction.service';
   styleUrls: ['./teacher-summary.component.scss'],
 })
 export class TeachersummaryComponent implements OnInit {
-  students: Student[] = [];
-  lateBooks: LateBook[] = [];
+  studentsCards: ICard[] = [];
+  lateBooksCards: ICard[] = [];
   teacherId: number = 0;
   searchText: string = '';
   isLoadingLateBookList = false;
@@ -35,18 +36,40 @@ export class TeachersummaryComponent implements OnInit {
       this.teacherId = JSON.parse(localStorage.getItem('user') as string).id;
     }
 
-
     this.studentService
       .getStudentsByTeacherWithBookCount(this.teacherId)
       .subscribe((students: Student[]) => {
-        this.students = students;
+        this.studentsCards = students.map((student) => ({
+          id: student.studentId.toString(),
+          name: student.name,
+          bodyContent: [`Number of books: ${student.numberOfActiveBooks}`],
+          buttons: [
+            {
+              actionUrl: `students/${student.studentId}`,
+              icon: 'book',
+              label: 'Info',
+            },
+          ],
+        }));
+
         this.isLoadingStudentList = false;
       });
 
     this.transactionService
       .getLateBooks(this.teacherId)
       .subscribe((lateBooks: LateBook[]) => {
-        this.lateBooks = lateBooks;
+        this.lateBooksCards = lateBooks.map((lateBook) => ({
+          id: lateBook.bookId.toString(),
+          name: lateBook.bookTitle,
+          bodyContent: [lateBook.studentName],
+          buttons: [
+            {
+              actionUrl: `books/${lateBook.bookId}`,
+              icon: 'book',
+              label: 'Info',
+            },
+          ],
+        }));
         this.isLoadingLateBookList = false;
       });
   }

@@ -5,24 +5,21 @@
     z-index: 99999;
 }
 
-.page-header-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1em;
-    padding-top: 1em;
-
-    &__title {
-        font-size: 1.2em;
-    }
-}
-
 .search-input {
     border-radius: 0.3em;
     border: 2px solid hsl(0, 0, 0, 0.55);
     margin-bottom: 1em;
 }
 
-.create-teacher-button,
+.card-section-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.generate-report-button {
+    flex: 0 0 auto;
+}
+
 .generate-report-button {
     background-color: var(--cl-primary);
     border: none;
@@ -36,79 +33,12 @@ input {
     width: 100%;
 }
 
-.create-button {
-    margin-left: auto;
-}
-
 .modal-button {
     margin-right: 1em;
 }
 
 .report-button {
+    padding-top: 0.8rem;
     display: flex;
     justify-content: end;
-}
-
-.cards-section {
-    overflow-y: scroll;
-    height: 42vh;
-
-    margin-bottom: 1em;
-    font-size: 0.8em;
-}
-
-.teacher-card:nth-child(1) {
-    margin-top: 0;
-}
-
-.teacher-card {
-    display: flex;
-    flex-direction: column;
-
-    background-color: var(--cl-primary);
-    color: whitesmoke;
-
-    padding: 0.6em 1em 0.6em 1em;
-    margin-bottom: 1em;
-    border-radius: 0.5em;
-
-    &__button-section {
-        padding-top: 0.5em;
-
-        display: flex;
-        justify-content: space-between;
-        gap: 0.5em;
-
-        &__button {
-            width: 100%;
-
-            border: none;
-            border-radius: 0.4em;
-            background-color: whitesmoke;
-
-            padding: 0.3em 0.2em 0.3em 0.2em;
-
-            &__icon {
-                padding-right: 0.5em;
-            }
-        }
-    }
-}
-
-@media(min-height: 740px) {
-    .cards-section {
-        height: 47vh;
-    }
-}
-
-@media(min-height: 844px) {
-    .cards-section {
-        height: 49vh;
-    }
-}
-
-@media(min-height: 900px) {
-    .cards-section {
-        height: 53vh;
-    }
 }

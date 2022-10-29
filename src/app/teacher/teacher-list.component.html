@@ -36,96 +36,39 @@
   </div>
 </ng-template>
 
-<div class="page-header-section">
-  <h1 class="bold page-header-section__title">Teacher List</h1>
-  <div class="create-button">
+<div class="flex-wrapper">
+  <section>
+    <app-page-header title="Teacher List"></app-page-header>
+    <div class="search-section">
+      <input
+        class="search-input"
+        type="text"
+        [(ngModel)]="searchText"
+        name="searchText"
+        autocomplete="off"
+        placeholder="Search"
+        aria-label="Search"
+        autocomplete="off"
+        mdbInput
+      />
+    </div>
+  </section>
+  <section class="flex-scroll">
+    <app-card-list
+      (openModalEvent)="open(content, $event)"
+      [cards]="teacherCards"
+      [isLoading]="isLoading"
+      [searchText]="searchText"
+    ></app-card-list>
+  </section>
+  <div class="report-button">
     <button
-      class="create-teacher-button"
-      [routerLink]="['create']"
+      class="generate-report-button"
+      [routerLink]="['report']"
       type="button"
       color="primary"
-      mdbWavesEffect
     >
-      Add
+      Generate Report
     </button>
   </div>
-</div>
-<div class="search-section">
-  <input
-    class="search-input"
-    type="text"
-    [(ngModel)]="searchText"
-    name="searchText"
-    autocomplete="off"
-    placeholder="Search"
-    aria-label="Search"
-    autocomplete="off"
-    mdbInput
-  />
-</div>
-<div class="cards-section">
-  <div
-    *ngFor="let teacher of teachers | search: searchText"
-    class="teacher-card"
-  >
-    <p class="bold">{{ teacher.name }}</p>
-    <p>{{ teacher.role }}</p>
-    <div class="teacher-card__button-section">
-      <button
-        class="teacher-card__button-section__button"
-        routerLink="/teachers/3/summary"
-      >
-        <mdb-icon
-          fas
-          icon="user"
-          mdbTooltip="Teacher Info"
-          placement="top"
-          class="teacher-card__button-section__button__icon"
-          aria-hidden="true"
-          size="sm"
-        ></mdb-icon
-        >Info
-      </button>
-      <button
-        class="teacher-card__button-section__button"
-        [routerLink]="[teacher.id, 'update']"
-      >
-        <mdb-icon
-          fas
-          icon="edit"
-          mdbTooltip="Edit"
-          placement="top"
-          class="teacher-card__button-section__button__icon"
-          aria-hidden="true"
-          size="sm"
-        ></mdb-icon
-        >Edit
-      </button>
-      <button
-        class="teacher-card__button-section__button"
-        (click)="open(content, teacher.id)"
-      >
-        <mdb-icon
-          fas
-          icon="trash"
-          mdbTooltip="Teacher Info"
-          placement="top"
-          class="teacher-card__button-section__button__icon"
-          aria-hidden="true"
-          size="sm"
-        ></mdb-icon
-        >Delete
-      </button>
-    </div>
-  </div>
-</div>
-<div class="report-button">
-  <button
-    class="generate-report-button"
-    [routerLink]="['report']"
-    type="button"
-    color="primary"
-  >
-    Generate Report
-  </button>
 </div>

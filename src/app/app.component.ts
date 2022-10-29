@@ -9,11 +9,14 @@ export class AppComponent implements OnInit {
   title = 'library-manager-web';
 
   ngOnInit(): void {
-    // We listen to the resize event
+    this.resize();
     window.addEventListener('resize', () => {
-      // We execute the same script as before
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      this.resize();
     });
+  }
+
+  resize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 }

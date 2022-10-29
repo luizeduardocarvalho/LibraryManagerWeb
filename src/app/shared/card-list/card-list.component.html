@@ -1,0 +1,15 @@
+<div class="loader-section">
+  <div *ngIf="isLoading" class="loader"></div>
+</div>
+<div *ngIf="!isLoading && cards.length > 0" class="card-section">
+  <div class="cards">
+    <app-card
+      (openEvent)="openEvent($event)"
+      *ngFor="let card of cards | search: searchText"
+      [card]="card"
+    ></app-card>
+  </div>
+</div>
+<p class="card-section__error-message" *ngIf="!isLoading && cards.length == 0">
+  No results for this search.
+</p>

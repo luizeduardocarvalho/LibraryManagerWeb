@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ICard } from 'src/models/shared/card';
 import { Student } from 'src/models/student';
 import { StudentService } from 'src/services/student.service';
 
@@ -8,7 +9,7 @@ import { StudentService } from 'src/services/student.service';
   styleUrls: ['./student-list.component.scss'],
 })
 export class StudentListComponent implements OnInit {
-  students: Student[] = [];
+  studentCards: ICard[] = [];
   searchText: string = '';
   isLoading = false;
 
@@ -30,7 +31,24 @@ export class StudentListComponent implements OnInit {
     this.studentService
       .getStudentsByName(searchText)
       .subscribe((students: Student[]) => {
-        this.students = students;
+        this.studentCards = students.map((student) => ({
+          id: student.studentId.toString(),
+          name: student.name,
+          bodyContent: [],
+          buttons: [
+            {
+              actionUrl: `${student.studentId}`,
+              icon: 'user',
+              label: 'Info',
+            },
+            {
+              actionUrl: `${student.studentId}/update`,
+              icon: 'edit',
+              label: 'Edit',
+            },
+          ],
+        }));
+
         this.isLoading = false;
       });
   }

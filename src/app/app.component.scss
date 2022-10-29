@@ -1,9 +1,13 @@
-.wrapper {
-    height: 100%;
-    padding: 1em 1.5em 1em 1.5em;
+.header {
+    height: calc(var(--vh, 1vh) * 10);
 }
 
-body {
-    height: 100vh !important;
-    height: calc(var(--vh, 1vh) * 100) !important;
+.body {
+    height: calc(var(--vh, 1vh) * 85);
+    padding: 1em 1.5em 1em 1.5em;
+    overflow: hidden;
+}
+
+.footer {
+    height: calc(var(--vh, 1vh) * 5);
 }
