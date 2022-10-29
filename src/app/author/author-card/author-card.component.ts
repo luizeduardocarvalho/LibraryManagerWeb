@@ -6,7 +6,6 @@ import { ICard } from 'src/models/shared/card';
 import { AuthorService } from 'src/services/author.service';
 
 @Component({
-  selector: 'app-author-card',
   templateUrl: './author-card.component.html',
   styleUrls: ['./author-card.component.scss'],
 })
