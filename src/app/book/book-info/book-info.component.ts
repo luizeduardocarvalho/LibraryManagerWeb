@@ -1,11 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BookDetails } from 'src/models/book-details';
 import { GetBook } from 'src/models/get-book';
+import { ICard } from 'src/models/shared/card';
 import { Transaction } from 'src/models/transaction';
 import { BookService } from 'src/services/book.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './book-info.component.html',
@@ -14,6 +15,7 @@ import { ToastService } from 'src/services/toast.service';
 export class BookInfoComponent implements OnInit {
   bookId: number = 0;
   book?: BookDetails;
+  bookHistoryCards: ICard[] = [];
   isLoading = false;
   isRenewLoading = false;
   isReturnLoading = false;
@@ -23,7 +25,7 @@ export class BookInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private toastService: ToastService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,8 @@ export class BookInfoComponent implements OnInit {
         book.transactions
       );
 
+      this.createTransactionCards(this.book);
+
       if (book.description != null) {
         this.book.description = this.book.description
           .substring(0, 103)
@@ -66,14 +70,11 @@ export class BookInfoComponent implements OnInit {
       (updatedTransaction: Transaction) => {
         if (updatedTransaction.transactionId != 0) {
           this.book?.setTransaction(updatedTransaction);
-          this.toastService.show('Book returned!', 'Success!', false);
+          this.toastrService.success('Book returned!', 'Success!');
           this.isReturnLoading = false;
         }
       },
-      (err: any) => {
-        this.toastService.show(err.error, 'Error', true);
-        this.isReturnLoading = false;
-      }
+      (err: any) => (this.isReturnLoading = false)
     );
   }
 
@@ -84,15 +85,12 @@ export class BookInfoComponent implements OnInit {
       (updatedTransaction: Transaction) => {
         if (updatedTransaction != null) {
           this.book?.setTransaction(updatedTransaction);
-          this.toastService.show('Book renewed!', 'Success!', false);
+          this.toastrService.success('Book renewed!', 'Success!');
         }
 
         this.isRenewLoading = false;
       },
-      (err: any) => {
-        this.toastService.show(err.error, 'Error', true);
-        this.isRenewLoading = false;
-      }
+      (err: any) => (this.isRenewLoading = false)
     );
   }
 
@@ -105,5 +103,31 @@ export class BookInfoComponent implements OnInit {
     } else {
       this.location.back();
     }
+  }
+
+  createTransactionCards(book: BookDetails) {
+    this.bookHistoryCards = book.transactions.map((transaction) => {
+      let creationDate = new Date(transaction.creationDate).toLocaleDateString(
+        'en-GB'
+      );
+
+      let cards = {
+        id: transaction.transactionId.toString(),
+        name: transaction.studentName,
+        bodyContent: [`Create at: ${creationDate}`],
+        buttons: [],
+      };
+
+      let returnedAt = '';
+      if (transaction.returnedAt) {
+        returnedAt = new Date(transaction.returnedAt).toLocaleDateString(
+          'en-GB'
+        );
+
+        cards.bodyContent.push(`Returned at: ${returnedAt}`);
+      }
+
+      return cards;
+    });
   }
 }

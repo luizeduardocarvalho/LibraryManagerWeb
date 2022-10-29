@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpErrorInterceptor } from 'src/interceptors/http-error.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { JwtModule } from '@auth0/angular-jwt';
         tokenGetter: () => 'Bearer ' + localStorage.getItem('token'),
       },
     }),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

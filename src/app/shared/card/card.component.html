@@ -1,7 +1,7 @@
 <div class="card default-card">
   <span class="semi-bold">{{ card.name }}</span>
   <p *ngFor="let item of card.bodyContent">{{ item }}</p>
-  <div class="actions">
+  <div *ngIf="card.buttons.length > 0" class="actions">
     <div class="actions__button-container" *ngFor="let button of card.buttons">
       <button
         *ngIf="!button.click"

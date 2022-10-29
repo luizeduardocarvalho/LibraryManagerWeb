@@ -16,9 +16,9 @@
   <div class="return-button">
     <button class="button button-primary" (click)="onReturn()" type="button">
       <div class="button-loader-section">
-        <div *ngIf="isRenewLoading" class="button-loader"></div>
+        <div *ngIf="isReturnLoading" class="button-loader"></div>
       </div>
-      <span *ngIf="!isRenewLoading">Return</span>
+      <span *ngIf="!isReturnLoading">Return</span>
     </button>
   </div>
   <div class="renew-button">
@@ -38,9 +38,8 @@
 </div>
 <h1 class="bold">Book History</h1>
 <section class="cards-section">
-  <div *ngFor="let transaction of book?.transactions" class="book-card">
-    <p class="bold">{{ transaction.studentName }}</p>
-    <p>{{ transaction.creationDate | date: "longDate" }}</p>
-    <p>{{ transaction.returnedAt | date: "longDate" }}</p>
-  </div>
+  <app-card-list
+    [cards]="bookHistoryCards"
+    [isLoading]="isLoading"
+  ></app-card-list>
 </section>

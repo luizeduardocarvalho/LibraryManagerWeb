@@ -46,7 +46,7 @@ export class TeachersummaryComponent implements OnInit {
           buttons: [
             {
               actionUrl: `students/${student.studentId}`,
-              icon: 'book',
+              icon: 'user',
               label: 'Info',
             },
           ],

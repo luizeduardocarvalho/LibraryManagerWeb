@@ -292,6 +292,19 @@ input:focus {
 	height: 1%;
 }
 
+.page-loader {
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(#000, 0.5);
+}
+
 /* Variables */
 :root {
 	--cl-primary: #027C87;

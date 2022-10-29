@@ -3,18 +3,18 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastService } from 'src/services/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private toastService: ToastService) {}
+  constructor(private toastrService: ToastrService) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -25,16 +25,16 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         let errorMsg = '';
 
         if (error.error instanceof ErrorEvent) {
-            errorMsg = `Error: ${error.error.message}`;
+          errorMsg = `Error: ${error.error.message}`;
         } else {
-            errorMsg = error.error;
-    
-            if (typeof error.error === 'object') {
-                errorMsg = error.error.message;
-            }
+          errorMsg = error.error;
+
+          if (typeof error.error === 'object') {
+            errorMsg = error.error.message;
+          }
         }
 
-        this.toastService.show(errorMsg, 'Error', true);
+        this.toastrService.error(errorMsg, 'Error');
         return throwError(errorMsg);
       })
     );

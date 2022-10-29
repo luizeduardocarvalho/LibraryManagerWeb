@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LendBook } from 'src/models/lend-book';
 import { Student } from 'src/models/student';
 import { BookService } from 'src/services/book.service';
 import { StudentService } from 'src/services/student.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-lend-book',
@@ -17,6 +17,7 @@ export class LendBookComponent implements OnInit {
   students: Student[] = [];
   bookId: number = 0;
   error: boolean = false;
+  isLoading = false;
 
   constructor(
     private studentService: StudentService,
@@ -24,7 +25,7 @@ export class LendBookComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private location: Location,
-    private toastService: ToastService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,27 +43,17 @@ export class LendBookComponent implements OnInit {
   }
 
   onLend(studentId: number) {
+    this.isLoading = true;
     let lendBook = new LendBook(studentId, this.bookId);
     this.bookService.lendBook(lendBook).subscribe(
-      (err) => console.log(err),
       (res: any) => {
-        if (res.status != 200) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', res.error, this.error);
-        } else {
-          this.redirect('Success!', 'The book has been lent', this.error);
-        }
-      }
+        this.isLoading = false;
+        this.router.navigate(['books', this.bookId]).then(() => {
+          this.toastrService.success('The book has been lent.', 'Success!');
+        });
+      },
+      (err: any) => (this.isLoading = false)
     );
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['books', this.bookId]).then(() => {
-      this.toastService.show(text, header, error);
-    });
   }
 
   onBack() {
