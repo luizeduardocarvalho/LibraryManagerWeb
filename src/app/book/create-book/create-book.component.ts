@@ -2,9 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CreateBook } from 'src/models/create-book';
 import { BookService } from 'src/services/book.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './create-book.component.html',
@@ -21,39 +21,30 @@ export class CreateBookComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private location: Location,
-    private toastService: ToastService,
+    private toastrService: ToastrService,
     private router: Router
   ) {}
 
-  error: boolean = false;
+  isLoading = false;
 
   ngOnInit(): void {}
 
   onSubmit(data: any): void {
+    this.isLoading = true;
     let book = data.value as CreateBook;
     this.bookService.createBook(book).subscribe(
-      (err) => console.log(err),
       (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect(
-            'Error',
-            'An error has occurred.',
-            book.title,
-            this.error
-          );
-        } else {
-          this.redirect(
-            'Success!',
-            `Created book ${book.title}.`,
-            book.title,
-            this.error
-          );
-        }
-      }
+        this.router
+          .navigate(['/books'], { queryParams: { title: book.title } })
+          .then(() => {
+            this.isLoading = false;
+            this.toastrService.success(
+              `Book ${book.title} has been created.`,
+              'Success!'
+            );
+          });
+      },
+      (err) => (this.isLoading = false)
     );
   }
 
@@ -63,13 +54,5 @@ export class CreateBookComponent implements OnInit {
 
   onClear() {
     this.createForm.reset();
-  }
-
-  redirect(header: string, text: string, bookTitle: string, error: boolean) {
-    this.router
-      .navigate(['/books'], { queryParams: { title: bookTitle } })
-      .then(() => {
-        this.toastService.show(text, header, error);
-      });
   }
 }

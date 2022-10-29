@@ -2,54 +2,42 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { GetAuthor } from 'src/models/get-author';
 import { AuthorService } from 'src/services/author.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-create-author',
   templateUrl: './create-author.component.html',
-  styleUrls: ['./create-author.component.scss']
+  styleUrls: ['./create-author.component.scss'],
 })
 export class CreateAuthorComponent implements OnInit {
-
   createForm = new FormGroup({
-    name: new FormControl('')
+    name: new FormControl(''),
   });
 
-  error: boolean = false;
+  isLoading = false;
 
   constructor(
-    private authorService: AuthorService, 
-    private toastService: ToastService, 
+    private authorService: AuthorService,
     private router: Router,
-    private location: Location) { }
+    private toastrService: ToastrService,
+    private location: Location
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     let author = this.createForm.value as GetAuthor;
     this.authorService.createAuthor(author).subscribe(
-      err => console.log(err),
       (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
-        }
-        else {
-          this.redirect('Success!', `Author created.`, this.error);
-        }
-      });
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/authors']).then(() => {
-      this.toastService.show(text, header, error);
-    });
+        this.isLoading = false;
+        this.router.navigate(['/authors']).then(() => {
+          this.toastrService.success('Author created.', 'Success!');
+        });
+      },
+      (err: any) => (this.isLoading = false)
+    );
   }
 
   onBack() {
