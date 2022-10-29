@@ -19,6 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpErrorInterceptor } from 'src/interceptors/http-error.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,11 @@ import { HttpErrorInterceptor } from 'src/interceptors/http-error.interceptor';
     BrowserAnimationsModule,
     SharedModule,
     MDBBootstrapModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => 'Bearer ' + localStorage.getItem('token'),
+      },
+    }),
   ],
   providers: [
     {
