@@ -11,17 +11,15 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PipeModule } from 'src/pipes/pipe.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
-import { ToastComponent } from '../toast/toast.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CardComponent } from './card/card.component';
-import { SearchInputComponent } from './search-input/search-input.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     NavigationBarComponent,
-    ToastComponent,
     CardListComponent,
     CardComponent,
     SearchInputComponent,
@@ -39,7 +37,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     PipeModule,
   ],
   exports: [
-    ToastComponent,
     FooterComponent,
     CardComponent,
     NavigationBarComponent,

@@ -2,11 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Teacher } from 'src/models/teacher';
 import { UpdateStudentTeacher } from 'src/models/update-student';
 import { StudentService } from 'src/services/student.service';
 import { TeacherService } from 'src/services/teacher.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-update-student',
@@ -30,7 +30,7 @@ export class UpdateStudentComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private toastService: ToastService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -53,25 +53,14 @@ export class UpdateStudentComponent implements OnInit {
     this.selectedTeacher = e.target.value;
   }
 
+  // TODO: Add loader
   onSubmit(data: any): void {
     let student = data.value as UpdateStudentTeacher;
     student.teacherId = this.selectedTeacher;
     this.studentService.updateStudentTeacher(student).subscribe((res: any) => {
-      if (res.status == 500 || res.status == 400) {
-        this.error = true;
-      }
-
-      if (this.error) {
-        this.redirect('Error', 'An error has occurred.', this.error);
-      } else {
-        this.redirect('Success!', `Student Updated.`, this.error);
-      }
-    });
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/students']).then(() => {
-      this.toastService.show(text, header, error);
+      this.router.navigate(['/students']).then(() => {
+        this.toastrService.success('Student Updated.', 'Success!');
+      });
     });
   }
 

@@ -2,11 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CreateStudent } from 'src/models/create-student';
 import { Teacher } from 'src/models/teacher';
 import { StudentService } from 'src/services/student.service';
 import { TeacherService } from 'src/services/teacher.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-create-student',
@@ -18,6 +18,8 @@ export class CreateStudentComponent implements OnInit {
     name: new FormControl(''),
   });
 
+  // TODO: Add loader
+  isLoading = false;
   teachers: Teacher[] = [];
   selectedTeacher: number = 0;
   error: boolean = false;
@@ -25,7 +27,7 @@ export class CreateStudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private location: Location,
-    private toastService: ToastService,
+    private toastrService: ToastrService,
     private router: Router,
     private teacherService: TeacherService
   ) {}
@@ -42,29 +44,19 @@ export class CreateStudentComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isLoading = true;
     let student = this.createForm.value as CreateStudent;
     student.teacherId = this.selectedTeacher;
 
     this.studentService.createStudent(student).subscribe(
-      (err: any) => console.log(err.errors),
       (res: any) => {
-        if (res.status == 500 || res.status == 400) {
-          this.error = true;
-        }
-
-        if (this.error) {
-          this.redirect('Error', 'An error has occurred.', this.error);
-        } else {
-          this.redirect('Success!', `Student Created.`, this.error);
-        }
-      }
+        this.isLoading = false;
+        this.router.navigate(['/students']).then(() => {
+          this.toastrService.success('Student Created.', 'Success!');
+        });
+      },
+      (err: any) => (this.isLoading = false)
     );
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/students']).then(() => {
-      this.toastService.show(text, header, error);
-    });
   }
 
   onBack() {

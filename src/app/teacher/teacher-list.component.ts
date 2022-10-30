@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ICard } from 'src/models/shared/card';
 import { Teacher } from 'src/models/teacher';
 import { TeacherService } from 'src/services/teacher.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -23,7 +23,7 @@ export class TeacherListComponent implements OnInit {
   constructor(
     private teacherService: TeacherService,
     private modalService: NgbModal,
-    private toastService: ToastService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +41,6 @@ export class TeacherListComponent implements OnInit {
       .result.then((result: string) => {
         if (result == 'Save click') {
           this.teacherService.delete(id).subscribe(
-            (err: any) => (this.isLoading = false),
             (res: any) => {
               if (res.status == 500 || res.status == 400) {
                 this.error = true;
@@ -49,17 +48,9 @@ export class TeacherListComponent implements OnInit {
               }
 
               if (this.error) {
-                this.toastService.show(
-                  'Error',
-                  'An error has occurred.',
-                  this.error
-                );
+                this.toastrService.error('An error has occurred.', 'Error');
               } else {
-                this.toastService.show(
-                  'Success!',
-                  'Teacher deleted.',
-                  this.error
-                );
+                this.toastrService.success('Teacher deleted.', 'Success!');
 
                 this.teacherService
                   .getAllTeachers()
@@ -68,7 +59,8 @@ export class TeacherListComponent implements OnInit {
                     this.isLoading = false;
                   });
               }
-            }
+            },
+            (err: any) => (this.isLoading = false)
           );
         }
       });

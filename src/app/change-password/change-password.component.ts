@@ -1,62 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ChangePassword } from 'src/models/change-password';
 import { AuthService } from 'src/services/auth.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
-  selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss']
+  styleUrls: ['./change-password.component.scss'],
 })
 export class ChangePasswordComponent implements OnInit {
-
   changePasswordForm = new FormGroup({
     oldPassword: new FormControl(''),
     newPassword: new FormControl(''),
-    confirmNewPassword: new FormControl('')
+    confirmNewPassword: new FormControl(''),
   });
-  
-  error: boolean = false;
+
+  isLoading = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastService) { }
+    private toastrService: ToastrService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    if (this.changePasswordForm.value.newPassword == this.changePasswordForm.value.confirmNewPassword) {
+    this.isLoading = true;
+    if (
+      this.changePasswordForm.value.newPassword ==
+      this.changePasswordForm.value.confirmNewPassword
+    ) {
       let localStorageUser = JSON.parse(localStorage.getItem('user') as string);
       let user = new ChangePassword(
         localStorageUser.email,
         this.changePasswordForm.value.oldPassword,
-        this.changePasswordForm.value.newPassword);
+        this.changePasswordForm.value.newPassword
+      );
 
-      this.authService.changePassword(user).subscribe((err: any) => console.log(err.errors),
+      this.authService.changePassword(user).subscribe(
         (res: any) => {
-          if (res.status == 500 || res.status == 400) {
-            this.error = true;
-          }
-
-          if (this.error) {
-            this.redirect('Error', 'An error has occurred.', this.error);
-          }
-          else {
-            this.redirect('Success!', `Password Updated.`, this.error);
-          }
-        }
+          this.isLoading = false;
+          this.router.navigate(['/']).then(() => {
+            this.toastrService.show('Password Updated.', 'Success!');
+          });
+        },
+        (err: any) => (this.isLoading = false)
       );
     }
-
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/']).then(() => {
-      this.toastService.show(text, header, error);
-    });
   }
 }

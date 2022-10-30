@@ -2,10 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Teacher } from 'src/models/teacher';
 import { UpdateTeacher } from 'src/models/teachers/update-teacher';
 import { TeacherService } from 'src/services/teacher.service';
-import { ToastService } from 'src/services/toast.service';
 
 @Component({
   templateUrl: './update-teacher.component.html',
@@ -27,9 +27,10 @@ export class UpdateTeacherComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private toastService: ToastService
+    private toastrService: ToastrService
   ) {}
 
+  // TODO: Add loader
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.teacherId = params['id'];
@@ -68,21 +69,9 @@ export class UpdateTeacherComponent implements OnInit {
     teacher.id = this.teacherId;
 
     this.teacherService.updateTeacher(teacher).subscribe((res: any) => {
-      if (res.status == 500 || res.status == 400) {
-        this.error = true;
-      }
-
-      if (this.error) {
-        this.redirect('Error', 'An error has occurred.', this.error);
-      } else {
-        this.redirect('Success!', `Teacher Updated.`, this.error);
-      }
-    });
-  }
-
-  redirect(header: string, text: string, error: boolean) {
-    this.router.navigate(['/teachers']).then(() => {
-      this.toastService.show(text, header, error);
+      this.router.navigate(['/teachers']).then(() => {
+        this.toastrService.show('Teacher Updated.', 'Success!');
+      });
     });
   }
 
