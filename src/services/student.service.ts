@@ -1,57 +1,59 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
-import { Student } from 'src/models/student';
+import { environment } from 'src/environments/environment';
 import { CreateStudent } from 'src/models/create-student';
-import { baseUrl } from 'settings';
+import { Student } from 'src/models/student';
 import { StudentWithTransactions } from 'src/models/student-transactions';
 import { UpdateStudentTeacher } from 'src/models/update-student';
 import { TokenService } from './token.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `${this.tokenService.getToken()}`
-    })
-  };
-
-  constructor(private http: HttpClient, private tokenService: TokenService) { }
+  constructor(private http: HttpClient) {}
 
   getStudentsByTeacherWithBookCount(teacherId: number): Observable<Student[]> {
-    return this.http.get<Student[]>(baseUrl + 'students/studentswithbooks',
+    return this.http.get<Student[]>(
+      environment.baseUrl + 'students/studentswithbooks',
       {
-        params: { 'teacherId': teacherId },
-        headers: this.httpOptions.headers
-      });
+        params: { teacherId: teacherId },
+      }
+    );
   }
 
   getStudentsByName(name: string): Observable<Student[]> {
-    return this.http.get<Student[]>(baseUrl + 'students/getstudentsbyname',
-      { 
-        params: { 'name': name },
-        headers: this.httpOptions.headers
-      });
+    return this.http.get<Student[]>(
+      environment.baseUrl + 'students/getstudentsbyname',
+      {
+        params: { name: name },
+      }
+    );
   }
 
   createStudent(createStudent: CreateStudent) {
-    return this.http.post<CreateStudent>(baseUrl + 'students', createStudent, this.httpOptions);
+    return this.http.post<CreateStudent>(
+      environment.baseUrl + 'students',
+      createStudent
+    );
   }
 
-  getStudentWithTransactionsById(studentId: number): Observable<StudentWithTransactions> {
-    return this.http.get<StudentWithTransactions>(baseUrl + 'students/GetStudentWithTransactionsById',
+  getStudentWithTransactionsById(
+    studentId: number
+  ): Observable<StudentWithTransactions> {
+    return this.http.get<StudentWithTransactions>(
+      environment.baseUrl + 'students/GetStudentWithTransactionsById',
       {
-        params: { 'studentId': studentId },
-        headers: this.httpOptions.headers
-      });
+        params: { studentId: studentId },
+      }
+    );
   }
 
   updateStudentTeacher(updateStudentTeacher: UpdateStudentTeacher) {
-    return this.http.patch<UpdateStudentTeacher>(baseUrl + 'students/updatestudentteacher', updateStudentTeacher, this.httpOptions);
+    return this.http.patch<UpdateStudentTeacher>(
+      environment.baseUrl + 'students/updatestudentteacher',
+      updateStudentTeacher
+    );
   }
 }

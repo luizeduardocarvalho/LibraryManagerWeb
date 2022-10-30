@@ -1,0 +1,26 @@
+<div class="modal-title">
+  <h1 class="semi-bold">{{ title }}</h1>
+  <mdb-icon
+    fas
+    icon="times"
+    mdbTooltip="Close Modal"
+    placement="top"
+    (click)="modalRef.hide()"
+    class=""
+    aria-hidden="true"
+  ></mdb-icon>
+</div>
+<div class="modal-body">{{ body }}</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="close-button"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    Close
+  </button>
+  <button type="button" color="primary" class="modal-button" (click)="act()">
+    {{ buttonAction }}
+  </button>
+</div>

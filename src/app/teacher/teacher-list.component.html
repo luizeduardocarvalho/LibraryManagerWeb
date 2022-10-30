@@ -1,41 +1,3 @@
-<ng-template #content let-modal class="modal">
-  <div class="modal-header">
-    <h1 class="modal-title" id="modal-basic-title">Delete Teacher</h1>
-    <mdb-icon
-      fas
-      icon="times"
-      mdbTooltip="Close Modal"
-      placement="top"
-      (click)="modal.dismiss('Cross click')"
-      class="mr-2"
-      aria-hidden="true"
-    ></mdb-icon>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="mb-3">
-        <p>Are you sure you want to delete the teacher?</p>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="button button-primary"
-      (click)="modal.dismiss('Cross click')"
-    >
-      Cancel
-    </button>
-    <button
-      type="button"
-      class="button button-danger"
-      (click)="modal.close('Save click')"
-    >
-      Delete
-    </button>
-  </div>
-</ng-template>
-
 <div class="flex-wrapper">
   <section>
     <app-page-header title="Teacher List"></app-page-header>
@@ -55,7 +17,7 @@
   </section>
   <section class="flex-scroll">
     <app-card-list
-      (openModalEvent)="open(content, $event)"
+      (openModalEvent)="open($event)"
       [cards]="teacherCards"
       [isLoading]="isLoading"
       [searchText]="searchText"

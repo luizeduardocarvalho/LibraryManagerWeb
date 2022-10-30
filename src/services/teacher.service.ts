@@ -1,56 +1,47 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Teacher } from 'src/models/teacher';
-import { HttpHeaders } from '@angular/common/http';
-import { baseUrl } from 'settings';
 import { TeacherWithStudents } from 'src/models/teacher-students';
-import { TokenService } from './token.service';
 import { UpdateTeacher } from 'src/models/teachers/update-teacher';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeacherService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      Authorization: `${this.tokenService.getToken()}`
-    })
-  };
-
-  constructor(private http: HttpClient, private tokenService: TokenService) { }
+  constructor(private http: HttpClient) {}
 
   getAllTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(baseUrl + 'teachers', this.httpOptions);
+    return this.http.get<Teacher[]>(environment.baseUrl + 'teachers');
   }
 
   createTeacher(teacher: Teacher): Observable<Teacher> {
-    return this.http.post<Teacher>(baseUrl + 'teachers', teacher, this.httpOptions);
+    return this.http.post<Teacher>(environment.baseUrl + 'teachers', teacher);
   }
-  
+
   getTeacherReport(): Observable<TeacherWithStudents[]> {
-    return this.http.get<TeacherWithStudents[]>(baseUrl + 'teachers/teacherreport', this.httpOptions);
+    return this.http.get<TeacherWithStudents[]>(
+      environment.baseUrl + 'teachers/teacherreport'
+    );
   }
 
   delete(id: number) {
-    return this.http.delete(baseUrl + 'teachers/delete', 
-    {
-      params: { 'id': id },
-      headers: this.httpOptions.headers
+    return this.http.delete(environment.baseUrl + 'teachers/delete', {
+      params: { id },
     });
   }
 
   getById(id: number): Observable<Teacher> {
-    return this.http.get<Teacher>(baseUrl + 'teachers/getbyid',
-    {
-      params: { 'id': id },
-      headers: this.httpOptions.headers
+    return this.http.get<Teacher>(environment.baseUrl + 'teachers/getbyid', {
+      params: { id },
     });
-  } 
+  }
 
   updateTeacher(updateTeacher: UpdateTeacher) {
-    return this.http.patch<UpdateTeacher>(baseUrl + 'teachers/update', updateTeacher, this.httpOptions);
+    return this.http.patch<UpdateTeacher>(
+      environment.baseUrl + 'teachers/update',
+      updateTeacher
+    );
   }
 }

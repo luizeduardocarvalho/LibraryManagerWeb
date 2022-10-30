@@ -1,0 +1,38 @@
+.modal-title,
+.modal-body,
+.modal-footer {
+    padding: 1rem;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+}
+
+.modal-footer>* {
+    margin: 0;
+}
+
+.close-button,
+.modal-button {
+    border-radius: 0.5rem;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+}
+
+.close-button {
+    background-color: var(--cl-primary);
+    color: whitesmoke;
+    border: none;
+}
+
+.modal-button {
+    border: 2px solid red;
+    color: red;
+}

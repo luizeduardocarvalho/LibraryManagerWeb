@@ -1,36 +1,32 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { baseUrl } from 'settings';
+import { environment } from 'src/environments/environment';
 import { ChangePassword } from 'src/models/change-password';
 import { CreateUser } from 'src/models/create-user';
 import { User } from 'src/models/user';
-import { TokenService } from './token.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Access-Control-Allow-Origin': '*',
-      Authorization: `${this.tokenService.getToken()}`
-    })
-  };
-
-  constructor(private http: HttpClient, private tokenService: TokenService) { }
+  constructor(private http: HttpClient) {}
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(baseUrl + 'login/login', user, this.httpOptions);
+    return this.http.post<User>(environment.baseUrl + 'login/login', user);
   }
 
   register(user: CreateUser) {
-    return this.http.post<CreateUser>(baseUrl + 'login/register', user, this.httpOptions);
+    return this.http.post<CreateUser>(
+      environment.baseUrl + 'login/register',
+      user
+    );
   }
 
   changePassword(user: ChangePassword) {
-    return this.http.patch<ChangePassword>(baseUrl + 'login/changepassword', user, this.httpOptions);
+    return this.http.patch<ChangePassword>(
+      environment.baseUrl + 'login/changepassword',
+      user
+    );
   }
 }

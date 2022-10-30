@@ -1,40 +1,33 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { LateBook } from 'src/models/late-book';
 import { Transaction } from 'src/models/transaction';
-import { baseUrl } from 'settings';
-import { TokenService } from './token.service';
-
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransactionService {
-  
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      Authorization: `${this.tokenService.getToken()}`
-    })
-  };
-  
-  constructor(private http: HttpClient, private tokenService: TokenService) { }
+  constructor(private http: HttpClient) {}
 
   getLateBooks(teacherId: number): Observable<LateBook[]> {
-    return this.http.get<LateBook[]>(baseUrl + 'transactions/getlatebooks',
-    {
-      params: { 'teacherId': teacherId },
-      headers: this.httpOptions.headers
-    });
+    return this.http.get<LateBook[]>(
+      environment.baseUrl + 'transactions/getlatebooks',
+      {
+        params: { teacherId },
+      }
+    );
   }
 
-  getTransactionsWithDetailsByStudent(studentId: number): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(baseUrl + 'transactions/gettransactionswithdetailsbystudent', 
-    {
-      params: { 'studentId': studentId },
-      headers: this.httpOptions.headers
-    });
+  getTransactionsWithDetailsByStudent(
+    studentId: number
+  ): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(
+      environment.baseUrl + 'transactions/gettransactionswithdetailsbystudent',
+      {
+        params: { studentId },
+      }
+    );
   }
 }

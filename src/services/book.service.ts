@@ -1,90 +1,74 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Book } from 'src/models/book';
 import { BookDetails } from 'src/models/book-details';
-import { ErrorHandlerHelper } from './error-handler';
-import { Transaction } from 'src/models/transaction';
+import { CreateBook } from 'src/models/create-book';
 import { GetBook } from 'src/models/get-book';
 import { LendBook } from 'src/models/lend-book';
-import { baseUrl } from 'settings';
-import { CreateBook } from 'src/models/create-book';
+import { Transaction } from 'src/models/transaction';
 import { UpdateBook } from 'src/models/update-book';
-import { catchError, map } from 'rxjs/operators';
-import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `${this.tokenService.getToken()}`,
-    }),
-  };
-
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient) {}
 
   getBooksByTitle(title: string): Observable<Book[]> {
-    return this.http.get<Book[]>(baseUrl + 'books', {
+    return this.http.get<Book[]>(environment.baseUrl + 'books', {
       params: { title: title },
-      headers: this.httpOptions.headers,
     });
   }
 
   getBookById(bookId: number): Observable<BookDetails> {
-    return this.http.get<BookDetails>(baseUrl + 'books/getbookbyid', {
-      params: { bookId: bookId },
-      headers: this.httpOptions.headers,
-    });
+    return this.http.get<BookDetails>(
+      environment.baseUrl + 'books/getbookbyid',
+      {
+        params: { bookId: bookId },
+      }
+    );
   }
 
   getBookDetailsById(bookId: number): Observable<Book> {
-    return this.http.get<Book>(baseUrl + 'books/getbookdetails', {
+    return this.http.get<Book>(environment.baseUrl + 'books/getbookdetails', {
       params: { id: bookId },
-      headers: this.httpOptions.headers,
     });
   }
 
   returnBook(book: GetBook): Observable<Transaction> {
     return this.http.post<Transaction>(
-      baseUrl + 'books/return',
-      book,
-      this.httpOptions
+      environment.baseUrl + 'books/return',
+      book
     );
   }
 
   renewBook(getBook: GetBook): Observable<Transaction> {
     return this.http.patch<Transaction>(
-      baseUrl + 'books/renew',
-      getBook,
-      this.httpOptions
+      environment.baseUrl + 'books/renew',
+      getBook
     );
   }
 
   lendBook(lendBook: LendBook) {
     return this.http.post<LendBook>(
-      baseUrl + 'books/lend',
-      lendBook,
-      this.httpOptions
+      environment.baseUrl + 'books/lend',
+      lendBook
     );
   }
 
   createBook(book: CreateBook) {
     return this.http.post<CreateBook>(
-      baseUrl + 'books/create',
-      book,
-      this.httpOptions
+      environment.baseUrl + 'books/create',
+      book
     );
   }
 
   updateBook(book: UpdateBook) {
     return this.http.patch<CreateBook>(
-      baseUrl + 'books/updatebook',
-      book,
-      this.httpOptions
+      environment.baseUrl + 'books/updatebook',
+      book
     );
   }
 }

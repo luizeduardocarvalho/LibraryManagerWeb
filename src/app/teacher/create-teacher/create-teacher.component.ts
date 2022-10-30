@@ -7,7 +7,6 @@ import { CreateUser } from 'src/models/create-user';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
-  selector: 'app-create-teacher',
   templateUrl: './create-teacher.component.html',
   styleUrls: ['./create-teacher.component.scss'],
 })
@@ -17,7 +16,7 @@ export class CreateTeacherComponent implements OnInit {
     email: new FormControl('', [Validators.email, Validators.required]),
   });
 
-  error: boolean = false;
+  isLoading = false;
   role: string = 'Teacher';
 
   constructor(
@@ -42,13 +41,18 @@ export class CreateTeacherComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
+    this.isLoading = true;
     let teacher = data.value as CreateUser;
     teacher.role = this.role;
-    this.authService.register(teacher).subscribe((res: any) => {
-      this.router.navigate(['/teachers']).then(() => {
-        this.toastrService.success('Teacher Created.', 'Success!');
-      });
-    });
+    this.authService.register(teacher).subscribe(
+      (res: any) => {
+        this.router.navigate(['/teachers']).then(() => {
+          this.isLoading = false;
+          this.toastrService.success('Teacher created.', 'Success!');
+        });
+      },
+      (err: any) => (this.isLoading = false)
+    );
   }
 
   onClear(): void {

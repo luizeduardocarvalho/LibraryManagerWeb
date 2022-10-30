@@ -21,7 +21,7 @@
       <button
         *ngIf="button.click"
         class="actions__button"
-        (click)="openModal(card.id)"
+        (click)="openModal(card.name, card.id)"
       >
         <mdb-icon
           fas

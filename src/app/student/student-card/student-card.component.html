@@ -1,31 +1,31 @@
-<div class="page-header">
-  <div class="back-arrow">
-    <a (click)="onBack()"><mdb-icon fas icon="arrow-left"></mdb-icon></a>
-  </div>
-  <h1 class="bold">{{ student?.studentName }}</h1>
-</div>
-<h2 class="teacher-name">{{ student?.teacherName }}</h2>
-<section class="cards-section">
-  <h1 *ngIf="!isLoading" class="semi-bold book-history-title">Book History</h1>
-  <div class="loader-section">
-    <div *ngIf="isLoading" class="loader"></div>
-  </div>
-  <div *ngFor="let transaction of student?.transactions" class="book-card">
-    <p>{{ transaction.bookReference }} - {{ transaction.bookTitle }}</p>
-    <p>Lent at: {{ transaction.creationDate | date: "shortDate" }}</p>
-    <p *ngIf="transaction.returnedAt">
-      Returned at: {{ transaction.returnedAt | date: "shortDate" }}
-    </p>
-    <div *ngIf="!transaction.returnedAt" class="book-card__error">
-      <p>
-        The book has not been returned yet.
-      </p>
+<div class="flex-wrapper">
+  <div class="page-header">
+    <div class="back-arrow">
+      <a (click)="onBack()"><mdb-icon fas icon="arrow-left"></mdb-icon></a>
     </div>
-    <button
-      class="button button-white-inverted book-card__button"
-      [routerLink]="['/books', transaction.bookId]"
-    >
-      <mdb-icon fas icon="book" aria-hidden="true">Info</mdb-icon>
-    </button>
+    <h1 class="bold">{{ student?.studentName }}</h1>
   </div>
-</section>
+  <h2 class="teacher-name">{{ student?.teacherName }}</h2>
+  <h1 *ngIf="!isLoading" class="semi-bold book-history-title">Book History</h1>
+  <section class="cards-section flex-scroll">
+    <div class="loader-section">
+      <div *ngIf="isLoading" class="loader"></div>
+    </div>
+    <div *ngFor="let transaction of student?.transactions" class="book-card">
+      <p>{{ transaction.bookReference }} - {{ transaction.bookTitle }}</p>
+      <p>Lent at: {{ transaction.creationDate | date: "shortDate" }}</p>
+      <p *ngIf="transaction.returnedAt">
+        Returned at: {{ transaction.returnedAt | date: "shortDate" }}
+      </p>
+      <div *ngIf="!transaction.returnedAt" class="book-card__error">
+        <p>The book has not been returned yet.</p>
+      </div>
+      <button
+        class="button button-white-inverted book-card__button"
+        [routerLink]="['/books', transaction.bookId]"
+      >
+        <mdb-icon fas icon="book" aria-hidden="true">Info</mdb-icon>
+      </button>
+    </div>
+  </section>
+</div>

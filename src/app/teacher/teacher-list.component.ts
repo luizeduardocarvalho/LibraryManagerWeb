@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { ToastrService } from 'ngx-toastr';
 import { ICard } from 'src/models/shared/card';
 import { Teacher } from 'src/models/teacher';
 import { TeacherService } from 'src/services/teacher.service';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-teacher-list',
@@ -18,52 +19,58 @@ export class TeacherListComponent implements OnInit {
   closeResult = '';
   error: boolean = false;
 
+  modalRef: MDBModalRef | null = null;
   isLoading = false;
 
   constructor(
     private teacherService: TeacherService,
-    private modalService: NgbModal,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private modalService: MDBModalService
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.user = JSON.parse(localStorage.getItem('user') as string);
-    this.teacherService.getAllTeachers().subscribe((teachers: Teacher[]) => {
-      this.createTeacherCards(teachers);
-    });
+    this.teacherService.getAllTeachers().subscribe(
+      (teachers: Teacher[]) => {
+        this.isLoading = false;
+        this.createTeacherCards(teachers);
+      },
+      (err: any) => (this.isLoading = false)
+    );
   }
 
-  open(content: any, id: any) {
-    this.isLoading = true;
+  open(event: any) {
+    let modalOptions = {
+      data: {
+        title: 'Delete Teacher',
+        buttonAction: 'Delete',
+        id: event['id'],
+        body: `Are you sure you want to delete ${event['name']}?`,
+      },
+    };
 
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then((result: string) => {
-        if (result == 'Save click') {
-          this.teacherService.delete(id).subscribe(
-            (res: any) => {
-              if (res.status == 500 || res.status == 400) {
-                this.error = true;
-                this.isLoading = false;
-              }
+    this.modalRef = this.modalService.show(ModalComponent, modalOptions);
 
-              if (this.error) {
-                this.toastrService.error('An error has occurred.', 'Error');
-              } else {
-                this.toastrService.success('Teacher deleted.', 'Success!');
+    this.modalRef.content.action.subscribe((id: any) => {
+      this.isLoading = true;
+      this.teacherService.delete(id).subscribe(
+        (res: any) => {
+          this.teacherService
+            .getAllTeachers()
+            .subscribe((teachers: Teacher[]) => {
+              this.createTeacherCards(teachers);
+              this.isLoading = false;
+            });
 
-                this.teacherService
-                  .getAllTeachers()
-                  .subscribe((teachers: Teacher[]) => {
-                    this.createTeacherCards(teachers);
-                    this.isLoading = false;
-                  });
-              }
-            },
-            (err: any) => (this.isLoading = false)
+          this.toastrService.success(
+            `${event['name']} has been deleted.`,
+            'Success!'
           );
-        }
-      });
+        },
+        (err: any) => (this.isLoading = false)
+      );
+    });
   }
 
   createTeacherCards(teachers: Teacher[]) {

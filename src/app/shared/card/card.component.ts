@@ -9,11 +9,11 @@ import { ICard } from 'src/models/shared/card';
 export class CardComponent {
   @Input() card!: ICard;
   @Input() icon: string = '';
-  @Output() openEvent = new EventEmitter<string>();
+  @Output() openEvent = new EventEmitter<{name: string, id: string}>();
 
   constructor() {}
 
-  openModal(id: string) {
-    this.openEvent.emit(id);
+  openModal(name: string, id: string) {
+    this.openEvent.emit({name, id});
   }
 }

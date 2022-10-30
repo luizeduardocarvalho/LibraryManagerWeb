@@ -23,6 +23,7 @@ export class TeacherReportComponent implements OnInit {
       .getTeacherReport()
       .subscribe((teacherList: TeacherWithStudents[]) => {
         this.teacherList = teacherList;
+        console.log(teacherList);
         this.isLoading = false;
       });
   }

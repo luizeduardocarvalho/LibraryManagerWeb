@@ -10,7 +10,7 @@ export class CardListComponent {
   @Input() cards: ICard[] = [];
   @Input() searchText: string = '';
   @Input() isLoading: boolean = false;
-  @Output() openModalEvent = new EventEmitter<string>();
+  @Output() openModalEvent = new EventEmitter<{name: string, id: string}>();
 
   constructor() {}
 
