@@ -1,6 +1,6 @@
 export interface CreateBook {
     title: string;
     description: string;
-    authorId: number;
+    authorId: string;
     reference: number;
 }

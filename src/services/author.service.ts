@@ -20,6 +20,12 @@ export class AuthorService {
     );
   }
 
+  getSimpleAuthors(): Observable<GetAuthor[]> {
+    return this.http.get<GetAuthor[]>(
+      environment.baseUrl + 'authors/getsimpleauthors'
+    );
+  }
+
   createAuthor(author: GetAuthor) {
     return this.http.post<GetAuthor>(
       environment.baseUrl + 'authors/create',

@@ -1,0 +1,38 @@
+.modal-title,
+.modal-body,
+.modal-footer {
+    padding: 1rem;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+}
+
+.modal-footer>* {
+    margin: 0;
+}
+
+.modal-button {
+    border-radius: 0.5rem;
+}
+
+.button-primary {
+    border: none;
+    padding: 0.2rem 0.5rem;
+}
+
+.search-input {
+    padding-left: 0.5rem;
+    width: 100%;
+    border-radius: 0.3em;
+    border: 2px solid hsl(0, 0, 0, 0.55);
+    margin-bottom: 1em;
+}

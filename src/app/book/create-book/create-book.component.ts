@@ -2,8 +2,13 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { ToastrService } from 'ngx-toastr';
+import { ModalSelectComponent } from 'src/app/shared/modal-select/modal-select.component';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { CreateBook } from 'src/models/create-book';
+import { GetAuthor } from 'src/models/get-author';
+import { AuthorService } from 'src/services/author.service';
 import { BookService } from 'src/services/book.service';
 
 @Component({
@@ -15,23 +20,58 @@ export class CreateBookComponent implements OnInit {
     reference: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
-    authorId: new FormControl(''),
   });
+
+  author: any = null;
+  authors: GetAuthor[] = [];
+  isLoading = false;
+  isLoadingAuthor = false;
+  modalRef: MDBModalRef | null = null;
 
   constructor(
     private bookService: BookService,
+    private authorService: AuthorService,
     private location: Location,
+    private modalService: MDBModalService,
     private toastrService: ToastrService,
     private router: Router
   ) {}
 
-  isLoading = false;
+  ngOnInit(): void {
+    this.isLoadingAuthor = true;
+    this.authorService.getSimpleAuthors().subscribe(
+      (authors: GetAuthor[]) => {
+        this.authors = authors;
+        this.isLoadingAuthor = false;
+      },
+      (err: any) => (this.isLoadingAuthor = false)
+    );
+  }
 
-  ngOnInit(): void {}
+  open() {
+    let modalOptions = {
+      data: {
+        title: 'Select Author',
+        buttonAction: 'Select',
+        authors: this.authors,
+      },
+    };
+
+    this.modalRef = this.modalService.show(ModalSelectComponent, modalOptions);
+
+    this.modalRef.content.action.subscribe((author: GetAuthor) => {
+      this.author = author;
+    });
+  }
+
+  clearAuthor() {
+    this.author = null;
+  }
 
   onSubmit(data: any): void {
     this.isLoading = true;
     let book = data.value as CreateBook;
+    book.authorId = this.author!.authorId.toString();
     this.bookService.createBook(book).subscribe(
       (res: any) => {
         this.router

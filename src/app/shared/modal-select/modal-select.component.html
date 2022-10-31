@@ -1,0 +1,45 @@
+<div class="modal-title">
+  <h1 class="semi-bold">{{ title }}</h1>
+  <mdb-icon
+    fas
+    icon="times"
+    mdbTooltip="Close Modal"
+    placement="top"
+    (click)="modalRef.hide()"
+    class=""
+    aria-hidden="true"
+  ></mdb-icon>
+</div>
+<div class="modal-body">
+  <label for="search">Search</label>
+  <input
+    type="text"
+    name="search"
+    (ngModelChange)="changeAuthor($event)"
+    [(ngModel)]="searchText"
+    class="search-input"
+  />
+  <select class="dropdown form-control" (change)="selectAuthor($event)">
+    <option *ngFor="let author of authors" value="{{ author.authorId }}">
+      {{ author.name }}
+    </option>
+  </select>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="modal-button button-clear"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    color="primary"
+    class="modal-button button-primary"
+    (click)="act()"
+  >
+    {{ buttonAction }}
+  </button>
+</div>

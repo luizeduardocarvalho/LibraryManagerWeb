@@ -10,6 +10,7 @@
 }
 
 .book-card {
+    max-height: 10rem;
     &__book-status {
         display: flex;
         margin: 0.25em 0 0.5em 0;

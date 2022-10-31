@@ -16,6 +16,7 @@ import { CardComponent } from './card/card.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ModalComponent } from './modal/modal.component';
+import { ModalSelectComponent } from './modal-select/modal-select.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ModalComponent } from './modal/modal.component';
     SearchInputComponent,
     PageHeaderComponent,
     ModalComponent,
+    ModalSelectComponent,
   ],
   imports: [
     RouterModule,
