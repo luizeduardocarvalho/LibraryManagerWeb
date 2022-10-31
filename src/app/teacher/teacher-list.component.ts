@@ -16,8 +16,6 @@ export class TeacherListComponent implements OnInit {
   teachers: Teacher[] = [];
   teacherCards: ICard[] = [];
   searchText: string = '';
-  closeResult = '';
-  error: boolean = false;
 
   modalRef: MDBModalRef | null = null;
   isLoading = false;

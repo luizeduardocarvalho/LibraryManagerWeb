@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthorWithBooks } from 'src/models/author-books';
+import { IEditAuthor } from 'src/models/authors/edit-author';
 import { GetAuthor } from 'src/models/get-author';
 
 @Injectable({
@@ -40,5 +41,22 @@ export class AuthorService {
         params: { authorId: authorId },
       }
     );
+  }
+
+  edit(author: IEditAuthor): Observable<IEditAuthor> {
+    return this.http.put<IEditAuthor>(environment.baseUrl + 'authors', author);
+  }
+
+  getAuthorById(id: number): Observable<GetAuthor> {
+    return this.http.get<GetAuthor>(
+      environment.baseUrl + 'authors/getauthorbyid',
+      { params: { id } }
+    );
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(environment.baseUrl + 'authors', {
+      params: { id },
+    });
   }
 }

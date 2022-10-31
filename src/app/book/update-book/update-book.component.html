@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="page-loader">
+  <div class="loader"></div>
+</div>
 <div class="page-header">
   <div class="back-arrow">
     <a (click)="onBack()">
@@ -23,6 +26,33 @@
       formControlName="description"
       class="form-control"
     ></textarea>
+    <label for="author">Author</label>
+    <div class="author-select">
+      <button
+        *ngIf="!author"
+        type="button"
+        class="button button-primary"
+        [disabled]="isLoadingAuthor"
+        (click)="open()"
+      >
+        <div class="button-loader-section">
+          <div *ngIf="isLoadingAuthor" class="button-loader"></div>
+        </div>
+        <span *ngIf="!isLoadingAuthor">Select Author</span>
+      </button>
+      <div *ngIf="author" class="author-name-section">
+        {{ author!.name }}
+        <mdb-icon
+          fas
+          icon="times"
+          mdbTooltip="Close Modal"
+          placement="top"
+          (click)="clearAuthor()"
+          class=""
+          aria-hidden="true"
+        ></mdb-icon>
+      </div>
+    </div>
     <button class="button button-primary" type="submit">Update</button>
   </form>
 </section>

@@ -9,7 +9,6 @@ import { StudentService } from 'src/services/student.service';
 import { TeacherService } from 'src/services/teacher.service';
 
 @Component({
-  selector: 'app-create-student',
   templateUrl: './create-student.component.html',
   styleUrls: ['./create-student.component.scss'],
 })
@@ -18,7 +17,6 @@ export class CreateStudentComponent implements OnInit {
     name: new FormControl(''),
   });
 
-  // TODO: Add loader
   isLoading = false;
   teachers: Teacher[] = [];
   selectedTeacher: number = 0;

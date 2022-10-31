@@ -5,6 +5,7 @@
   </section>
   <section class="flex-scroll">
     <app-card-list
+      (openModalEvent)="open($event)"
       [cards]="authorCards"
       [isLoading]="isLoading"
     ></app-card-list>

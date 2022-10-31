@@ -26,6 +26,43 @@
     margin-block: 1em;
 }
 
+.author-select {
+    padding-bottom: 1rem;
+}
+
+.author-name-section {
+    border: 1px solid #ced4da;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.author-name-section>mdb-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-loader {
+    border: 0.15em solid #f3f3f3;
+    border-top: 0.15em solid var(--cl-primary);
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    animation: spin 0.8s linear infinite;
+}
+
+.button-loader-section {
+    padding-inline: 0.9em;
+    display: flex;
+    justify-content: center;
+}
+
+.button-loader-section>.loader {
+    margin-block: 1em;
+}
+
 label+.form-control {
     margin-bottom: 1em;
 }

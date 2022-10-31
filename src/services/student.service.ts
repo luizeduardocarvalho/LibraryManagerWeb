@@ -6,7 +6,6 @@ import { CreateStudent } from 'src/models/create-student';
 import { Student } from 'src/models/student';
 import { StudentWithTransactions } from 'src/models/student-transactions';
 import { UpdateStudentTeacher } from 'src/models/update-student';
-import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -55,5 +54,11 @@ export class StudentService {
       environment.baseUrl + 'students/updatestudentteacher',
       updateStudentTeacher
     );
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(environment.baseUrl + 'students', {
+      params: { id },
+    });
   }
 }

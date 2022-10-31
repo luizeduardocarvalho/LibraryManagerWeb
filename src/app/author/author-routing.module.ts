@@ -5,6 +5,7 @@ import { AuthorCardComponent } from './author-card/author-card.component';
 import { AuthorListComponent } from './author-list.component';
 import { AuthorComponent } from './author/author.component';
 import { CreateAuthorComponent } from './create-author/create-author.component';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
       {
         path: ':id',
         component: AuthorCardComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: ':id/edit',
+        component: EditAuthorComponent,
         canActivate: [AuthGuard],
       },
     ],

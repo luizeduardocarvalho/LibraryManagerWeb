@@ -1,0 +1,24 @@
+<div *ngIf="isLoading" class="page-loader">
+  <div class="loader"></div>
+</div>
+<div class="page-header">
+  <div class="back-arrow">
+    <a (click)="onBack()">
+      <mdb-icon fas icon="arrow-left"></mdb-icon>
+    </a>
+  </div>
+  <h1 class="bold">Edit Author</h1>
+</div>
+<section class="form-section">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm)">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="form-control"
+      autocomplete="off"
+    />
+    <button class="button button-primary" type="submit">Update</button>
+  </form>
+</section>

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { ToastrService } from 'ngx-toastr';
 import { ModalSelectComponent } from 'src/app/shared/modal-select/modal-select.component';
-import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { CreateBook } from 'src/models/create-book';
 import { GetAuthor } from 'src/models/get-author';
 import { AuthorService } from 'src/services/author.service';
