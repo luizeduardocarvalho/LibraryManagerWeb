@@ -1,3 +1,13 @@
+.video {
+    height: 100%;
+    width: 100%;
+}
+
+.video-section {
+    display: flex;
+    align-items: center;
+}
+
 .page-header {
     display: flex;
     gap: 1em;

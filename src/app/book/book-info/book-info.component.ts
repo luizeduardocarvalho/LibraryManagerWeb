@@ -71,6 +71,8 @@ export class BookInfoComponent implements OnInit {
         if (updatedTransaction.transactionId != 0) {
           this.book?.setTransaction(updatedTransaction);
           this.toastrService.success('Book returned!', 'Success!');
+        } else {
+          this.toastrService.info('You can lend the book by clicking the button "Lend"', 'The book is already available');
           this.isReturnLoading = false;
         }
       },

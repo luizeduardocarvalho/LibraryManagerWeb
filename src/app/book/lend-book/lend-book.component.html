@@ -1,46 +1,57 @@
 <div *ngIf="isLoading" class="page-loader">
   <div class="loader"></div>
 </div>
-<div class="page-header">
-  <div class="back-arrow">
-    <a (click)="onBack()">
-      <mdb-icon fas icon="arrow-left"></mdb-icon>
-    </a>
+<div class="flex-wrapper">
+  <div class="page-header">
+    <div class="back-arrow">
+      <a (click)="onBack()">
+        <mdb-icon fas icon="arrow-left"></mdb-icon>
+      </a>
+    </div>
+    <h1 class="bold">Lend Book</h1>
   </div>
-  <h1 class="bold">Lend Book</h1>
-</div>
-
-<div class="search-section">
-  <div class="search-input">
-    <input
-      class="search-section__input"
-      type="text"
-      [(ngModel)]="searchText"
-      name="searchText"
-      placeholder="Search"
-      aria-label="Search"
-      autocomplete="off"
-    />
+  <div class="video-section flex-scroll">
+    <video class="video" id="video"></video>
   </div>
   <div>
-    <button
-      class="button button-primary"
-      type="button"
-      (click)="onSearch(searchText)"
-    >
-      Search
-    </button>
+    <div *ngIf="!isQrCode" class="search-section">
+      <div class="search-input">
+        <input
+          class="search-section__input"
+          type="text"
+          [(ngModel)]="searchText"
+          name="searchText"
+          placeholder="Search"
+          aria-label="Search"
+          autocomplete="off"
+        />
+      </div>
+      <div>
+        <button
+          class="button button-primary"
+          type="button"
+          (click)="onSearch(searchText)"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <div *ngIf="students.length == 0 && !isQrCode">
+      <button (click)="activateQrScanner()" class="button button-primary">
+        Use QR Code
+      </button>
+    </div>
+    <section *ngIf="!isQrCode" class="students-section">
+      <div *ngFor="let student of students" class="students-section__card">
+        <span>{{ student.name }}</span>
+        <button
+          class="button button-white-inverted students-section__card__button"
+          type="button"
+          (click)="onLend(student.studentId)"
+        >
+          Lend
+        </button>
+      </div>
+    </section>
   </div>
 </div>
-<section class="students-section">
-  <div *ngFor="let student of students" class="students-section__card">
-    <span>{{ student.name }}</span>
-    <button
-      class="button button-white-inverted students-section__card__button"
-      type="button"
-      (click)="onLend(student.studentId)"
-    >
-      Lend
-    </button>
-  </div>
-</section>

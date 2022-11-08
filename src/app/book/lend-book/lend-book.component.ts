@@ -1,11 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LendBook } from 'src/models/lend-book';
 import { Student } from 'src/models/student';
 import { BookService } from 'src/services/book.service';
 import { StudentService } from 'src/services/student.service';
+import QrScanner from 'qr-scanner';
 
 @Component({
   selector: 'app-lend-book',
@@ -18,6 +19,8 @@ export class LendBookComponent implements OnInit {
   bookId: number = 0;
   error: boolean = false;
   isLoading = false;
+  isQrCode = false;
+  qrScanner?: QrScanner | null
 
   constructor(
     private studentService: StudentService,
@@ -25,7 +28,7 @@ export class LendBookComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private location: Location,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -42,13 +45,32 @@ export class LendBookComponent implements OnInit {
       });
   }
 
+  activateQrScanner() {
+    this.isQrCode = true;
+    this.qrScanner = new QrScanner(
+      document.getElementById('video') as HTMLVideoElement,
+      (result) => {
+        this.isLoading = true;
+        this.isQrCode = false;
+        this.qrScanner?.pause();
+        // this.onLend(parseInt(result.data));
+      },
+      {
+        maxScansPerSecond: 2,
+        highlightScanRegion: true,
+      }
+    );
+
+    this.qrScanner.start();
+  }
+
   onLend(studentId: number) {
     this.isLoading = true;
     let lendBook = new LendBook(studentId, this.bookId);
     this.bookService.lendBook(lendBook).subscribe(
       (res: any) => {
-        this.isLoading = false;
         this.router.navigate(['books', this.bookId]).then(() => {
+          this.isLoading = false;
           this.toastrService.success('The book has been lent.', 'Success!');
         });
       },
