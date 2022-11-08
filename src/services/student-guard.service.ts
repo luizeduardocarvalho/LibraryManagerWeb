@@ -9,12 +9,12 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuard implements CanActivate {
+export class StudentGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let user = JSON.parse(localStorage.getItem('user') as string);
-    if (user && user.role == 'Administrator') {
+    if (user && user.role == 'Student') {
       return true;
     }
 

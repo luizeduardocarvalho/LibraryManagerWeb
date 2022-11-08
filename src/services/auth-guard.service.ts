@@ -19,15 +19,16 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let user = JSON.parse(localStorage.getItem('user') as string);
     if (
-      localStorage.getItem('user') &&
-      !this.jwtHelper.isTokenExpired(this.tokenService.getToken())
+      user &&
+      !this.jwtHelper.isTokenExpired(this.tokenService.getToken()) &&
+      (user.role == 'Administrator' || user.role == 'Teacher')
     ) {
       return true;
-    } else {
-      this.tokenService.clearToken();
     }
 
+    this.tokenService.clearToken();
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }

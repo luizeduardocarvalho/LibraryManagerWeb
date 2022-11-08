@@ -11,14 +11,11 @@ import { AuthService } from 'src/services/auth.service';
 export class LoginComponent implements OnInit {
   isLoading = false;
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required]),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -42,8 +39,15 @@ export class LoginComponent implements OnInit {
       (data: User) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+
+        let user = JSON.parse(localStorage.getItem('user') as string);
+
         this.isLoading = false;
-        this.router.navigate(['/']);
+        if (user.role != 'Student') {
+          this.router.navigate(['/']);
+        }
+
+        this.router.navigate(['/my-area', user.id]);
       },
       (err: any) => (this.isLoading = false)
     );

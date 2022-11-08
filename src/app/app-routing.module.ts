@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/services/auth-guard.service';
+import { StudentGuard } from 'src/services/student-guard.service';
 import { LoginComponent } from './login/login.component';
+import { MyAreaComponent } from './my-area/my-area.component';
 import { TeachersummaryComponent } from './teacher/teacher-summary/teacher-summary.component';
 
 const routes: Routes = [
@@ -38,6 +40,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./student/student.module').then((m) => m.StudentModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-area/:id',
+    component: MyAreaComponent,
+    canActivate: [StudentGuard],
   },
   { path: '*', component: TeachersummaryComponent, canActivate: [AuthGuard] },
   { path: '**', component: TeachersummaryComponent, canActivate: [AuthGuard] },

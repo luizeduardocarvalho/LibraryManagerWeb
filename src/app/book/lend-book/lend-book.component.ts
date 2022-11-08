@@ -50,7 +50,6 @@ export class LendBookComponent implements OnInit {
     this.qrScanner = new QrScanner(
       document.getElementById('video') as HTMLVideoElement,
       (result) => {
-        this.isLoading = true;
         this.isQrCode = false;
         this.qrScanner?.pause();
         this.onLend(parseInt(result.data));

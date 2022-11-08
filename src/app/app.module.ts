@@ -22,6 +22,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { SharedModule } from './shared/shared.module';
+import { MyAreaComponent } from './my-area/my-area.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     NotFoundComponent,
     RegisterComponent,
     ChangePasswordComponent,
+    MyAreaComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { SharedModule } from './shared/shared.module';
     PipeModule,
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
     BrowserAnimationsModule,
     SharedModule,
     MDBBootstrapModule.forRoot(),
