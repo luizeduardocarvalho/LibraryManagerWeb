@@ -68,8 +68,8 @@ export class LendBookComponent implements OnInit {
     let lendBook = new LendBook(studentId, this.bookId);
     this.bookService.lendBook(lendBook).subscribe(
       (res: any) => {
+        this.isLoading = false;
         this.router.navigate(['books', this.bookId]).then(() => {
-          this.isLoading = false;
           this.toastrService.success('The book has been lent.', 'Success!');
         });
       },
