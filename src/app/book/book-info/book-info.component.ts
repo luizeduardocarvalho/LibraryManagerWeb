@@ -73,8 +73,9 @@ export class BookInfoComponent implements OnInit {
           this.toastrService.success('Book returned!', 'Success!');
         } else {
           this.toastrService.info('You can lend the book by clicking the button "Lend"', 'The book is already available');
-          this.isReturnLoading = false;
         }
+        
+        this.isReturnLoading = false;
       },
       (err: any) => (this.isReturnLoading = false)
     );

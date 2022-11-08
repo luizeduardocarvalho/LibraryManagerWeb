@@ -53,7 +53,7 @@ export class LendBookComponent implements OnInit {
         this.isLoading = true;
         this.isQrCode = false;
         this.qrScanner?.pause();
-        // this.onLend(parseInt(result.data));
+        this.onLend(parseInt(result.data));
       },
       {
         maxScansPerSecond: 2,
