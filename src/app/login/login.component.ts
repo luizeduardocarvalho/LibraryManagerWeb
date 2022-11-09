@@ -43,11 +43,12 @@ export class LoginComponent implements OnInit {
         let user = JSON.parse(localStorage.getItem('user') as string);
 
         this.isLoading = false;
+        
         if (user.role != 'Student') {
           this.router.navigate(['/']);
+        } else {
+          this.router.navigate(['/my-area', user.id]);
         }
-
-        this.router.navigate(['/my-area', user.id]);
       },
       (err: any) => (this.isLoading = false)
     );
