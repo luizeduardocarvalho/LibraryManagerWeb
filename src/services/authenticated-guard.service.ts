@@ -5,26 +5,16 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private tokenService: TokenService,
-    private jwtHelper: JwtHelperService
-  ) {}
+export class AuthenticatedGuard implements CanActivate {
+  constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let user = JSON.parse(localStorage.getItem('user') as string);
-    if (
-      user &&
-      !this.jwtHelper.isTokenExpired(this.tokenService.getToken()) &&
-      (user.role == 'Administrator' || user.role == 'Teacher')
-    ) {
+    if (user) {
       return true;
     }
 

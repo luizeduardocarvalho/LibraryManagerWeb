@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/auth.service';
+import { LocalStorageService } from 'src/services/local-storage.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -37,13 +42,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(user).subscribe(
       (data: User) => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        let user = JSON.parse(localStorage.getItem('user') as string);
+        this.localStorageService._user = data;
+        let user = JSON.parse(this.localStorageService._user as string);
 
         this.isLoading = false;
-        
+
         if (user.role != 'Student') {
           this.router.navigate(['/']);
         } else {

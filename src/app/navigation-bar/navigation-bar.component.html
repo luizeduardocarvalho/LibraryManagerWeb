@@ -1,53 +1,53 @@
 <header class="flex">
   <a class="logo" href="">Library Manager</a>
-
   <button
+    *ngIf="loggedIn"
+    (click)="onClick()"
     class="mobile-nav-toggle"
     aria-controls="primary-navigation"
     aria-expanded="false"
   ></button>
-
-  <nav>
-    <ul
-      id="primary-navigation"
-      class="primary-navigation flex"
-      data-visible="false"
-    >
-      <li *ngIf="user.role == 'Administrator'" class="active">
-        <a (click)="onClick()" routerLink="/teachers">Teachers</a>
-      </li>
-      <li *ngIf="user.role != 'Administrator'" class="active">
-        <a (click)="onClick()" routerLink="/teacher">Teacher</a>
-      </li>
-      <li>
-        <a (click)="onClick()" routerLink="/books">Books</a>
-      </li>
-      <li>
-        <a (click)="onClick()" routerLink="/students">Students</a>
-      </li>
-      <li>
-        <a (click)="onClick()" routerLink="/authors">Authors</a>
-      </li>
-      <li>
-        <div mdbDropdown>
-          <button class="button" mdbDropdownToggle>
-            <mdb-icon class="user-icon" fas icon="user"></mdb-icon>
-            Profile
-          </button>
-          <div class="dropdown-menu dropdown-primary">
-            <button
-              class="dropdown-item button"
-              (click)="onClick()"
-              [routerLink]="['/change-password']"
-            >
-              Change Password
-            </button>
-            <button class="dropdown-item button" (click)="onLogout()">
-              Log out
-            </button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </nav>
 </header>
+<nav *ngIf="loggedIn">
+  <ul
+    id="primary-navigation"
+    class="primary-navigation flex"
+    data-visible="false"
+  >
+    <li *ngIf="user.role == 'Administrator'" class="active">
+      <a (click)="onClick()" routerLink="/teachers">Teachers</a>
+    </li>
+    <li *ngIf="user.role == 'Teacher'" class="active">
+      <a (click)="onClick()" routerLink="/teacher">Teacher</a>
+    </li>
+    <li *ngIf="user.role == 'Administrator' || user.role == 'Teacher'">
+      <a (click)="onClick()" routerLink="/books">Books</a>
+    </li>
+    <li *ngIf="user.role == 'Administrator' || user.role == 'Teacher'">
+      <a (click)="onClick()" routerLink="/students">Students</a>
+    </li>
+    <li *ngIf="user.role == 'Administrator' || user.role == 'Teacher'">
+      <a (click)="onClick()" routerLink="/authors">Authors</a>
+    </li>
+    <li>
+      <div mdbDropdown>
+        <button class="button" mdbDropdownToggle>
+          <mdb-icon class="user-icon" fas icon="user"></mdb-icon>
+          Profile
+        </button>
+        <div class="dropdown-menu dropdown-primary">
+          <button
+            class="dropdown-item button"
+            (click)="onClick()"
+            [routerLink]="['/change-password']"
+          >
+            Change Password
+          </button>
+          <button class="dropdown-item button" (click)="onLogout()">
+            Log out
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>

@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/services/local-storage.service';
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss']
+  styleUrls: ['./navigation-bar.component.scss'],
 })
 export class NavigationBarComponent implements OnInit {
-
   user?: any;
   loggedIn: boolean = false;
-  primaryNav: any;
-  navToggle: any;
 
-
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user') as string);
-    if(this.user == null) {
-      this.loggedIn = false;
-      this.user = {'role': ''}
-    }
-    else {
-      this.loggedIn = true;
-    }
-
-    this.primaryNav = document.querySelector('.primary-navigation');
-    this.navToggle = document.querySelector('.mobile-nav-toggle');
-    this.navToggle.addEventListener('click', () => {
-        this.activateMenu();
+    this.localStorageService.user.subscribe((nextValue: any) => {
+      this.user = JSON.parse(this.localStorageService._user);
+      console.log(this.user);
+      if (this.user == null) {
+        this.loggedIn = false;
+        this.user = { role: '' };
+      } else {
+        this.loggedIn = true;
+      }
     });
   }
 
@@ -38,15 +40,17 @@ export class NavigationBarComponent implements OnInit {
   }
 
   activateMenu() {
-    let visibility = this.primaryNav.getAttribute('data-visible');
+    let primaryNav = document.querySelector('.primary-navigation');
+    let navToggle = document.querySelector('.mobile-nav-toggle');
 
-    if (visibility === "false") {
-      this.primaryNav.setAttribute('data-visible', 'true');
-      this.navToggle.setAttribute('aria-expanded', 'true');
-    }
-    else {
-      this.primaryNav.setAttribute('data-visible', 'false');
-      this.navToggle.setAttribute('aria-expanded', 'false');
+    let visibility = primaryNav!.getAttribute('data-visible');
+
+    if (visibility === 'false') {
+      primaryNav!.setAttribute('data-visible', 'true');
+      navToggle!.setAttribute('aria-expanded', 'true');
+    } else {
+      primaryNav!.setAttribute('data-visible', 'false');
+      navToggle!.setAttribute('aria-expanded', 'false');
     }
   }
 
@@ -54,7 +58,7 @@ export class NavigationBarComponent implements OnInit {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.loggedIn = false;
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
     this.activateMenu();
   }
 }

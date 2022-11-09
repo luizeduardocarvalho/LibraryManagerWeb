@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/services/auth-guard.service';
+import { AuthenticatedGuard } from 'src/services/authenticated-guard.service';
 import { StudentGuard } from 'src/services/student-guard.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from './login/login.component';
 import { MyAreaComponent } from './my-area/my-area.component';
 import { TeachersummaryComponent } from './teacher/teacher-summary/teacher-summary.component';
@@ -30,11 +32,11 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('./register/register.module').then((m) => m.RegisterModule),
   // },
-  // {
-  //   path: 'change-password',
-  //   component: ChangePasswordComponent,
-  //   canActivate: [AuthGuard],
-  // },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthenticatedGuard],
+  },
   {
     path: 'students',
     loadChildren: () =>
