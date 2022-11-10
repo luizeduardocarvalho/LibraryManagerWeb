@@ -5,15 +5,19 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let user = JSON.parse(localStorage.getItem('user') as string);
+    let user = JSON.parse(this.localStorageService._user as string);
     if (user && user.role == 'Administrator') {
       return true;
     }

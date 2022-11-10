@@ -3,6 +3,7 @@ import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { ToastrService } from 'ngx-toastr';
 import { ICard } from 'src/models/shared/card';
 import { Teacher } from 'src/models/teacher';
+import { LocalStorageService } from 'src/services/local-storage.service';
 import { TeacherService } from 'src/services/teacher.service';
 import { ModalComponent } from '../shared/modal/modal.component';
 
@@ -23,12 +24,13 @@ export class TeacherListComponent implements OnInit {
   constructor(
     private teacherService: TeacherService,
     private toastrService: ToastrService,
-    private modalService: MDBModalService
+    private modalService: MDBModalService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.user = JSON.parse(localStorage.getItem('user') as string);
+    this.user = JSON.parse(this.localStorageService._user as string);
     this.teacherService.getAllTeachers().subscribe(
       (teachers: Teacher[]) => {
         this.isLoading = false;
