@@ -117,7 +117,7 @@ export class BookInfoComponent implements OnInit {
       let cards = {
         id: transaction.transactionId.toString(),
         name: transaction.studentName,
-        bodyContent: [`Create at: ${creationDate}`],
+        bodyContent: [`Created at: ${creationDate}`],
         buttons: [],
       };
 
