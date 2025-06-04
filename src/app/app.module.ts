@@ -26,48 +26,47 @@ import { MyAreaComponent } from './my-area/my-area.component';
 import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NotFoundComponent,
-    RegisterComponent,
-    ChangePasswordComponent,
-    MyAreaComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
-    PipeModule,
-    FormsModule,
-    ReactiveFormsModule,
-    QRCodeModule,
-    BrowserAnimationsModule,
-    SharedModule,
-    MDBBootstrapModule.forRoot(),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => localStorage.getItem('token'),
-        allowedDomains: [
-          'localhost:5001',
-          'librarymanager-api-staging.herokuapp.com',
-          'librarymanager-api.herokuapp.com',
-        ],
-      },
-    }),
-    ToastrModule.forRoot(),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-    },
-  ],
-  entryComponents: [ModalComponent],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        NotFoundComponent,
+        RegisterComponent,
+        ChangePasswordComponent,
+        MyAreaComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        NgbPaginationModule,
+        NgbAlertModule,
+        PipeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        QRCodeModule,
+        BrowserAnimationsModule,
+        SharedModule,
+        MDBBootstrapModule.forRoot(),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: () => localStorage.getItem('token'),
+                allowedDomains: [
+                    'localhost:5001',
+                    'librarymanager-api-staging.herokuapp.com',
+                    'librarymanager-api.herokuapp.com',
+                ],
+            },
+        }),
+        ToastrModule.forRoot(),
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
