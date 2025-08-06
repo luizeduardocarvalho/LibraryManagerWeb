@@ -37,8 +37,8 @@ export class ChangePasswordComponent implements OnInit {
       let localStorageUser = JSON.parse(this.localStorageService._user as string);
       let user = new ChangePassword(
         localStorageUser.email,
-        this.changePasswordForm.value.oldPassword,
-        this.changePasswordForm.value.newPassword
+        this.changePasswordForm.value.oldPassword!,
+        this.changePasswordForm.value.newPassword!
       );
 
       this.authService.changePassword(user).subscribe(
